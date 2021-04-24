@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "shoes_store_project_front_end": {
+    "shoes-store-project-front-end": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/shoes_store_project_front_end",
+            "outputPath": "dist/shoes-store-project-front-end",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -99,21 +99,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "shoes_store_project_front_end:build"
+            "browserTarget": "shoes-store-project-front-end:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "shoes_store_project_front_end:build:production"
+              "browserTarget": "shoes-store-project-front-end:build:production"
             },
             "stag": {
-              "browserTarget": "shoes_store_project_front_end:build:stag"
+              "browserTarget": "shoes-store-project-front-end:build:stag"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "shoes_store_project_front_end:build"
+            "browserTarget": "shoes-store-project-front-end:build"
           }
         },
         "test": {
@@ -151,16 +151,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "shoes_store_project_front_end:serve"
+            "devServerTarget": "shoes-store-project-front-end:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "shoes_store_project_front_end:serve:production"
+              "devServerTarget": "shoes-store-project-front-end:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "shoes_store_project_front_end"
+  "defaultProject": "shoes-store-project-front-end"
 }

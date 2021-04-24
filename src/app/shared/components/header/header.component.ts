@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 
 import { map } from 'rxjs/operators';
 
@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

@@ -1,6 +1,4 @@
-@import '~@angular/material/theming';
-
-$primary: mat-palette($mat-indigo);
+@import '../../../../themes.scss';
 
 footer {
   padding: 50px 0px;

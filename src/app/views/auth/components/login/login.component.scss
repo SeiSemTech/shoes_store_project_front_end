@@ -1,0 +1,48 @@
+.login {
+    h1 {
+        font-size: 40px;
+        font-family: Helvetica,Arial,sans-serif;
+        max-width: 90%;
+    }
+    button {
+        background-color: #ffffff;
+        border-radius: 1em;
+        margin: 1em;
+        .logo {
+            padding-right: 5px;
+            height: 30px;
+            width: 50px;
+        }
+    }
+    width: 65vw;
+    height: 100vh;
+    display: flex; 
+    align-items: center; 
+    justify-content:center;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 600px) {
+    .login {
+        position: relative;
+        width: 100vw;
+        height: 30vh;
+        h1, h3 {
+            color: white;
+            position: relative;
+            bottom: 20vh;
+        }
+    }
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 70vw;
+        position: relative;
+        bottom: 20vh;
+        span {
+            display: none;
+        }
+    }
+    
+}

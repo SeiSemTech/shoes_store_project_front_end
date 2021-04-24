@@ -17,34 +17,34 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+        loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule)
       },
       {
         path: 'products',
-        loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
+        loadChildren: () => import('./views/product/product.module').then(m => m.ProductModule)
       },
       {
         path: 'contact',
-        loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
+        loadChildren: () => import('./views/contact/contact.module').then(m => m.ContactModule)
       },
       {
         path: 'order',
-        loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
-      }
+        loadChildren: () => import('./views/order/order.module').then(m => m.OrderModule)
+      },
+      {
+        path: 'auth',
+        loadChildren: () => import('./views/auth/auth.module').then(m => m.AuthModule)
+      },
     ]
   },
   {
     path: 'admin',
     canActivate: [AdminGuard],
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
-  },
-  {
-    path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./views/admin/admin.module').then(m => m.AdminModule)
   },
   {
     path: '**',
-    loadChildren: () => import('./page-not-found/page-not-found.module').then(m => m.PageNotFoundModule)
+    loadChildren: () => import('./views/page-not-found/page-not-found.module').then(m => m.PageNotFoundModule)
   },
 ];
 
