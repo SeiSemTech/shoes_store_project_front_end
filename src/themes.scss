@@ -2,18 +2,18 @@
 @include mat-core();
 
 $primary: (
- Main:#fff3eb,
- Light:#804b85,
- Dark: #28002f,
+ Main:#7e5c52,
+ Light:#FFF3EB,
+ Dark: #c1947d,
  contrast: (
   Main: #f5f5f5,
   Light: #000,
   Dark: #fff
- ));
+));
 $accent: (
- Main: #F7931E,
- Light: #ffc453,
- Dark: #be6500,
+ Main: #3e69c5,
+ Light: #ebf7ff,
+ Dark: #5cbeff,
  contrast: (
    Main: #fff,
    Light: #fff,
