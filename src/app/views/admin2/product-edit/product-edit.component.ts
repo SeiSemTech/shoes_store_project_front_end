@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { MyValidators } from '../../../../utils/validators';
 
 @Component({
   selector: 'app-product-edit',
@@ -14,7 +13,7 @@ export class ProductEditComponent {
   form: FormGroup;
   id: string;
 
-  constructor() {
+  constructor(
+  ) {
   }
-
 }

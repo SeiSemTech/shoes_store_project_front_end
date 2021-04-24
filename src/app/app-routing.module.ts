@@ -35,12 +35,12 @@ const routes: Routes = [
         path: 'auth',
         loadChildren: () => import('./views/auth/auth.module').then(m => m.AuthModule)
       },
+      {
+        path: 'admin2',
+        //canActivate: [AdminGuard],
+        loadChildren: () => import('./views/admin2/admin2.module').then(m => m.Admin2Module)
+      },
     ]
-  },
-  {
-    path: 'admin',
-    canActivate: [AdminGuard],
-    loadChildren: () => import('./views/admin/admin.module').then(m => m.AdminModule)
   },
   {
     path: '**',

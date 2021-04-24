@@ -1,17 +1,36 @@
-@mixin cust-theme($theme) {
-  $primary: map-get($theme, primary);
-}
+@import "src/themes.scss";
 
+mat-toolbar {
+  background-color: mat-color($primary, Light);
+}
 nav > a {
+  color: mat-color($foreground, Light);
   padding: 5px;
+  font-size: medium;
+  font-weight: 300;
   text-decoration: none;
 }
 nav > a.active {
-  background-color: blue;
+  font-weight: 800;
 }
-.header-row{
+.header-row {
   width: 100%;
 }
 .header-toolbar {
   margin-bottom: 20px;
+  position: sticky;
+  top: 0;
+}
+
+#Logo img[src="assets/images/store-logo-backgrn.png"] {
+  content: "";
+  background: transparent url() scroll no-repeat 0 0;
+  background-size: cover;
+  border: 1px solid mat-color($primary);
+  width: 125px;
+  height: 125px;
+  position: absolute;
+  display: block;
+  top: 0px;
+  left: 150px;
 }
