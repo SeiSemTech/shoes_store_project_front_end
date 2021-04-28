@@ -1,0 +1,36 @@
+@import "src/themes.scss";
+
+.register {
+  height: 80vh;
+  h1 {
+    font-size: 40px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: mat-color($primary);
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .register {
+      position: relative;
+      width: 100vw;
+      height: 30vh;
+      position: relative;
+      bottom: 20vh;
+    }
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 70vw;
+      position: relative;
+      bottom: 20vh;
+      span {
+        display: none;
+      }
+    }
+  }
+}

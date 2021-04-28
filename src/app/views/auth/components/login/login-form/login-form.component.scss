@@ -1,12 +1,20 @@
-mat-card {
+@import "src/themes.scss";
+
+form {
+  background-color: none;
+  mat-card {
+    padding: 3em;
+  }
+  mat-card,
+  mat-card-content {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 40vw;
-    height: 30vh;
-
-    mat-form-field{
-        width: 20vw;
-    }
+  }
+  #none {
+    font-size: xx-small;
+    color: red;
+    margin: 2;
+  }
 }

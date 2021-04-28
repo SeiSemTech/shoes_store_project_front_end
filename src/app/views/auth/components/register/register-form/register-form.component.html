@@ -1,0 +1,62 @@
+<form [formGroup]="form" (ngSubmit)="createUser($event)">
+  <mat-card>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-xs">
+          <mat-form-field appearance="outline">
+            <input
+              placeholder="Nombre completo"
+              formControlName="fullname"
+              matInput
+              type="name"
+            />
+            <mat-icon matSuffix>person_pin</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs"></div>
+      </div>
+      <div class="row">
+        <div class="col-xs">
+          <mat-form-field appearance="outline">
+            <input
+              placeholder="Email"
+              formControlName="email"
+              required
+              [pattern]="emailPattern"
+              matInput
+              type="email"
+            />
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
+          <div *ngIf="email.errors">
+            <div *ngIf="email.errors.pattern">Correo válido requerido.</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs">
+          <mat-form-field appearance="outline">
+            <input
+              placeholder="Teléfono"
+              formControlName="phone"
+              required
+              matInput
+              type="phone"
+            />
+            <mat-icon matSuffix>phone</mat-icon>
+          </mat-form-field>
+          <div *ngIf="phone.errors">
+            <div *ngIf="phone.errors.pattern">Teléfono no válido.</div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button [disabled]="form.invalid" mat-raised-button type="submit">
+        Registro
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
