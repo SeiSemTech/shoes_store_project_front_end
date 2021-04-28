@@ -1,5 +1,10 @@
 @import "src/themes.scss";
 
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 form {
   background-color: none;
   mat-card {
@@ -11,10 +16,5 @@ form {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-  }
-  #none {
-    font-size: xx-small;
-    color: red;
-    margin: 2;
   }
 }

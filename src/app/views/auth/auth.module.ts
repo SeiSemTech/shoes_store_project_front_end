@@ -9,10 +9,10 @@ import { RegisterComponent } from './components/register/register.component';
 
 import { MaterialModule } from '../../material/material.module';
 import { SharedModule } from '../../shared/shared.module';
-
+import { RegisterFormComponent } from './components/register/register-form/register-form.component';
 
 @NgModule({
-  declarations: [LoginComponent, LoginFormComponent, RegisterComponent],
+  declarations: [LoginComponent, LoginFormComponent, RegisterComponent, RegisterFormComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
