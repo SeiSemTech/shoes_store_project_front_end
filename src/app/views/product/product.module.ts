@@ -8,6 +8,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { ProductRoutingModule } from './product-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { MaterialModule } from '../../material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,9 +20,8 @@ import { MaterialModule } from '../../material/material.module';
     CommonModule,
     SharedModule,
     ProductRoutingModule,
+    ReactiveFormsModule,
     MaterialModule
   ]
 })
-export class ProductModule {
-
-}
+export class ProductModule { }
