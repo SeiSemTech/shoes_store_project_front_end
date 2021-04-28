@@ -40,6 +40,10 @@ export class LoginFormComponent implements OnInit {
   };
 
 
+    forgotpass(): void {
+    this.router.navigate(['auth/forgot']);
+  }
+
   private buildForm() {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email, Validators.pattern(this.emailPattern)]],

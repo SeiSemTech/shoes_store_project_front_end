@@ -1,0 +1,48 @@
+@import "src/themes.scss";
+
+.login {
+  h1 {
+    font-size: 40px;
+    font-family: Helvetica, Arial, sans-serif;
+    max-width: 90%;
+  }
+  h1,
+  h3 {
+    color: mat-color($primary);
+  }
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 600px) {
+  .login {
+    position: relative;
+    width: 100vw;
+    height: 30vh;
+    h1,
+    h3 {
+      position: relative;
+      bottom: 20vh;
+    }
+  }
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70vw;
+    position: relative;
+    bottom: 20vh;
+    span {
+      display: none;
+    }
+  }
+}
+.centrado{
+      text-align: center;
+      margin-top: 10px;
+
+}
+
+
