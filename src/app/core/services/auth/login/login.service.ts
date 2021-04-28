@@ -15,7 +15,7 @@ export class LoginService {
   ) { }
 
   login(email: string, password: string) {
-    return this.http.post(`${environment.url_api}/api/login`, {
+    return this.http.post(`${environment.url_api}/login`, {
       email,
       password,
     });
