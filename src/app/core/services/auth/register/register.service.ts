@@ -14,10 +14,10 @@ export class RegisterService {
   ) { }
 
   registerUser(name: string, email: string, phone: string) {
-    return this.http.post(`${environment.url_api}/api/create`, {
-      "name": name,
-      "email": email,
-      "phone": phone
+    return this.http.post(`${environment.url_api}/create`, {
+      name,
+      email,
+      phone
     });
   }
 }
