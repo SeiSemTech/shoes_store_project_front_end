@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url_api: 'https://shoes_store_project_front_end-stag.herokuapp.com'
+  url_api: 'http://localhost:4200/'
 };

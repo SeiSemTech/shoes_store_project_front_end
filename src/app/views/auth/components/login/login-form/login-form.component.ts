@@ -33,18 +33,15 @@ export class LoginFormComponent implements OnInit {
         (response: any) => {
           if (response.user) {
             this.router.navigate(['/home']);
+          } else {
+            alert('Correo o contraseña incorrectos.');
           }
         },
         (error: any) => {
-          console.log(error)
+          alert('Ocurrio un error inesperado');
         }
-      )
+      );
     }
-  };
-
-
-    forgotpass(): void {
-    this.router.navigate(['auth/forgot']);
   }
 
   private buildForm() {
