@@ -1,12 +1,14 @@
 @import "src/themes.scss";
 
 form {
-  background-color: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   mat-card {
     padding: 3em;
   }
-  mat-card,
-  mat-card-content {
+  mat-card, mat-card-content {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,9 +18,5 @@ form {
     font-size: xx-small;
     color: red;
     margin: 2px;
-  }
-  button {
-    width: 100%;
-    margin: 1em;
   }
 }

@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  public isLoading: boolean = false
-  public isEnabled: boolean = false
+  public isLoading = false;
+  public isEnabled = false;
 
   constructor(private snackBar: MatSnackBar, private router: Router) { };
 

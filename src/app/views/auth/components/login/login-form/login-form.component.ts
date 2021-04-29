@@ -34,7 +34,9 @@ export class LoginFormComponent implements OnInit {
           console.log(response)
           this.router.navigate(['/home']);
         },
-        (error: any) => { console.log(error) }
+        (error: any) => {
+          console.log(error)
+        }
       )
     }
   };

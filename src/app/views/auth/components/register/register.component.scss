@@ -1,6 +1,10 @@
 @import "src/themes.scss";
 
 .register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   height: 80vh;
   h1 {
     font-size: 40px;

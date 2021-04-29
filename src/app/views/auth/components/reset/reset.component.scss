@@ -1,6 +1,9 @@
 @import "src/themes.scss";
 
 .login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   h1 {
     font-size: 40px;
     font-family: Helvetica, Arial, sans-serif;
@@ -21,8 +24,7 @@
     position: relative;
     width: 100vw;
     height: 30vh;
-    h1,
-    h3 {
+    h1, h3 {
       position: relative;
       bottom: 20vh;
     }
@@ -40,9 +42,6 @@
   }
 }
 .centrado{
-      text-align: center;
-      margin-top: 10px;
-
+  text-align: center;
+  margin-top: 10px;
 }
-
-

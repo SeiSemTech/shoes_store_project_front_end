@@ -1,31 +1,19 @@
 <mat-toolbar class="header-toolbar">
   <mat-toolbar-row>
-    <div class="container">
-      <div class="row between-xs middle-xs header-row">
-        <nav>
-          <div id="Logo">
-            <img src="assets/images/store-logo-backgrn.png" alt="Store logo">
-            <script type="text/javascript">
-              (function () {
-                var img = document.getElementById('Logo').firstChild;
-                img.onload = function () {
-                  if (img.height > img.width) {
-                    img.height = 'auto';
-                    img.width = 'auto';
-                  }
-                };
-              }());
-            </script>
-          </div>
-          <a routerLink="/home" routerLinkActive="active">Home</a>
-          <a routerLink="/products" routerLinkActive="active">Productos</a>
-          <a routerLink="/contact" routerLinkActive="active">Contacto</a>
-        </nav>
-        <a routerLink="/order" mat-raised-button [matBadge]="total$ | async" matBadgeColor="warn">
-          <mat-icon>shopping_cart</mat-icon>
-          Carrito
-        </a>
-      </div>
+    <img src="assets/images/store-logo-transp-simple.png" alt="Store logo" routerLink="/home">
+    <nav>
+        <a routerLink="/home" routerLinkActive="active">Home</a>
+        <a routerLink="/products" routerLinkActive="active">Productos</a>
+        <a routerLink="/contact" routerLinkActive="active">Contacto</a>
+    </nav>
+    <div class="user-buttons">
+      <a routerLink="/order" mat-raised-button [matBadge]="total$ | async" matBadgeColor="warn">
+        <mat-icon>shopping_cart</mat-icon>
+        Carrito
+      </a>
+      <a routerLink="/auth/login" mat-mini-fab color="primary">
+        <mat-icon>person</mat-icon>
+      </a>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

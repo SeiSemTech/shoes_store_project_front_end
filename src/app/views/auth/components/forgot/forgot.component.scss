@@ -1,23 +1,16 @@
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
-.example-full-width {
-  width: 100%;
-}
-
-@import "src/themes.scss";
+@import "../../../../../themes";
 
 .login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   h1 {
     font-size: 40px;
     font-family: Helvetica, Arial, sans-serif;
     max-width: 90%;
   }
   h1,
-  h3 {
+  h2 {
     color: mat-color($primary);
   }
   height: 80vh;
@@ -32,7 +25,7 @@
     width: 100vw;
     height: 30vh;
     h1,
-    h3 {
+    h2 {
       position: relative;
       bottom: 20vh;
     }
@@ -47,11 +40,5 @@
       display: none;
     }
   }
-}
-
-.centrado{
-	    text-align: center;
-	    margin-top: 10px;
-
 }
 
