@@ -1,8 +1,16 @@
 @import '../../../../themes.scss';
 
+.footer-layoud{
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color:#00263A;
+}
+
 footer {
   padding: 50px 0px;
   margin-top: 20px;
+  position: sticky;
   background-color: mat-color($primary, Light);
   .box {
     h3 {
@@ -24,4 +32,25 @@ footer {
       }
     }
   }
+}
+ul{
+  list-style: none;
+}
+a, p{
+  color: gray;
+
+}
+.iconify { width: 28px; height: 28px; }
+span{
+  color: gray;
+  font-size: 1rem;
+}
+
+.footer-grid{
+  display: grid;
+  grid-template-columns: repeat(3 , 1fr);
+}
+
+.footer-list{
+  display: flex;
 }

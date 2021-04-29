@@ -2,35 +2,38 @@
 
 mat-toolbar {
   background-color: mat-color($primary, Light);
-}
-nav > a {
-  color: mat-color($foreground, Light);
-  padding: 5px;
-  font-size: medium;
-  font-weight: 300;
-  text-decoration: none;
-}
-nav > a.active {
-  font-weight: 800;
-}
-.header-row {
-  width: 100%;
-}
-.header-toolbar {
-  margin-bottom: 20px;
-  position: sticky;
-  top: 0;
+  margin-bottom: 20px !important;
+  mat-toolbar-row {
+    display: flex;
+    height: 64px;
+    justify-content: space-evenly;
+    align-items: center;
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    img {
+      width: 43px;
+      height: 43px;
+    }
+    nav {
+      a {
+        color: mat-color($foreground, Light);
+        padding: 5px;
+        font-size: medium;
+        font-weight: 300;
+        text-decoration: none;
+      }
+      .active {
+        font-weight: 800;
+      }
+    }
+    .user-buttons {
+      a {
+        margin: 0 .5em;
+      }
+    }
+  }
 }
 
-#Logo img[src="assets/images/store-logo-backgrn.png"] {
-  content: "";
-  background: transparent url() scroll no-repeat 0 0;
-  background-size: cover;
-  border: 1px solid mat-color($primary);
-  width: 125px;
-  height: 125px;
-  position: absolute;
-  display: block;
-  top: 0px;
-  left: 180px;
-}
+
+

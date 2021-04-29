@@ -1,0 +1,31 @@
+<form>
+  <mat-card>
+    <mat-card-content>
+      <div class="centrado">
+        <mat-form-field appearance="fill">
+          <mat-label>Ingresa tu contraseña</mat-label>
+          <input matInput [type]="isPasswordHidden ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="isPasswordHidden = !isPasswordHidden" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="isPasswordHidden">
+            <mat-icon>{{isPasswordHidden ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <div class="centrado">
+        <mat-form-field appearance="fill">
+          <mat-label>Ingresala nuevamente</mat-label>
+          <input matInput [type]="isConfirmationHidden ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="isConfirmationHidden = !isConfirmationHidden" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="isConfirmationHidden">
+            <mat-icon>{{isConfirmationHidden ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <div class="centrado">
+        <button mat-stroked-button color="primary" type="submit">Enviar contraseña</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>

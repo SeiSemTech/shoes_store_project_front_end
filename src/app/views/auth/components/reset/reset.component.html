@@ -1,34 +1,5 @@
 <div class="login">
-  <h1>Recuperar contraseña</h1>
-  <div class="example-container">
-  
-  <form>
-
-  	<div class="centrado">
-  <mat-form-field appearance="fill">
-    <mat-label>Ingresa tu contraseña</mat-label>
-    <input matInput [type]="hide ? 'password' : 'text'">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
-  </mat-form-field>
-  </div>
-
-<div class="centrado">
-  <mat-form-field appearance="fill">
-    <mat-label>Ingresala nuevamente</mat-label>
-    <input matInput [type]="hide ? 'password' : 'text'">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
-  </mat-form-field>
-  </div>
-
-  <div class="centrado">
-   <button mat-stroked-button color="primary" type="submit">Enviar contraseña</button>
-</div>
-  </form>
-</div>
-
+  <h2>Recuperar contraseña</h2>
+  <app-reset-form></app-reset-form>
 </div>
 
