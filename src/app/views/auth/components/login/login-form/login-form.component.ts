@@ -31,8 +31,9 @@ export class LoginFormComponent implements OnInit {
       const value = this.form.value;
       this.loginService.login(value.email, value.password).subscribe(
         (response: any) => {
-          console.log(response)
-          this.router.navigate(['/home']);
+          if (response.user) {
+            this.router.navigate(['/home']);
+          }
         },
         (error: any) => {
           console.log(error)
