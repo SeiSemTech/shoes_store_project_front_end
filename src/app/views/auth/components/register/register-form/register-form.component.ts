@@ -32,10 +32,13 @@ export class RegisterFormComponent implements OnInit {
       const value = this.form.value;
       this.registerService.registerUser(value.fullname, value.email, value.phone).subscribe(
         (response: any) => {
-          console.log(response)
-          this.router.navigate(['/home']);
+          if (response.status_code === 201) {
+            this.router.navigate(['/home']);
+          } else {
+            alert('El usuario ya existe.');
+          }
         },
-        (error: any) => { console.log(error) }
+        (error: any) => { console.log(error); }
       );
     }
   }
