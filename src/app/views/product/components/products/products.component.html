@@ -3,5 +3,23 @@
     *ngFor="let product of products"
     (productClicked)="clickProduct($event)"
     [product]="product">
+
   </app-product>
+
+
+<h4>Nuestras categorias</h4>
+<mat-form-field appearance="fill">
+  <mat-label>Cars</mat-label>
+  <select matNativeControl>
+    <optgroup label="Swedish Cars">
+      <option value="volvo">volvo</option>
+      <option value="saab">Saab</option>
+    </optgroup>
+    <optgroup label="German Cars">
+      <option value="mercedes">Mercedes</option>
+      <option value="audi">Audi</option>
+    </optgroup>
+  </select>
+</mat-form-field>
+
 </div>
