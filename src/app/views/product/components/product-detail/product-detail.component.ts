@@ -40,7 +40,6 @@ export class ProductDetailComponent implements OnInit {
       price: 1,
       status: 1,
       description: 'test',
-      stockQuantity: 1,
       categoryId: 1,
     };
     this.productsService.createProduct(newProduct)

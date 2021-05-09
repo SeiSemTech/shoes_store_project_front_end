@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { Product } from '../../../../core/models/product.model';
@@ -14,16 +15,18 @@ export class FormProductComponent implements OnInit {
 
   form: FormGroup;
   product: Product;
+  imageUrlPattern = '^(?!mailto)(?:https?|ftp):/(?:/?(?:[.#@?=]?[a-z0-9\u00a1-\uffff]+)+)+[.]?(?:png|jpe?g)$';
+  pricePattern = '^[0-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*$';
   categoriesList = [
-    { id: '1', name: 'Hombres' },
-    { id: '2', name: 'Mujeres' },
-    { id: '3', name: 'Niños' }
+    { id: 1, name: 'Promociones' },
+    { id: 2, name: 'Temporada de verano' },
   ];
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private ProductsService: ProductsService,
+    private productsService: ProductsService,
+    private snackBar: MatSnackBar,
   ) { this.buildForm(); }
 
   ngOnInit() {
@@ -32,12 +35,17 @@ export class FormProductComponent implements OnInit {
   private buildForm() {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
-      image: ['', []],
-      price: ['', [Validators.required]],
+      image: ['', [Validators.pattern(this.imageUrlPattern)]],
+      price: ['', [Validators.required, Validators.pattern(this.pricePattern)]],
       status: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      stockQuantity: ['', [Validators.required]],
       categoryId: ['', [Validators.required]],
+      getErrorMessage() {
+        if (this.form.value.hasError('required')) {
+          return 'You must enter a value';
+        }
+        return this.form.value.hasError('image') ? 'Not a valid entry' : '';
+      }
     });
   }
 
@@ -51,27 +59,26 @@ export class FormProductComponent implements OnInit {
         price: value.price,
         status: value.status,
         description: value.description,
-        stockQuantity: value.stockQuantity,
-        categoryId: this.saveCategory(value.categoryId),
+        categoryId: value.categoryId,
       }
-      this.ProductsService.createProduct(newProduct).subscribe(
+      this.productsService.createProduct(newProduct).subscribe(
         (response: any) => {
           if (response.status_code === 201) {
             this.router.navigate(['/products']);
-            alert('Producto creado.');
+            this.snackBar.open('Producto creado exitosamente', 'cerrar', { duration: 5000 })
           } else {
-            alert('No es posible crear este producto.');
+            this.snackBar.open('No es posible crear este producto.', 'cerrar', { duration: 5000 })
           }
         },
-        (error: any) => { console.log(error); }
+        (error: any) => {
+          console.log(error);
+          this.snackBar.open('Ha ocurrido un error inesperado.', 'cerrar', { duration: 5000 })
+        }
       );
     }
   }
 
-  public saveCategory(e): number {
-    let name = e.target.value;
-    let category = this.categoriesList.filter(x => x.id === name)[0];
-    console.log(category.id);
-    return Number(category.id);
+  showFormControl(x) {
+    console.log(x);
   }
 }

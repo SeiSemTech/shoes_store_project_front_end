@@ -9,7 +9,7 @@
 form {
   background-color: none;
   mat-card {
-    padding: 3em;
+    padding: 2em;
   }
   mat-card {
     display: flex;
@@ -23,15 +23,24 @@ form {
     align-items: center;
     flex-direction: column;
   }
-  mat-card-header {
-    font-size: 40px;
-    font-family: Helvetica, Arial, sans-serif;
-    color: mat-color($primary);
-    height: 10vh;
+  mat-card-title {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+  }
+  mat-card-header {
+    font-size: 50px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: mat-color($primary);
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  mat-form-field {
+    width: 35vw;
   }
 }
 
