@@ -26,7 +26,7 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  fetchProduct(id: string) {
+  fetchProduct(id: number) {
     this.productsService.getProduct(id)
       .subscribe(product => {
         this.product = product;
@@ -53,14 +53,14 @@ export class ProductDetailComponent implements OnInit {
       price: 555555,
       description: 'edicion titulo'
     };
-    this.productsService.updateProduct('2', updateProduct)
+    this.productsService.updateProduct(2, updateProduct)
       .subscribe(product => {
         console.log(product);
       });
   }
 
   deleteProduct() {
-    this.productsService.deleteProduct('222')
+    this.productsService.deleteProduct(222)
       .subscribe(rta => {
         console.log(rta);
       });
