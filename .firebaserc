@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "zapacommerce"
+  },
+  "targets": {
+    "zapacommerce": {
+      "hosting": {
+        "zapacommerce-development": [
+          "zapacommerce-development"
+        ]
+      }
+    }
   }
 }
