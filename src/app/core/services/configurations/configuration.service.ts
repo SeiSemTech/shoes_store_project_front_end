@@ -14,22 +14,22 @@ export class ConfigurationService {
   ) { }
 
   getAllConfigurations() {
-    return this.http.get<Configuration[]>(`${environment.url_api}/configurations`);
+    return this.http.get<Configuration[]>(`${environment.url_api}/get_all_configurations`);
   }
 
-  getConfiguration(id: string) {
-    return this.http.get<Configuration>(`${environment.url_api}/configurations/${id}`);
-  }
+  // getConfiguration(id: string) {
+  //   return this.http.get<Configuration>(`${environment.url_api}/get_configuration_by_id/${id}`);
+  // }
 
   createConfiguration(category: Configuration) {
     return this.http.post(`${environment.url_api}/create_configuration/`, category);
   }
 
-  updateConfiguration(id: string, changes: Partial<Configuration>) {
-    return this.http.put(`${environment.url_api}/configurations/${id}`, changes);
-  }
-
-  deleteConfiguration(id: string) {
-    return this.http.delete(`${environment.url_api}/delete_configuration/${id}`);
-  }
+  // updateConfiguration(id: string, changes: Partial<Configuration>) {
+  //   return this.http.put(`${environment.url_api}/update_configurations/${id}`, changes);
+  // }
+  //
+  // deleteConfiguration(id: string) {
+  //   return this.http.delete(`${environment.url_api}/delete_configuration/${id}`);
+  // }
 }

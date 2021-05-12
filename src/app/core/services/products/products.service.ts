@@ -18,7 +18,7 @@ export class ProductsService {
   }
 
   getProduct(id: number) {
-    return this.http.get<Product>(`${environment.url_api}/products/${id}`);
+    return this.http.get<Product>(`${environment.url_api}/get_product_by_id/${id}`);
   }
 
   createProduct(product: Product) {
@@ -26,10 +26,12 @@ export class ProductsService {
   }
 
   updateProduct(id: number, changes: Partial<Product>) {
-    return this.http.put(`${environment.url_api}/products/${id}`, changes);
+    const product: any = changes;
+    product.push(id);
+    return this.http.put(`${environment.url_api}/update_product/`, product);
   }
 
   deleteProduct(id: number) {
-    return this.http.delete(`${environment.url_api}/products/${id}`);
+    return this.http.delete(`${environment.url_api}/delete_product/${id}`);
   }
 }

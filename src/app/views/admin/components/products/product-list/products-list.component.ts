@@ -1,11 +1,11 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatSnackBar} from '@angular/material';
-import {Product} from '../../../../core/models/product.model';
-import {ProductsService} from '../../../../core/services/products/products.service';
 import {Router} from '@angular/router';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import {Product} from 'src/app/core/models/product.model';
+import {ProductsService} from 'src/app/core/services/products/products.service';
 
 @Component({
   selector: 'app-products-list',
