@@ -3,8 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { Product } from '../../../../core/models/product.model';
-import { ProductsService } from '../../../../core/services/products/products.service'
+import { Product } from '../../../../../core/models/product.model';
+import { ProductsService } from '../../../../../core/services/products/products.service'
+import { CategoryService } from '../../../../../core/services/categories/category.service'
+import { Category } from 'src/app/core/models/category.model';
 
 @Component({
   selector: 'app-form-product',
@@ -15,8 +17,10 @@ export class FormProductComponent implements OnInit {
 
   form: FormGroup;
   product: Product;
-  imageUrlPattern = '^(?!mailto)(?:https?|ftp):/(?:/?(?:[.#@?=]?[a-z0-9\u00a1-\uffff]+)+)+[.]?(?:png|jpe?g)$';
+  imageUrlPattern = '^(?!mailto)(?:https?|ftp):/(?:/?(?:[.#@?=]?[a-z0-9\u00a1-\uffff]+)+)+[.]?(?:png|jpg|jpe?g)$';
   pricePattern = '^[0-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*$';
+  displayOrderPattern = '^[0-9]+$';
+  categories: Category[];
   categoriesList = [
     { id: 1, name: 'Promociones' },
     { id: 2, name: 'Temporada de verano' },
@@ -25,11 +29,13 @@ export class FormProductComponent implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private productsService: ProductsService,
     private snackBar: MatSnackBar,
+    private productsService: ProductsService,
+    private categoryService: CategoryService,
   ) { this.buildForm(); }
 
   ngOnInit() {
+    this.getCategories();
   }
 
   private buildForm() {
@@ -39,13 +45,15 @@ export class FormProductComponent implements OnInit {
       price: ['', [Validators.required, Validators.pattern(this.pricePattern)]],
       status: ['', [Validators.required]],
       description: ['', [Validators.required]],
+      displayOrder: ['', [Validators.required, Validators.pattern(this.displayOrderPattern)]],
       categoryId: ['', [Validators.required]],
-      getErrorMessage() {
-        if (this.form.value.hasError('required')) {
-          return 'You must enter a value';
-        }
-        return this.form.value.hasError('image') ? 'Not a valid entry' : '';
-      }
+    });
+  }
+
+  getCategories() {
+    this.categoryService.getAllCategories().subscribe((response: Category[]) => {
+      this.categories = response;
+      console.log(response);
     });
   }
 
@@ -59,13 +67,14 @@ export class FormProductComponent implements OnInit {
         price: value.price,
         status: value.status,
         description: value.description,
+        displayOrder: value.displayOrder,
         categoryId: value.categoryId,
       }
       this.productsService.createProduct(newProduct).subscribe(
         (response: any) => {
           if (response.status_code === 201) {
-            this.router.navigate(['/products']);
             this.snackBar.open('Producto creado exitosamente', 'cerrar', { duration: 5000 })
+            this.router.navigate(['/products']);
           } else {
             this.snackBar.open('No es posible crear este producto.', 'cerrar', { duration: 5000 })
           }

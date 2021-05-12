@@ -1,0 +1,71 @@
+@import "src/themes.scss";
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  background-color: none;
+  mat-card {
+    padding: 2em;
+  }
+  mat-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  mat-card-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  mat-card-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  mat-card-header {
+    font-size: 50px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: mat-color($primary);
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  mat-form-field {
+    width: 35vw;
+  }
+}
+
+button {
+  background-color: mat-color($primary);
+  color: mat-color($foreground);
+}
+
+@media only screen and (max-width: 600px) {
+  form {
+    position: relative;
+    width: 100vw;
+    height: 30vh;
+    position: relative;
+    bottom: 20vh;
+  }
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70vw;
+    position: relative;
+    bottom: 20vh;
+    span {
+      display: none;
+    }
+  }
+}

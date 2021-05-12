@@ -1,0 +1,55 @@
+<form [formGroup]="form" (ngSubmit)="createConfiguration($event)">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Crear Configuración</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          placeholder="Nombre"
+          formControlName="name"
+          type="text"
+          required
+        />
+        <mat-error>
+          El nombre de la configuración es <strong>requerido.</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Sub configuración</mat-label>
+        <input
+          matInput
+          placeholder="Sub configuración"
+          formControlName="subConfiguratuion"
+          type="text"
+          required
+        />
+        <mat-error>
+          El nombre del subconfigurador es <strong>requerido.</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Precio</mat-label>
+        <input
+          matInput
+          placeholder="Precio"
+          formControlName="extraPrice"
+          [pattern]="pricePattern"
+          required
+          type="number"
+          min="0"
+        />
+        <mat-error>
+          ¡El precio del configurador debe ser <strong>valido.</strong>!
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button [disabled]="form.invalid" mat-raised-button type="submit">
+        Guardar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

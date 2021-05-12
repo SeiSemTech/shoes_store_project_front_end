@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Product } from './../../models/product.model';
-
 import { environment } from './../../../../environments/environment';
 
 @Injectable({
@@ -23,7 +22,7 @@ export class ProductsService {
   }
 
   createProduct(product: Product) {
-    return this.http.post(`${environment.url_api}/products/create`, product);
+    return this.http.post(`${environment.url_api}/create_product/`, product);
   }
 
   updateProduct(id: string, changes: Partial<Product>) {
@@ -31,6 +30,6 @@ export class ProductsService {
   }
 
   deleteProduct(id: string) {
-    return this.http.delete(`${environment.url_api}/products/${id}`);
+    return this.http.delete(`${environment.url_api}/delete_product/${id}`);
   }
 }

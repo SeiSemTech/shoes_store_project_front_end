@@ -13,6 +13,9 @@
           type="text"
           required
         />
+        <mat-error>
+          El nombre del producto es <strong>requerido.</strong>
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Coloque la url de la imagen</mat-label>
@@ -23,9 +26,7 @@
           matInput
           type="text"
         />
-        <mat-error>
-          ¡Pon una url <strong>valida</strong>!
-        </mat-error>
+        <mat-error> ¡Pon una url <strong>valida</strong>! </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Precio</mat-label>
@@ -38,6 +39,9 @@
           type="number"
           min="0"
         />
+        <mat-error>
+          ¡El precio del producto debe ser <strong>valido.</strong>!
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Estado</mat-label>
@@ -50,6 +54,9 @@
           <mat-option value="1">Encendido</mat-option>
           <mat-option value="0">Apagado</mat-option>
         </mat-select>
+        <mat-error>
+          El estado del producto es <strong>requerido.</strong>
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Descripción</mat-label>
@@ -59,9 +66,25 @@
           matInput
           type="text"
         />
+        <mat-error>
+          La descripción del producto es <strong>requerida.</strong>
+        </mat-error>
       </mat-form-field>
-
       <mat-form-field appearance="outline">
+        <mat-label>Orden de visualización</mat-label>
+        <input
+          placeholder="Orden de visualización"
+          formControlName="displayOrder"
+          matInput
+          required
+          type="number"
+        />
+        <mat-error>
+          Ingrese un orden de visualización del producto
+          <strong>valido.</strong>
+        </mat-error>
+      </mat-form-field>
+      <!-- <mat-form-field appearance="outline">
         <mat-label>Categoria</mat-label>
         <mat-select
           disableRipple
@@ -74,6 +97,22 @@
             c.name
           }}</mat-option>
         </mat-select>
+        <mat-error> La categoría es <strong>requerida.</strong> </mat-error>
+      </mat-form-field> -->
+      <mat-form-field appearance="outline">
+        <mat-label>Categoria</mat-label>
+        <mat-select
+          disableRipple
+          placeholder="Categoria"
+          formControlName="categoryId"
+          type="number"
+          list="categories"
+        >
+          <mat-option *ngFor="let c of categories" [value]="c.id">{{
+            c.name
+          }}</mat-option>
+        </mat-select>
+        <mat-error> La categoría es <strong>requerida.</strong> </mat-error>
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions>

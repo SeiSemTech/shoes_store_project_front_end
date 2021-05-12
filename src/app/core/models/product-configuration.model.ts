@@ -3,4 +3,5 @@ export interface ProductConfiguration {
   configurationId: number;
   configDisplayOrder: number;
   subConfigDisplayOrder: number;
+  stock: number;
 }
