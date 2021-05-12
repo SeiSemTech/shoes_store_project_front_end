@@ -51,9 +51,8 @@ export class FormProductComponent implements OnInit {
   }
 
   getCategories() {
-    this.categoryService.getAllCategories().subscribe((response: Category[]) => {
-      this.categories = response;
-      console.log(response);
+    this.categoryService.getAllCategories().subscribe((response: any) => {
+      this.categories = response.categories;
     });
   }
 

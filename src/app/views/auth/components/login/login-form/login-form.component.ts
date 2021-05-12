@@ -19,7 +19,7 @@ export class LoginFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private loginService: LoginService,
-    private snackBar: MatSnackBar,
+    private snackBar: MatSnackBar
   ) {
     this.buildForm();
   }
@@ -33,7 +33,8 @@ export class LoginFormComponent implements OnInit {
       const value = this.form.value;
       this.loginService.login(value.email, value.password).subscribe(
         (response: any) => {
-          if (response.user) {
+          if (response.token) {
+            window.localStorage.setItem('token', response.token);
             this.router.navigate(['/home']);
             this.snackBar.open('Has iniciado sesión exitosamente.', 'Cerrar', { duration: 5000 })
           } else {
