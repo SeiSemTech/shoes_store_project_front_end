@@ -108,8 +108,8 @@
           type="number"
           list="categories"
         >
-          <mat-option *ngFor="let c of categories" [value]="c.id">{{
-            c.name
+          <mat-option *ngFor="let category of categories" value="category.id">{{
+            category.name
           }}</mat-option>
         </mat-select>
         <mat-error> La categoría es <strong>requerida.</strong> </mat-error>
