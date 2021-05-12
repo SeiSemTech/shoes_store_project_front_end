@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { RegisterService } from 'src/app/core/services/auth/register/register.service';
@@ -18,7 +19,8 @@ export class RegisterFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private registerService: RegisterService
+    private registerService: RegisterService,
+    private snackBar: MatSnackBar,
   ) {
     this.buildForm();
   }
@@ -34,11 +36,12 @@ export class RegisterFormComponent implements OnInit {
         (response: any) => {
           if (response.status_code === 201) {
             this.router.navigate(['/home']);
+            this.snackBar.open('Usuario registrado', 'cerrar', { duration: 2000 })
           } else {
-            alert('El usuario ya existe.');
+            this.snackBar.open('El usuario ya existe', 'cerrar', { duration: 2000 })
           }
         },
-        (error: any) => { console.log(error); }
+        (error: any) => { console.log(error); this.snackBar.open('Error inesperado.', 'cerrar', { duration: 2000 }) }
       );
     }
   }
