@@ -17,5 +17,9 @@ export class LoginService {
       password,
     });
   }
+
+  getRole() {
+    return this.http.get(`${environment.url_api}/role`);
+  }
 }
 
