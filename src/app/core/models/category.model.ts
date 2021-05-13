@@ -1,5 +1,5 @@
 export interface Category {
   name: string;
   status: number;
-  displayOrder: number;
+  display_order: number;
 }

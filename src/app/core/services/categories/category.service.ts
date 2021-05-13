@@ -13,9 +13,16 @@ export class CategoryService {
     private http: HttpClient
   ) { }
 
+  createCategory(category: Category) {
+    return this.http.post(`${environment.url_api}/products/category`, category);
+  }
+
+  updateCategory(id: string, changes: Partial<Category>) {
+    return this.http.put(`${environment.url_api}/products/category` + id, changes);
+  }
 
   getAllCategories() {
-    return this.http.get<Category[]>(`${environment.url_api}/products/get_categories`);
+    return this.http.get<Category[]>(`${environment.url_api}/products/categories`);
   }
 
   // TODO: OSCAR
@@ -23,16 +30,8 @@ export class CategoryService {
   //   return this.http.get<Category>(`${environment.url_api}/products/categories/${id}`);
   // }
 
-  createCategory(category: Category) {
-    return this.http.post(`${environment.url_api}/products/create_category`, category);
+  deleteCategory(id: string) {
+    return this.http.delete(`${environment.url_api}/products/category/${id}`);
   }
 
-  // TODO SANTIAGO
-  // updateCategory(id: string, changes: Partial<Category>) {
-  //   return this.http.put(`${environment.url_api}/categories/${id}`, changes);
-  // }
-  //
-  // deleteCategory(id: string) {
-  //   return this.http.delete(`${environment.url_api}/delete_category/${id}`);
-  // }
 }

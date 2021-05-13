@@ -21,10 +21,6 @@ export class FormProductComponent implements OnInit {
   pricePattern = '^[0-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*$';
   displayOrderPattern = '^[0-9]+$';
   categories: Category[];
-  categoriesList = [
-    { id: 1, name: 'Promociones' },
-    { id: 2, name: 'Temporada de verano' },
-  ];
 
   constructor(
     private router: Router,
@@ -66,11 +62,12 @@ export class FormProductComponent implements OnInit {
         price: value.price,
         status: value.status,
         description: value.description,
-        displayOrder: value.displayOrder,
-        categoryId: value.categoryId,
+        display_order: value.displayOrder,
+        category_id: value.categoryId,
       }
       this.productsService.createProduct(newProduct).subscribe(
         (response: any) => {
+          console.log(response.status_code);
           if (response.status_code === 201) {
             this.snackBar.open('Producto creado exitosamente', 'cerrar', { duration: 5000 })
             this.router.navigate(['/products']);

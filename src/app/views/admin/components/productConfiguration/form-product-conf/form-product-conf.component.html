@@ -13,9 +13,11 @@
           type="number"
           list="products"
         >
-          <mat-option *ngFor="let p of products" [value]="p.id">{{
-            p.name
-          }}</mat-option>
+          <mat-option
+            *ngFor="let product of products"
+            value="{{ product.id }}"
+            >{{ product.name }}</mat-option
+          >
         </mat-select>
         <mat-error> El producto es <strong>requerido.</strong> </mat-error>
       </mat-form-field>
@@ -28,9 +30,13 @@
           type="number"
           list="configurations"
         >
-          <mat-option *ngFor="let c of configurations" [value]="c.id">{{
-            c.name
-          }}</mat-option>
+          <mat-option
+            *ngFor="let configuration of configurations"
+            value="{{ configuration.id }}"
+            >{{ configuration.id }}:{{ configuration.name }}:{{
+              configuration.sub_configuratuion
+            }}</mat-option
+          >
         </mat-select>
         <mat-error> La configuración es <strong>requerida.</strong> </mat-error>
       </mat-form-field>

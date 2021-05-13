@@ -1,5 +1,5 @@
 export interface Configuration {
   name: string;
-  subConfiguratuion: string;
-  extraPrice: number;
+  sub_configuratuion: string;
+  extra_price: number;
 }

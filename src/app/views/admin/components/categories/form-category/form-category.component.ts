@@ -41,16 +41,12 @@ export class FormCategoryComponent implements OnInit {
       const newCategory: Category = {
         name: value.name,
         status: value.status,
-        displayOrder: value.displayOrder,
+        display_order: value.displayOrder,
       }
       this.categoryService.createCategory(newCategory).subscribe(
         (response: any) => {
-          if (response.status_code === 201) {
-            this.snackBar.open('Categoria creado exitosamente', 'cerrar', { duration: 5000 })
-            this.router.navigate(['/categories']);
-          } else {
-            this.snackBar.open('No es posible crear esta categoria.', 'cerrar', { duration: 5000 })
-          }
+          console.log(response, response.status_code);
+          this.snackBar.open('Categoria creada con éxito.', 'cerrar', { duration: 5000 })
         },
         (error: any) => {
           console.log(error);
@@ -59,5 +55,32 @@ export class FormCategoryComponent implements OnInit {
       );
     }
   }
+
+  // createCategory(event: Event) {
+  //   event.preventDefault();
+  //   if (this.form.valid) {
+  //     const value = this.form.value;
+  //     const newCategory: Category = {
+  //       name: value.name,
+  //       status: value.status,
+  //       display_order: value.displayOrder,
+  //     }
+  //     this.categoryService.createCategory(newCategory).subscribe(
+  //       (response: any) => {
+  //         console.log(response, response.status_code);
+  //         if (response.status_code === 201) {
+  //           this.snackBar.open('Categoria creada exitosamente', 'cerrar', { duration: 5000 })
+  //           this.router.navigate(['/categories']);
+  //         } else {
+  //           this.snackBar.open('No es posible crear esta categoria.', 'cerrar', { duration: 5000 })
+  //         }
+  //       },
+  //       (error: any) => {
+  //         console.log(error);
+  //         this.snackBar.open('Ha ocurrido un error inesperado.', 'cerrar', { duration: 5000 })
+  //       }
+  //     );
+  //   }
+  // }
 
 }

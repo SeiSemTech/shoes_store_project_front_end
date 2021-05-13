@@ -84,21 +84,6 @@
           <strong>valido.</strong>
         </mat-error>
       </mat-form-field>
-      <!-- <mat-form-field appearance="outline">
-        <mat-label>Categoria</mat-label>
-        <mat-select
-          disableRipple
-          placeholder="Categoria"
-          formControlName="categoryId"
-          type="number"
-          list="categories"
-        >
-          <mat-option *ngFor="let c of categoriesList" value="c.id">{{
-            c.name
-          }}</mat-option>
-        </mat-select>
-        <mat-error> La categoría es <strong>requerida.</strong> </mat-error>
-      </mat-form-field> -->
       <mat-form-field appearance="outline">
         <mat-label>Categoria</mat-label>
         <mat-select
@@ -108,9 +93,11 @@
           type="number"
           list="categories"
         >
-          <mat-option *ngFor="let category of categories" value="category.id">{{
-            category.name
-          }}</mat-option>
+          <mat-option
+            *ngFor="let category of categories"
+            value="{{ category.id }}"
+            >{{ category.name }}</mat-option
+          >
         </mat-select>
         <mat-error> La categoría es <strong>requerida.</strong> </mat-error>
       </mat-form-field>
