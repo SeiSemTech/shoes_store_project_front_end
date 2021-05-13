@@ -17,61 +17,77 @@ import { CategoryEditComponent } from './components/categories/category-edit/cat
 import { ConfigurationEditComponent } from './components/configuration/configuration-edit/configuration-edit.component';
 import { FormProductConfComponent } from './components/productConfiguration/form-product-conf/form-product-conf.component';
 import { ProductConfEditComponent } from './components/productConfiguration/product-conf-edit/product-conf-edit.component';
+import { AdminGuard } from 'src/app/utils/guards/admin.guard';
+import { AdminChildGuard } from 'src/app/utils/guards/admin-child.guard';
 const routes: Routes = [
   {
     path: '',
-    component: AdminComponent
+    canActivate: [AdminGuard],
+    component: AdminComponent,
   },
   {
     path: 'create',
+    canActivate: [AdminGuard],
     component: ProductFormComponent
   },
   {
     path: 'products',
+    canActivate: [AdminGuard],
     component: ProductsListComponent
   },
   {
     path: 'products/create',
+    canActivate: [AdminGuard],
     component: FormProductComponent
   },
   {
     path: 'products/edit/:id',
+    canActivate: [AdminGuard],
     component: ProductEditComponent
   },
   {
     path: 'categories',
+    canActivate: [AdminGuard],
     component: CategoryListComponent
   },
   {
     path: 'categories/create',
+    canActivate: [AdminGuard],
     component: FormCategoryComponent
   },
   {
     path: 'categories/edit',
+    canActivate: [AdminGuard],
     component: CategoryEditComponent
   },
   {
     path: 'configurations',
+    canActivate: [AdminGuard],
     component: ConfigurationListComponent
   },
   {
     path: 'configurations/create',
+    canActivate: [AdminGuard],
     component: FormConfigurationComponent
   },
   {
     path: 'configurations/edit',
+    canActivate: [AdminGuard],
     component: ConfigurationEditComponent
   },
   {
     path: 'product-configurations',
+    canActivate: [AdminGuard],
     component: ProductConfListComponent
   },
   {
     path: 'product-configurations/create',
+    canActivate: [AdminGuard],
     component: FormProductConfComponent
   },
   {
     path: 'product-configurations/edit',
+    canActivate: [AdminGuard],
     component: ProductConfEditComponent
   },
 ];
