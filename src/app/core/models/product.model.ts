@@ -4,6 +4,6 @@ export interface Product {
   price: number;
   status: number;
   description: string;
-  displayOrder: number;
-  categoryId: number;
+  category_id: number;
+  display_order: number;
 }

@@ -1,7 +1,7 @@
 export interface ProductConfiguration {
-  productId: number;
-  configurationId: number;
-  configDisplayOrder: number;
-  subConfigDisplayOrder: number;
+  product_id: number;
+  configuration_id: number;
+  config_display_order: number;
+  sub_config_display_order: number;
   stock: number;
 }

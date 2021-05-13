@@ -25,7 +25,8 @@ export class FormProductConfComponent implements OnInit {
   products: Product[];
   configurations: Configuration[];
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
     private configurationService: ConfigurationService,
@@ -48,15 +49,15 @@ export class FormProductConfComponent implements OnInit {
   }
 
   getProducts() {
-    this.productsService.getAllProducts().subscribe((response: Product[]) => {
-      this.products = response;
+    this.productsService.getAllProducts().subscribe((response: any) => {
+      this.products = response.products;
       console.log(response);
     });
   }
 
   getConfigurations() {
-    this.configurationService.getAllConfigurations().subscribe((response: Configuration[]) => {
-      this.configurations = response;
+    this.configurationService.getAllConfigurations().subscribe((response: any) => {
+      this.configurations = response.configurations;
       console.log(response);
     });
   }
@@ -66,10 +67,10 @@ export class FormProductConfComponent implements OnInit {
     if (this.form.valid) {
       const value = this.form.value;
       const newProductConfiguration: ProductConfiguration = {
-        productId: value.productId,
-        configurationId: value.configurationId,
-        configDisplayOrder: value.configDisplayOrder,
-        subConfigDisplayOrder: value.subConfigDisplayOrder,
+        product_id: value.productId,
+        configuration_id: value.configurationId,
+        config_display_order: value.configDisplayOrder,
+        sub_config_display_order: value.subConfigDisplayOrder,
         stock: value.stock,
       }
       this.productConfigurationService.createProductConfiguration(newProductConfiguration).subscribe(

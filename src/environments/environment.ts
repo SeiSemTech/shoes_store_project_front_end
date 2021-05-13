@@ -7,7 +7,7 @@
 
 export const environment = {
   production: false,
-  url_api: 'http://localhost:5000'
+  url_api: 'https://zapacommerce-dev.azurewebsites.net/api'
 };
 
 /*

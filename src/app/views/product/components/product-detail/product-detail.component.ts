@@ -27,7 +27,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   fetchProduct(id: number) {
-    this.productsService.getProduct(id)
+    this.productsService.getProductById(id)
       .subscribe(product => {
         this.product = product;
       });
@@ -40,8 +40,8 @@ export class ProductDetailComponent implements OnInit {
       price: 1,
       status: 1,
       description: 'test',
-      displayOrder: 1,
-      categoryId: 1,
+      category_id: 1,
+      display_order: 1,
     };
     this.productsService.createProduct(newProduct)
       .subscribe(product => {

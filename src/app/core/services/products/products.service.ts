@@ -13,23 +13,28 @@ export class ProductsService {
     private http: HttpClient
   ) { }
 
-  getAllProducts() {
-    return this.http.get<Product[]>(`${environment.url_api}/products/`);
-  }
-
-  getProduct(id: number) {
-    return this.http.get<Product>(`${environment.url_api}/products/${id}`);
-  }
-
   createProduct(product: Product) {
-    return this.http.post(`${environment.url_api}/products/`, product);
+    return this.http.post(`${environment.url_api}/products/product`, product);
   }
 
-  updateProduct(id: number, changes: Partial<Product>) {
-    return this.http.put(`${environment.url_api}/products/` + id, changes);
+  getAllProducts() {
+    return this.http.get<Product[]>(`${environment.url_api}/products/products`);
+  }
+
+  getEnabledProducts() {
+    return this.http.get<Product[]>(`${environment.url_api}/products/activated_products`);
+  }
+
+  getProductById(id: number) {
+    return this.http.get<Product>(`${environment.url_api}/products/product/${id}`);
   }
 
   deleteProduct(id: number) {
-    return this.http.delete(`${environment.url_api}/products/${id}`);
+    return this.http.delete(`${environment.url_api}/products/product/${id}`);
   }
+
+  updateProduct(id: number, changes: Partial<Product>) {
+    return this.http.put(`${environment.url_api}/products/update` + id, changes);
+  }
+
 }
