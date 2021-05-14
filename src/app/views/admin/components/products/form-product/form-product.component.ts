@@ -60,20 +60,15 @@ export class FormProductComponent implements OnInit {
         name: value.name,
         status: value.status,
         image: value.image,
-        price: value.price,        
+        price: value.price,
         description: value.description,
         display_order: value.displayOrder,
         category_id: value.categoryId,
       }
       this.productsService.createProduct(newProduct).subscribe(
         (response: any) => {
-          console.log(response.status_code);
-          if (response.status_code === 201) {
             this.snackBar.open('Producto creado exitosamente', 'cerrar', { duration: 5000 })
             this.router.navigate(['/products']);
-          } else {
-            this.snackBar.open('No es posible crear este producto.', 'cerrar', { duration: 5000 })
-          }
         },
         (error: any) => {
           console.log(error);
