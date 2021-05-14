@@ -27,6 +27,17 @@ export class LoginService {
     });
   }
 
+  setPassword(password: string, token: string) {
+    const email: string = window.localStorage.getItem('email');
+    return this.http.post(`${environment.url_api}/password`, {
+      email, password, code: token
+    });
+  }
+
+  getPassword(email: string) {
+    return this.http.get(`${environment.url_api}/password/${email}`);
+  }
+
   loginJWT(token: string): void {
       const decode = jwt_decode<IJwt>(token);
       localStorage.setItem('access_token', token);

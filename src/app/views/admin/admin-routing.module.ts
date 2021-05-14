@@ -17,77 +17,77 @@ import { CategoryEditComponent } from './components/categories/category-edit/cat
 import { ConfigurationEditComponent } from './components/configuration/configuration-edit/configuration-edit.component';
 import { FormProductConfComponent } from './components/productConfiguration/form-product-conf/form-product-conf.component';
 import { ProductConfEditComponent } from './components/productConfiguration/product-conf-edit/product-conf-edit.component';
-import { AdminGuard } from 'src/app/utils/guards/admin.guard';
-import { AdminChildGuard } from 'src/app/utils/guards/admin-child.guard';
+import {LoginGuard} from 'src/app/utils/guards/login/login.guard';
+import {AdminGuard} from 'src/app/utils/guards/admin/admin.guard';
 const routes: Routes = [
   {
     path: '',
-    canActivate: [AdminGuard],
+    canActivate: [AdminGuard, LoginGuard],
     component: AdminComponent,
   },
   {
     path: 'create',
-    canActivate: [AdminGuard],
+    canActivate: [AdminGuard, LoginGuard],
     component: ProductFormComponent
   },
   {
     path: 'products',
-    canActivate: [AdminGuard],
+    canActivate: [AdminGuard, LoginGuard],
     component: ProductsListComponent
   },
   {
     path: 'products/create',
-    canActivate: [AdminGuard],
+    canActivate: [AdminGuard, LoginGuard],
     component: FormProductComponent
   },
   {
     path: 'products/edit/:id',
-    canActivate: [AdminGuard],
+    canActivate: [AdminGuard, LoginGuard],
     component: ProductEditComponent
   },
   {
     path: 'categories',
-    canActivate: [AdminGuard],
+    canActivate: [AdminGuard, LoginGuard],
     component: CategoryListComponent
   },
   {
     path: 'categories/create',
-    canActivate: [AdminGuard],
+    canActivate: [AdminGuard, LoginGuard],
     component: FormCategoryComponent
   },
   {
     path: 'categories/edit',
-    canActivate: [AdminGuard],
+    canActivate: [AdminGuard, LoginGuard],
     component: CategoryEditComponent
   },
   {
     path: 'configurations',
-    canActivate: [AdminGuard],
+    canActivate: [AdminGuard, LoginGuard],
     component: ConfigurationListComponent
   },
   {
     path: 'configurations/create',
-    canActivate: [AdminGuard],
+    canActivate: [AdminGuard, LoginGuard],
     component: FormConfigurationComponent
   },
   {
     path: 'configurations/edit',
-    canActivate: [AdminGuard],
+    canActivate: [AdminGuard, LoginGuard],
     component: ConfigurationEditComponent
   },
   {
     path: 'product-configurations',
-    canActivate: [AdminGuard],
+    canActivate: [AdminGuard, LoginGuard],
     component: ProductConfListComponent
   },
   {
     path: 'product-configurations/create',
-    canActivate: [AdminGuard],
+    canActivate: [AdminGuard, LoginGuard],
     component: FormProductConfComponent
   },
   {
     path: 'product-configurations/edit',
-    canActivate: [AdminGuard],
+    canActivate: [AdminGuard, LoginGuard],
     component: ProductConfEditComponent
   },
 ];

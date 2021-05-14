@@ -53,7 +53,6 @@ export class ProductEditComponent implements AfterViewInit {
     forkJoin(suscribers$).subscribe(
       (response: any) => {
         this.categories = response[0].categories;
-        console.log(this.categories)
         this.product = response[1].product[0];
         this.buildForm();
       }
@@ -67,15 +66,17 @@ export class ProductEditComponent implements AfterViewInit {
         category = item.name;
       }
     });
-    this.form = this.formBuilder.group({
-      name: [this.product.name, [Validators.required]],
-      image: [this.product.image, []],
-      price: [this.product.price, [Validators.required, Validators.pattern(this.pricePattern)]],
-      status: [this.product.status, [Validators.required]],
-      description: [this.product.description, [Validators.required]],
-      displayOrder: [this.product.display_order, [Validators.required, Validators.pattern(this.displayOrderPattern)]],
-      categoryId: [category, [Validators.required]],
-    });
+    this.form.setValue(
+      {
+        name: this.product.name,
+        image: this.product.image,
+        price: this.product.price,
+        status: this.product.status,
+        description: this.product.description,
+        displayOrder: this.product.display_order,
+        categoryId: this.product.category_id
+      }
+    );
   }
 
   editProduct() {

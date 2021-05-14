@@ -36,9 +36,10 @@ export class RegisterFormComponent implements OnInit {
         (response: any) => {
           if (response.status_code === 201) {
             this.router.navigate(['/home']);
-            this.snackBar.open('Usuario registrado', 'cerrar', { duration: 2000 })
+            window.localStorage.setItem('email', value.email);
+            this.snackBar.open('Usuario registrado, verificar el correo', 'cerrar', { duration: 2000 });
           } else {
-            this.snackBar.open('El usuario ya existe', 'cerrar', { duration: 2000 })
+            this.snackBar.open('El usuario ya existe', 'cerrar', { duration: 2000 });
           }
         },
         (error: any) => { console.log(error); this.snackBar.open('Error inesperado.', 'cerrar', { duration: 2000 }) }

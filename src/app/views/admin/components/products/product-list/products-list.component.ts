@@ -52,7 +52,10 @@ export class ProductsListComponent implements AfterViewInit {
   deleteProduct(id: number) {
     this.productService.deleteProduct(id).subscribe((response: any) => {
         this.snackBar.open('Producto desactivado', 'Cerrar', {duration: 5000});
-        this.dataSource = new MatTableDataSource(this.products);
+        const modifiedProduct = this.dataSource.data.find((product: any) => {
+          return product.id === id;
+        });
+        modifiedProduct.status = 0;
     }, (error) => {
       this.snackBar.open(' No es posible desactivar este producto', 'Cerrar', {duration: 5000});
     });

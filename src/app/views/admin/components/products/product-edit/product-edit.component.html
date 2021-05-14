@@ -50,8 +50,8 @@
           formControlName="status"
           type="number"
         >
-          <mat-option value="1">Encendido</mat-option>
-          <mat-option value="0">Apagado</mat-option>
+          <mat-option [value]="1">Encendido</mat-option>
+          <mat-option [value]="0">Apagado</mat-option>
         </mat-select>
         <mat-error>
           El estado del producto es <strong>requerido.</strong>
@@ -94,7 +94,7 @@
         >
           <mat-option
             *ngFor="let category of categories"
-            value="{{ category.id }}"
+            [value]="category.id"
           >{{ category.name }}</mat-option
           >
         </mat-select>
