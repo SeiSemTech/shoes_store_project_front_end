@@ -58,9 +58,9 @@ export class FormProductComponent implements OnInit {
       const value = this.form.value;
       const newProduct: Product = {
         name: value.name,
-        image: value.image,
-        price: value.price,
         status: value.status,
+        image: value.image,
+        price: value.price,        
         description: value.description,
         display_order: value.displayOrder,
         category_id: value.categoryId,

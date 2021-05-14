@@ -36,9 +36,9 @@ export class ProductDetailComponent implements OnInit {
   createProduct() {
     const newProduct: Product = {
       name: 'test',
+      status: 1,
       image: 'test',
       price: 1,
-      status: 1,
       description: 'test',
       category_id: 1,
       display_order: 1,
