@@ -7,13 +7,10 @@
         <a routerLink="/contact" routerLinkActive="active">Contacto</a>
     </nav>
     <div class="user-buttons">
-      <a routerLink="/order" mat-raised-button [matBadge]="total$ | async" matBadgeColor="warn">
-        <mat-icon>shopping_cart</mat-icon>
-        Carrito
-      </a>
-      <a routerLink="/auth/login" mat-mini-fab color="primary">
+      <a *ngIf="!loginService.isLogged" routerLink="/auth/login" mat-mini-fab color="primary">
         <mat-icon>person</mat-icon>
       </a>
+      <button *ngIf="loginService.isLogged" (click)="logout()" mat-raised-button color="accent">Cerrar</button>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

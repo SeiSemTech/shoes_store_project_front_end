@@ -35,7 +35,6 @@ export class LoginFormComponent implements OnInit {
         (response: any) => {
           if (response.token) {
             this.loginService.loginJWT(response.token);
-            window.localStorage.setItem('token', response.token);
             this.router.navigate(['/admin']);
             this.snackBar.open('Has iniciado sesión exitosamente.', 'Cerrar', { duration: 5000 })
           } else {
@@ -47,18 +46,6 @@ export class LoginFormComponent implements OnInit {
         }
       );
     }
-  }
-
-  logout(event: Event) {
-    event.preventDefault();
-    localStorage.clear;
-		localStorage.removeItem('acces tocken');
-		localStorage.removeItem('roles');
-    window.localStorage.clear;
-    // this.loginService.logout;
-    const lsRol = localStorage.getItem('roles');
-    console.log('lsRol' + lsRol);
-    this.router.navigate(['/home']);
   }
 
   private buildForm() {
