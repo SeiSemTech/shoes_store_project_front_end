@@ -83,7 +83,7 @@ export class ProductEditComponent implements AfterViewInit {
     const editedProduct: any = {
       id: this.id,
       name: value.name,
-      status: 1,
+      status: value.status,
       image: value.image,
       price: value.price,
       description: value.description,
@@ -93,9 +93,12 @@ export class ProductEditComponent implements AfterViewInit {
     this.productService.updateProduct(editedProduct).subscribe(
       (response: any) => {
         this.snackBar.open('Producto actualizado', 'Cerrar', {duration: 5000});
-        this.router.navigate(['admin/products']);
+        this.router.navigate(['/admin/products']);
       },
-      (error => console.log(':('))
+      (error => {
+        this.snackBar.open('Error', 'Cerrar', {duration: 5000});
+      }
+      )
     );
   }
 

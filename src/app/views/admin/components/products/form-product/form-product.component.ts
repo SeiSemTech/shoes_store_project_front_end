@@ -37,7 +37,7 @@ export class FormProductComponent implements OnInit {
   private buildForm() {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
-      image: ['', [Validators.pattern(this.imageUrlPattern)]],
+      image: ['', []],
       price: ['', [Validators.required, Validators.pattern(this.pricePattern)]],
       status: ['', [Validators.required]],
       description: ['', [Validators.required]],
@@ -69,7 +69,7 @@ export class FormProductComponent implements OnInit {
       this.productsService.createProduct(newProduct).subscribe(
         (response: any) => {
             this.snackBar.open('Producto creado exitosamente', 'cerrar', { duration: 5000 })
-            this.router.navigate(['/products']);
+            this.router.navigate(['/admin/products']);
         },
         (error: any) => {
           this.snackBar.open('Ha ocurrido un error inesperado.', 'cerrar', { duration: 5000 })
