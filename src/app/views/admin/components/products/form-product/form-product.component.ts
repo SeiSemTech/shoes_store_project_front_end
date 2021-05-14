@@ -52,6 +52,7 @@ export class FormProductComponent implements OnInit {
     });
   }
 
+
   createProduct(event: Event) {
     event.preventDefault();
     if (this.form.valid) {
@@ -71,7 +72,6 @@ export class FormProductComponent implements OnInit {
             this.router.navigate(['/products']);
         },
         (error: any) => {
-          console.log(error);
           this.snackBar.open('Ha ocurrido un error inesperado.', 'cerrar', { duration: 5000 })
         }
       );
