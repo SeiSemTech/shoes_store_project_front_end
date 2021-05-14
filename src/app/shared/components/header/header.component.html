@@ -10,6 +10,9 @@
       <a *ngIf="!loginService.isLogged" routerLink="/auth/login" mat-mini-fab color="primary">
         <mat-icon>person</mat-icon>
       </a>
+      <a *ngIf="loginService.role == 'Administrador'" routerLink="/admin" mat-mini-fab color="primary">
+        <mat-icon>dashboard</mat-icon>
+      </a>
       <button *ngIf="loginService.isLogged" (click)="logout()" mat-raised-button color="accent">Cerrar</button>
     </div>
   </mat-toolbar-row>

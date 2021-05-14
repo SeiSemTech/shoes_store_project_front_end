@@ -23,13 +23,10 @@ export class ProductsListComponent implements AfterViewInit {
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   constructor(private productService: ProductsService, private router: Router, private snackBar: MatSnackBar) {
-  
-    this.dataSource = new MatTableDataSource(this.products);
+
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
     this.getProducts();
   }
 
@@ -45,20 +42,19 @@ export class ProductsListComponent implements AfterViewInit {
 
   private getProducts() {
     this.productService.getAllProducts().subscribe((response: any) => {
-           this.products = response.products;
-           console.log(response);
+      this.products = response.products;
+      this.dataSource = new MatTableDataSource(this.products);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
 
   deleteProduct(id: number) {
     this.productService.deleteProduct(id).subscribe((response: any) => {
-      if (response.status_code === 200) {
-        this.snackBar.open('Producto eliminado', 'Cerrar', {duration: 5000});
-        console.log(response);
-      } else {
-        this.snackBar.open(' No es posible eliminar este producto', 'Cerrar', {duration: 5000});
-        console.log(response);
-      }
+        this.snackBar.open('Producto desactivado', 'Cerrar', {duration: 5000});
+        this.dataSource = new MatTableDataSource(this.products);
+    }, (error) => {
+      this.snackBar.open(' No es posible desactivar este producto', 'Cerrar', {duration: 5000});
     });
   }
 }

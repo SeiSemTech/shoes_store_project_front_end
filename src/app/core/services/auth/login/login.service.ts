@@ -11,12 +11,14 @@ import {Router} from '@angular/router';
 export class LoginService {
 
   public isLogged: boolean;
+  public role: string;
 
   constructor(
     private http: HttpClient,
     private router: Router
   ) {
     this.isLogged = window.localStorage.getItem('access_token') != null;
+    this.role = window.localStorage.getItem('roles');
   }
 
   login(email: string, password: string) {
@@ -25,14 +27,11 @@ export class LoginService {
     });
   }
 
-  getRole() {
-    return this.http.get(`${environment.url_api}/role`);
-  }
-
   loginJWT(token: string): void {
       const decode = jwt_decode<IJwt>(token);
       localStorage.setItem('access_token', token);
-      localStorage.setItem('roles', JSON.stringify(decode.role));
+      localStorage.setItem('roles', decode.role.toString());
+      this.role = decode.role.toString();
       this.isLogged = true;
   }
 
@@ -41,7 +40,7 @@ export class LoginService {
     if (!lsRol) {
       return false;
     }
-    const rolArray = JSON.parse(lsRol) as Array<string>;
+    const rolArray = lsRol;
     if (rolArray.length === 0) {
       return false;
     }
@@ -51,6 +50,7 @@ export class LoginService {
   logout() {
     window.localStorage.clear();
     this.router.navigate(['/home']);
+    this.role = null;
     this.isLogged = window.localStorage.getItem('access_token') != null;
   }
 }
