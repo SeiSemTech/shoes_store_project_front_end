@@ -17,11 +17,12 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
 
   constructor(
-    private productsService: ProductsService
+    private productService: ProductsService
   ) { }
 
   ngOnInit() {
     this.fetchProducts();
+    console.log('ngOnInit')
   }
 
   clickProduct(id: number) {
@@ -29,10 +30,17 @@ export class ProductsComponent implements OnInit {
     console.log(id);
   }
 
+  // fetchProducts() {
+  //   console.log('Productos..')
+  //   this.productsService.getAllProducts()
+  //   .subscribe(products => {
+  //     this.products = products;
+  //   });
+  // }
+
   fetchProducts() {
-    this.productsService.getAllProducts()
-    .subscribe(products => {
-      this.products = products;
+    this.productService.getAllProducts().subscribe((response: any) => {
+      this.products = response.products;
     });
   }
 

@@ -19,14 +19,6 @@ const routes: Routes = [
         loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule)
       },
       {
-        path: 'products',
-        loadChildren: () => import('./views/product/product.module').then(m => m.ProductModule)
-      },
-      {
-        path: 'contact',
-        loadChildren: () => import('./views/contact/contact.module').then(m => m.ContactModule)
-      },
-      {
         path: 'order',
         loadChildren: () => import('./views/order/order.module').then(m => m.OrderModule)
       },
@@ -36,7 +28,6 @@ const routes: Routes = [
       },
       {
         path: 'admin',
-        canActivate: [AdminGuard],
         loadChildren: () => import('./views/admin/admin.module').then(m => m.AdminModule)
       }
     ]

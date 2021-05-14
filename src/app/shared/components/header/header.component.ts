@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private loginService: LoginService
+    public loginService: LoginService
   ) {
     this.total$ = this.cartService.cart$
     .pipe(
