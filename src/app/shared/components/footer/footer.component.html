@@ -1,46 +1,9 @@
 <div class="footer-layoud">
   <footer>
     <div class="container">
-      <!-- navegación -->
-      <div class="footer-grid">
-        <div>
-          <div class="box">
-            <h3>Productos</h3>
-            <ul>
-              <li>
-                <a routerLink="/products" [queryParams]="{ type: 'news' }">Nuevos Productos</a>
-              </li>
-              <li>
-                <a routerLink="/products" [queryParams]="{ type: 'offer' }">En oferta</a>
-              </li>
-              <li>
-                <a routerLink="/products" [queryParams]="{ type: 'latest' }">Últimos productos</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div>
-          <div class="box">
-            <h3>Acerca de Store</h3>
-            <ul>
-              <li><a routerLink="/about-us">Sobre nosotros</a></li>
-              <li><a routerLink="/stores">Nuestras tiendas</a></li>
-            </ul>
-          </div>
-          <div class="box">
-            <h3>Contacto</h3>
-            <mat-form-field>
-              <input matInput placeholder="Digite su correo" [formControl]="emailField" type="email">
-            </mat-form-field>
-            <br>
-            <button mat-raised-button [disabled]="emailField.invalid" (click)="sendMail()">enviar</button>
-          </div>
-        </div>
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15905.372555527007!2d-74.0321777!3d4.710323!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4610903a0568130b!2sUniversidad%20El%20Bosque!5e0!3m2!1ses!2sco!4v1619675489110!5m2!1ses!2sco"
           width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-      </div>
     </div>
   </footer>
 </div>

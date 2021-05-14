@@ -1,0 +1,92 @@
+<form [formGroup]="form" (ngSubmit)="createProductConfiguration($event)">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Crear Configuración Del Producto</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="outline">
+        <mat-label>Producto</mat-label>
+        <mat-select
+          disableRipple
+          placeholder="Producto"
+          formControlName="productId"
+          type="number"
+          list="products"
+        >
+          <mat-option
+            *ngFor="let product of products"
+            value="{{ product.id }}"
+            >{{ product.name }}</mat-option
+          >
+        </mat-select>
+        <mat-error> El producto es <strong>requerido.</strong> </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Configuración</mat-label>
+        <mat-select
+          disableRipple
+          placeholder="Configuración"
+          formControlName="configurationId"
+          type="number"
+          list="configurations"
+        >
+          <mat-option
+            *ngFor="let configuration of configurations"
+            value="{{ configuration.id }}"
+            >{{ configuration.id }}:{{ configuration.name }}:{{
+              configuration.sub_configuratuion
+            }}</mat-option
+          >
+        </mat-select>
+        <mat-error> La configuración es <strong>requerida.</strong> </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Orden de visualización del configurador</mat-label>
+        <input
+          placeholder="Orden de visualización del configurador"
+          formControlName="configDisplayOrder"
+          matInput
+          required
+          type="number"
+        />
+        <mat-error>
+          Ingrese un orden de visualización del configurador
+          <strong>valido.</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Orden de visualización del sub configurador</mat-label>
+        <input
+          placeholder="Orden de visualización del sub configurador"
+          formControlName="subConfigDisplayOrder"
+          matInput
+          required
+          type="number"
+        />
+        <mat-error>
+          Ingrese un orden de visualización del sub configurador
+          <strong>valido.</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Stock</mat-label>
+        <input
+          matInput
+          placeholder="Stock"
+          formControlName="stock"
+          required
+          type="number"
+          min="0"
+        />
+        <mat-error>
+          ¡El stock la configuración debe ser <strong>valido.</strong>!
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button [disabled]="form.invalid" mat-raised-button type="submit">
+        Guardar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

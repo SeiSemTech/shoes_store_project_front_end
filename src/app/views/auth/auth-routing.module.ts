@@ -6,7 +6,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { ForgotComponent } from './components/forgot/forgot.component';
 import { ResetComponent } from './components/reset/reset.component';
 
-
 const routes: Routes = [
   {
     path: 'login',
@@ -21,7 +20,7 @@ const routes: Routes = [
     component: ForgotComponent
   },
   {
-    path: 'reset',
+    path: 'reset/:token',
     component: ResetComponent
   }
 

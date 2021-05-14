@@ -26,43 +26,45 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  fetchProduct(id: string) {
-    this.productsService.getProduct(id)
-    .subscribe(product => {
-      this.product = product;
-    });
+  fetchProduct(id: number) {
+    this.productsService.getProductById(id)
+      .subscribe(product => {
+        this.product = product;
+      });
   }
 
   createProduct() {
     const newProduct: Product = {
-      id: '222',
-      title: 'nuevo desde angular',
-      image: 'assets/images/banner-1.jpg',
-      price: 3000,
-      description: 'nuevo producto'
+      name: 'test',
+      status: 1,
+      image: 'test',
+      price: 1,
+      description: 'test',
+      category_id: 1,
+      display_order: 1,
     };
     this.productsService.createProduct(newProduct)
-    .subscribe(product => {
-      console.log(product);
-    });
+      .subscribe(product => {
+        console.log(product);
+      });
   }
 
-  updateProduct() {
-    const updateProduct: Partial<Product> = {
-      price: 555555,
-      description: 'edicion titulo'
-    };
-    this.productsService.updateProduct('2', updateProduct)
-    .subscribe(product => {
-      console.log(product);
-    });
-  }
+  // updateProduct() {
+  //   const updateProduct: Partial<Product> = {
+  //     price: 555555,
+  //     description: 'edicion titulo'
+  //   };
+  //   this.productsService.updateProduct(updateProduct)
+  //     .subscribe(product => {
+  //       console.log(product);
+  //     });
+  // }
 
   deleteProduct() {
-    this.productsService.deleteProduct('222')
-    .subscribe(rta => {
-      console.log(rta);
-    });
+    this.productsService.deleteProduct(222)
+      .subscribe(rta => {
+        console.log(rta);
+      });
   }
 
 }

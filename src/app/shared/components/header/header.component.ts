@@ -4,6 +4,8 @@ import { map } from 'rxjs/operators';
 
 import { CartService } from './../../../core/services/cart.service';
 import { Observable } from 'rxjs';
+import {Router} from '@angular/router';
+import {LoginService} from 'src/app/core/services/auth/login/login.service';
 
 @Component({
   selector: 'app-header',
@@ -13,9 +15,11 @@ import { Observable } from 'rxjs';
 export class HeaderComponent implements OnInit {
 
   total$: Observable<number>;
+  isLogged: boolean;
 
   constructor(
-    private cartService: CartService
+    private cartService: CartService,
+    public loginService: LoginService
   ) {
     this.total$ = this.cartService.cart$
     .pipe(
@@ -23,6 +27,12 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.isLogged = window.localStorage.getItem('access_token') != null;
+  }
+
+  logout() {
+    this.loginService.logout();
+  }
 
 }

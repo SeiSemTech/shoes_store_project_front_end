@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Product } from './../../models/product.model';
-
-import { environment } from './../../../../environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,23 +13,28 @@ export class ProductsService {
     private http: HttpClient
   ) { }
 
-  getAllProducts() {
-    return this.http.get<Product[]>(`${environment.url_api}/products`);
-  }
-
-  getProduct(id: string) {
-    return this.http.get<Product>(`${environment.url_api}/products/${id}`);
-  }
-
   createProduct(product: Product) {
-    return this.http.post(`${environment.url_api}/products`, product);
+    return this.http.post(`${environment.url_api}/products/product`, product);
   }
 
-  updateProduct(id: string, changes: Partial<Product>) {
-    return this.http.put(`${environment.url_api}/products/${id}`, changes);
+  getAllProducts() {
+    return this.http.get<Product[]>(`${environment.url_api}/products/products`);
   }
 
-  deleteProduct(id: string) {
-    return this.http.delete(`${environment.url_api}/products/${id}`);
+  getEnabledProducts() {
+    return this.http.get<Product[]>(`${environment.url_api}/products/activated_products`);
   }
+
+  getProductById(id: number) {
+    return this.http.get<Product>(`${environment.url_api}/products/product/${id}`);
+  }
+
+  deleteProduct(id: number) {
+    return this.http.delete(`${environment.url_api}/products/product/${id}`);
+  }
+
+  updateProduct(product: Product) {
+    return this.http.patch(`${environment.url_api}/products/update`, product);
+  }
+
 }

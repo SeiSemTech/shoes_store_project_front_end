@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { LoginService } from '../../../../../core/services/auth/login/login.service'
@@ -18,6 +19,7 @@ export class LoginFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private loginService: LoginService,
+    private snackBar: MatSnackBar
   ) {
     this.buildForm();
   }
@@ -31,14 +33,16 @@ export class LoginFormComponent implements OnInit {
       const value = this.form.value;
       this.loginService.login(value.email, value.password).subscribe(
         (response: any) => {
-          if (response.user) {
-            this.router.navigate(['/home']);
+          if (response.token) {
+            this.loginService.loginJWT(response.token);
+            this.router.navigate(['/admin/products']);
+            this.snackBar.open('Has iniciado sesión exitosamente.', 'Cerrar', { duration: 5000 })
           } else {
-            alert('Correo o contraseña incorrectos.');
+            this.snackBar.open('Correo o contraseña incorrectos.', 'Cerrar', { duration: 2000 })
           }
         },
         (error: any) => {
-          alert('Ocurrio un error inesperado');
+          this.snackBar.open('Ocurrió un error inesperado.', 'Cerrar', { duration: 2000 })
         }
       );
     }

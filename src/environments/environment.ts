@@ -2,9 +2,12 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// `npm run ng s -c=stag` replaces `environment.ts` with `environment.stag.ts`.
+// `npm run ng s -c=prod` replaces `environment.ts` with `environment.prod.ts`.
+
 export const environment = {
   production: false,
-  url_api: 'http://localhost:5000/api'
+  url_api: 'https://zapacommerce-dev.azurewebsites.net/api'
 };
 
 /*

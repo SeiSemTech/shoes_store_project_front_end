@@ -2,18 +2,21 @@
   <mat-toolbar-row>
 <!--    <img src="assets/images/store-logo-transp-simple.png" alt="Store logo" routerLink="/home">-->
     <nav>
-        <a routerLink="/home" routerLinkActive="active">Home</a>
-        <a routerLink="/products" routerLinkActive="active">Productos</a>
-        <a routerLink="/contact" routerLinkActive="active">Contacto</a>
+        <a routerLink="/home" routerLinkActive="active" color="primary">
+          <mat-icon>home</mat-icon>
+          Home
+        </a>
+        <!-- <a routerLink="/products" routerLinkActive="active">Productos</a>
+        <a routerLink="/contact" routerLinkActive="active">Contacto</a> -->
     </nav>
     <div class="user-buttons">
-      <a routerLink="/order" mat-raised-button [matBadge]="total$ | async" matBadgeColor="warn">
-        <mat-icon>shopping_cart</mat-icon>
-        Carrito
-      </a>
-      <a routerLink="/auth/login" mat-mini-fab color="primary">
+      <a *ngIf="!loginService.isLogged" routerLink="/auth/login" mat-mini-fab color="primary">
         <mat-icon>person</mat-icon>
       </a>
+      <a *ngIf="loginService.role == 'Administrador'" routerLink="/admin/products" mat-mini-fab color="primary">
+        <mat-icon>dashboard</mat-icon>
+      </a>
+      <button *ngIf="loginService.isLogged" (click)="logout()" mat-raised-button color="accent">Cerrar</button>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
