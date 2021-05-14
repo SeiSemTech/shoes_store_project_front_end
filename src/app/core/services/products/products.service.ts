@@ -33,8 +33,8 @@ export class ProductsService {
     return this.http.delete(`${environment.url_api}/products/product/${id}`);
   }
 
-  updateProduct(id: number, changes: Partial<Product>) {
-    return this.http.put(`${environment.url_api}/products/update` + id, changes);
+  updateProduct(product: Product) {
+    return this.http.patch(`${environment.url_api}/products/update`, product);
   }
 
 }
