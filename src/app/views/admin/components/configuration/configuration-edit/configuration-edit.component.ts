@@ -40,7 +40,7 @@ export class ConfigurationEditComponent implements AfterViewInit {
     ];
     forkJoin(suscribers$).subscribe(
       (response: any) => {
-        this.configuration = response[1].product[0];
+        this.configuration = response[1].configuration[0];
         this.buildForm();
       }
     );

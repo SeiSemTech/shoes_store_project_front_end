@@ -16,15 +16,15 @@ export class ProductConfigurationService {
     return this.http.post(`${environment.url_api}/products/product_configuration`, productConfiguration);
   }
 
-  updateProductConfiguration(id: string, changes: Partial<ProductConfiguration>) {
-    return this.http.put(`${environment.url_api}/products/product_configuration${id}`, changes);
+  updateProductConfiguration(productConfiguration: ProductConfiguration) {
+    return this.http.patch(`${environment.url_api}/products/product_configuration`, productConfiguration);
   }
 
-  getProductConfigurationById(id: string) {
+  getProductConfigurationById(id: number) {
     return this.http.get<ProductConfiguration>(`${environment.url_api}/products/product_configurations/${id}`);
   }
 
-  deleteProductConfiguration(id: string) {
+  deleteProductConfiguration(id: number) {
     return this.http.delete(`${environment.url_api}/products/product_configurations/${id}`);
   }
 

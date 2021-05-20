@@ -25,7 +25,7 @@
     </th>
     <td mat-cell *matCellDef="let configurations">{{ configurations.name }}</td>
   </ng-container>
-  <ng-container matColumnDef="status">
+  <ng-container matColumnDef="sub_configuration">
     <th mat-header-cell *matHeaderCellDef>
       <strong class="columnas">Sub configuración </strong>
     </th>
@@ -33,7 +33,7 @@
       {{ configurations.sub_configuration }}
     </td>
   </ng-container>
-  <ng-container matColumnDef="display_order">
+  <ng-container matColumnDef="extra_price">
     <th mat-header-cell *matHeaderCellDef>
       <strong class="columnas">Extra Price</strong>
     </th>
