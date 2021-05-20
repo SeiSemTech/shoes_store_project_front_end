@@ -22,7 +22,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.fetchProducts();
-    console.log('ngOnInit')
+    console.log('ngOnInit');
   }
 
   clickProduct(id: number) {

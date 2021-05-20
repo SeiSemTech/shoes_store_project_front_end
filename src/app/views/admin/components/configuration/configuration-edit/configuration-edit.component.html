@@ -1,1 +1,55 @@
-<p>configuration-edit works!</p>
+<form [formGroup]="form" (ngSubmit)="editConfiguration()">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Editar Configuración</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          placeholder="Nombre"
+          formControlName="name"
+          type="text"
+          required
+        />
+        <mat-error>
+          El nombre de la configuración es <strong>requerido.</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Sub configuración</mat-label>
+        <input
+          matInput
+          placeholder="Sub configuración"
+          formControlName="sub_configuration"
+          type="text"
+          required
+        />
+        <mat-error>
+          El nombre de la sub configuración es <strong>requerido.</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Precio extra</mat-label>
+        <input
+          matInput
+          placeholder="Precio extra"
+          formControlName="extra_price"
+          [pattern]="pricePattern"
+          required
+          type="number"
+          min="0"
+        />
+        <mat-error>
+          ¡El precio de la configuración debe ser <strong>valido.</strong>!
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button [disabled]="form.invalid" mat-raised-button type="submit">
+        Guardar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

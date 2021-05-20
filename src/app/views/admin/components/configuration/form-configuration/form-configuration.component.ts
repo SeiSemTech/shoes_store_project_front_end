@@ -43,19 +43,19 @@ export class FormConfigurationComponent implements OnInit {
         name: value.name,
         sub_configuratuion: value.subConfiguratuion,
         extra_price: value.extraPrice,
-      }
+      };
       this.configurationService.createConfiguration(newConfiguration).subscribe(
         (response: any) => {
           if (response.status_code === 201) {
-            this.snackBar.open('Configuración creada exitosamente', 'cerrar', { duration: 5000 })
+            this.snackBar.open('Configuración creada exitosamente', 'cerrar', { duration: 5000 });
             this.router.navigate(['/configurations']);
           } else {
-            this.snackBar.open('No es posible crear esta configuración.', 'cerrar', { duration: 5000 })
+            this.snackBar.open('No es posible crear esta configuración.', 'cerrar', { duration: 5000 });
           }
         },
         (error: any) => {
           console.log(error);
-          this.snackBar.open('Ha ocurrido un error inesperado.', 'cerrar', { duration: 5000 })
+          this.snackBar.open('Ha ocurrido un error inesperado.', 'cerrar', { duration: 5000 });
         }
       );
     }

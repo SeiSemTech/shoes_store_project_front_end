@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,7 +12,7 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {AuthInterceptorService} from 'src/app/core/services/auth/auth-interceptor.service';
+import { AuthInterceptorService } from 'src/app/core/services/auth/auth-interceptor.service';
 
 @NgModule({
   declarations: [

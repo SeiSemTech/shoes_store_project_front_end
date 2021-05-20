@@ -1,11 +1,11 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {MatSnackBar} from '@angular/material';
-import {Router} from '@angular/router';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-import {Product} from 'src/app/core/models/product.model';
-import {ProductsService} from 'src/app/core/services/products/products.service';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Product } from 'src/app/core/models/product.model';
+import { ProductsService } from 'src/app/core/services/products/products.service';
 
 @Component({
   selector: 'app-products-list',
@@ -16,11 +16,11 @@ import {ProductsService} from 'src/app/core/services/products/products.service';
 
 export class ProductsListComponent implements AfterViewInit {
   products = [];
-  displayedColumns: string[] = ['id', 'name', 'status', 'image', 'price', 'description', 'category_id','display_order','actions'];
+  displayedColumns: string[] = ['id', 'name', 'status', 'image', 'price', 'description', 'category_id', 'display_order', 'actions'];
   dataSource: MatTableDataSource<Product>;
 
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
 
   constructor(private productService: ProductsService, private router: Router, private snackBar: MatSnackBar) {
 
@@ -51,13 +51,13 @@ export class ProductsListComponent implements AfterViewInit {
 
   deleteProduct(id: number) {
     this.productService.deleteProduct(id).subscribe((response: any) => {
-        this.snackBar.open('Producto desactivado', 'Cerrar', {duration: 5000});
-        const modifiedProduct = this.dataSource.data.find((product: any) => {
-          return product.id === id;
-        });
-        modifiedProduct.status = 0;
+      this.snackBar.open('Producto desactivado', 'Cerrar', { duration: 5000 });
+      const modifiedProduct = this.dataSource.data.find((product: any) => {
+        return product.id === id;
+      });
+      modifiedProduct.status = 0;
     }, (error) => {
-      this.snackBar.open(' No es posible desactivar este producto', 'Cerrar', {duration: 5000});
+      this.snackBar.open(' No es posible desactivar este producto', 'Cerrar', { duration: 5000 });
     });
   }
 }

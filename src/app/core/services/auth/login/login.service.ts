@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../../../../environments/environment';
 import { IJwt } from './../../../models/auth';
-import jwt_decode from 'jwt-decode'
-import {Router} from '@angular/router';
+import jwt_decode from 'jwt-decode';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -39,11 +39,11 @@ export class LoginService {
   }
 
   loginJWT(token: string): void {
-      const decode = jwt_decode<IJwt>(token);
-      localStorage.setItem('access_token', token);
-      localStorage.setItem('roles', decode.role.toString());
-      this.role = decode.role.toString();
-      this.isLogged = true;
+    const decode = jwt_decode<IJwt>(token);
+    localStorage.setItem('access_token', token);
+    localStorage.setItem('roles', decode.role.toString());
+    this.role = decode.role.toString();
+    this.isLogged = true;
   }
 
   isLoggedIn(): boolean {

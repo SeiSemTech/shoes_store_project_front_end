@@ -17,15 +17,15 @@ export class ConfigurationService {
     return this.http.post(`${environment.url_api}/products/configuration/`, configuration);
   }
 
-  updateConfiguration(id: string, changes: Partial<Configuration>) {
-    return this.http.put(`${environment.url_api}/products/configuration/` + id, changes);
+  updateConfiguration(configuration: Configuration) {
+    return this.http.put(`${environment.url_api}/products/configuration/`, configuration);
   }
 
-  getConfigurationById(id: string) {
+  getConfigurationById(id: number) {
     return this.http.get<Configuration>(`${environment.url_api}/products/configuration/${id}`);
   }
 
-  deleteConfiguration(id: string) {
+  deleteConfiguration(id: number) {
     return this.http.delete(`${environment.url_api}/products/configuration/${id}`);
   }
 

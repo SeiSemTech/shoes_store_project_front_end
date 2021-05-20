@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   public isLoading = false;
   public isEnabled = false;
 
-  constructor(private snackBar: MatSnackBar, private router: Router) { };
+  constructor(private snackBar: MatSnackBar, private router: Router) { }
 
   ngOnInit() {
   }

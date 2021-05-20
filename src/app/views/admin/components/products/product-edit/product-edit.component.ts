@@ -1,12 +1,12 @@
-import {AfterViewInit, Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ProductsService} from 'src/app/core/services/products/products.service';
-import {Product} from 'src/app/core/models/product.model';
-import {MatSnackBar} from '@angular/material';
-import {CategoryService} from 'src/app/core/services/categories/category.service';
-import {Category} from 'src/app/core/models/category.model';
-import {forkJoin} from 'rxjs';
+import { AfterViewInit, Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProductsService } from 'src/app/core/services/products/products.service';
+import { Product } from 'src/app/core/models/product.model';
+import { MatSnackBar } from '@angular/material';
+import { CategoryService } from 'src/app/core/services/categories/category.service';
+import { Category } from 'src/app/core/models/category.model';
+import { forkJoin } from 'rxjs';
 
 
 @Component({
@@ -93,11 +93,11 @@ export class ProductEditComponent implements AfterViewInit {
     };
     this.productService.updateProduct(editedProduct).subscribe(
       (response: any) => {
-        this.snackBar.open('Producto actualizado', 'Cerrar', {duration: 5000});
+        this.snackBar.open('Producto actualizado', 'Cerrar', { duration: 5000 });
         this.router.navigate(['/admin/products']);
       },
       (error => {
-        this.snackBar.open('Error', 'Cerrar', {duration: 5000});
+        this.snackBar.open('Error', 'Cerrar', { duration: 5000 });
       }
       )
     );

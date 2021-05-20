@@ -17,20 +17,19 @@ export class CategoryService {
     return this.http.post(`${environment.url_api}/products/category`, category);
   }
 
-  updateCategory(id: string, changes: Partial<Category>) {
-    return this.http.put(`${environment.url_api}/products/category` + id, changes);
+  updateCategory(category: Category) {
+    return this.http.patch(`${environment.url_api}/products/category`, category);
   }
 
   getAllCategories() {
     return this.http.get<Category[]>(`${environment.url_api}/products/categories`);
   }
 
-  // TODO: OSCAR
-  // getCategory(id: string) {
-  //   return this.http.get<Category>(`${environment.url_api}/products/categories/${id}`);
-  // }
+  getCategoryById(id: number) {
+    return this.http.get<Category>(`${environment.url_api}/products/categories/${id}`);
+  }
 
-  deleteCategory(id: string) {
+  deleteCategory(id: number) {
     return this.http.delete(`${environment.url_api}/products/category/${id}`);
   }
 

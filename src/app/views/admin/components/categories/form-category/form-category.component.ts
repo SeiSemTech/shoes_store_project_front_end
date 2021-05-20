@@ -21,7 +21,7 @@ export class FormCategoryComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private categoryService: CategoryService,
-    private snackBar: MatSnackBar,) { this.buildForm(); }
+    private snackBar: MatSnackBar) { this.buildForm(); }
 
   ngOnInit() {
   }
@@ -42,15 +42,15 @@ export class FormCategoryComponent implements OnInit {
         name: value.name,
         status: value.status,
         display_order: value.displayOrder,
-      }
+      };
       this.categoryService.createCategory(newCategory).subscribe(
         (response: any) => {
           console.log(response, response.status_code);
-          this.snackBar.open('Categoria creada con éxito.', 'cerrar', { duration: 5000 })
+          this.snackBar.open('Categoria creada con éxito.', 'cerrar', { duration: 5000 });
         },
         (error: any) => {
           console.log(error);
-          this.snackBar.open('Ha ocurrido un error inesperado.', 'cerrar', { duration: 5000 })
+          this.snackBar.open('Ha ocurrido un error inesperado.', 'cerrar', { duration: 5000 });
         }
       );
     }

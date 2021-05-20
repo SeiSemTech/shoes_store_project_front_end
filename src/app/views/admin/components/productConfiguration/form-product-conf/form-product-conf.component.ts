@@ -31,7 +31,7 @@ export class FormProductConfComponent implements OnInit {
     private snackBar: MatSnackBar,
     private configurationService: ConfigurationService,
     private productConfigurationService: ProductConfigurationService,
-    private productsService: ProductsService,) { this.buildForm(); }
+    private productsService: ProductsService) { this.buildForm(); }
 
   ngOnInit() {
     this.getProducts();
@@ -72,19 +72,19 @@ export class FormProductConfComponent implements OnInit {
         config_display_order: value.configDisplayOrder,
         sub_config_display_order: value.subConfigDisplayOrder,
         stock: value.stock,
-      }
+      };
       this.productConfigurationService.createProductConfiguration(newProductConfiguration).subscribe(
         (response: any) => {
           if (response.status_code === 201) {
-            this.snackBar.open('Configuración del producto creada exitosamente', 'cerrar', { duration: 5000 })
+            this.snackBar.open('Configuración del producto creada exitosamente', 'cerrar', { duration: 5000 });
             this.router.navigate(['/product-configurations']);
           } else {
-            this.snackBar.open('No es posible crear la configuración del producto.', 'cerrar', { duration: 5000 })
+            this.snackBar.open('No es posible crear la configuración del producto.', 'cerrar', { duration: 5000 });
           }
         },
         (error: any) => {
           console.log(error);
-          this.snackBar.open('Ha ocurrido un error inesperado.', 'cerrar', { duration: 5000 })
+          this.snackBar.open('Ha ocurrido un error inesperado.', 'cerrar', { duration: 5000 });
         }
       );
     }

@@ -11,5 +11,4 @@ export class AdminChildGuard implements CanActivateChild {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return true;
   }
-  
 }

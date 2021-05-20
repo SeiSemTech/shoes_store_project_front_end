@@ -14,7 +14,7 @@ export class RegisterFormComponent implements OnInit {
 
   form: FormGroup;
   emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
-  phonePattern = '^(\\+?\d{1,4}[\s-])?(?!0+\s+,?$)\\d{10}\s*,?$'
+  phonePattern = '^(\\+?\d{1,4}[\s-])?(?!0+\s+,?$)\\d{10}\s*,?$';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,7 +42,7 @@ export class RegisterFormComponent implements OnInit {
             this.snackBar.open('El usuario ya existe', 'cerrar', { duration: 2000 });
           }
         },
-        (error: any) => { console.log(error); this.snackBar.open('Error inesperado.', 'cerrar', { duration: 2000 }) }
+        (error: any) => { console.log(error); this.snackBar.open('Error inesperado.', 'cerrar', { duration: 2000 }); }
       );
     }
   }

@@ -4,8 +4,8 @@ import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { Product } from '../../../../../core/models/product.model';
-import { ProductsService } from '../../../../../core/services/products/products.service'
-import { CategoryService } from '../../../../../core/services/categories/category.service'
+import { ProductsService } from '../../../../../core/services/products/products.service';
+import { CategoryService } from '../../../../../core/services/categories/category.service';
 import { Category } from 'src/app/core/models/category.model';
 
 @Component({
@@ -65,14 +65,14 @@ export class FormProductComponent implements OnInit {
         description: value.description,
         display_order: value.displayOrder,
         category_id: value.categoryId,
-      }
+      };
       this.productsService.createProduct(newProduct).subscribe(
         (response: any) => {
-            this.snackBar.open('Producto creado exitosamente', 'cerrar', { duration: 5000 })
-            this.router.navigate(['/admin/products']);
+          this.snackBar.open('Producto creado exitosamente', 'cerrar', { duration: 5000 });
+          this.router.navigate(['/admin/products']);
         },
         (error: any) => {
-          this.snackBar.open('Ha ocurrido un error inesperado.', 'cerrar', { duration: 5000 })
+          this.snackBar.open('Ha ocurrido un error inesperado.', 'cerrar', { duration: 5000 });
         }
       );
     }
