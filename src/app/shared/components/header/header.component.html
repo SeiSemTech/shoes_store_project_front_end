@@ -1,22 +1,38 @@
 <mat-toolbar class="header-toolbar">
   <mat-toolbar-row>
-<!--    <img src="assets/images/store-logo-transp-simple.png" alt="Store logo" routerLink="/home">-->
+    <!--    <img src="assets/images/store-logo-transp-simple.png" alt="Store logo" routerLink="/home">-->
     <nav>
-        <a routerLink="/home" routerLinkActive="active" color="primary">
-          <mat-icon>home</mat-icon>
-          Home
-        </a>
-        <!-- <a routerLink="/products" routerLinkActive="active">Productos</a>
-        <a routerLink="/contact" routerLinkActive="active">Contacto</a> -->
+      <a routerLink="/home" routerLinkActive="active" color="primary">
+        <mat-icon>home</mat-icon>
+        Inicio
+      </a>
     </nav>
     <div class="user-buttons">
-      <a *ngIf="!loginService.isLogged" routerLink="/auth/login" mat-mini-fab color="primary">
+      <a
+        *ngIf="!loginService.isLogged"
+        routerLink="/auth/login"
+        mat-mini-fab
+        color="primary"
+      >
         <mat-icon>person</mat-icon>
       </a>
-      <a *ngIf="loginService.role == 'Administrador'" routerLink="/admin/products" mat-mini-fab color="primary">
-        <mat-icon>dashboard</mat-icon>
+      <a *ngIf="loginService.role == 'Administrador'">
+        <mat-select placeholder="Entidades" type="number" list="entities">
+          <mat-option *ngFor="let entitie of entities">
+            <a class="entities" [routerLink]="[entitie.url]">{{
+              entitie.name
+            }}</a>
+          </mat-option>
+        </mat-select>
       </a>
-      <button *ngIf="loginService.isLogged" (click)="logout()" mat-raised-button color="accent">Cerrar</button>
+      <button
+        *ngIf="loginService.isLogged"
+        (click)="logout()"
+        mat-raised-button
+        color="accent"
+      >
+        Cerrar
+      </button>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

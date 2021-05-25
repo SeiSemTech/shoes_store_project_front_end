@@ -29,11 +29,18 @@ mat-toolbar {
     }
     .user-buttons {
       a {
-        margin: 0 .5em;
+        margin: 0 0.5em;
       }
+      font-size: medium;
     }
   }
 }
 
-
-
+.entities {
+  margin: 0 0.5em;
+  color: mat-color($primary);
+  padding: 5px;
+  font-size: medium;
+  font-weight: 300;
+  text-decoration: none;
+}

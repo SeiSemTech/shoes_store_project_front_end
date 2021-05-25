@@ -1,4 +1,4 @@
-@import './themes.scss'; 
+@import "./themes.scss";
 
 @include angular-material-theme($custom-theme);
 
@@ -31,8 +31,14 @@ body {
   }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 img {
   max-width: 100%;
