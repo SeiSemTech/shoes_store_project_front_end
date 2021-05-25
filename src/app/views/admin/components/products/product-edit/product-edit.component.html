@@ -105,6 +105,9 @@
       <button [disabled]="form.invalid" mat-raised-button type="submit">
         Guardar
       </button>
+      <button mat-raised-button color="warn" (click)="openDeletionDialog()" type="button">
+        Eliminar
+      </button>
     </mat-card-actions>
   </mat-card>
 </form>

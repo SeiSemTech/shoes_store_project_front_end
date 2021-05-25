@@ -36,7 +36,8 @@ import { FormProductConfComponent } from './components/productConfiguration/form
     FormConfigurationComponent,
     ProductConfListComponent,
     ProductConfEditComponent,
-    FormProductConfComponent],
+    FormProductConfComponent
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule,

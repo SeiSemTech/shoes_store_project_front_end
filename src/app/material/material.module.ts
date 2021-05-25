@@ -22,10 +22,14 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDialogModule } from '@angular/material';
+import { ConfirmationModalComponent } from 'src/app/material/modals/confirmation-modal/confirmation-modal.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ConfirmationModalComponent
+  ],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -49,6 +53,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatDividerModule,
+    MatDialogModule
   ],
   exports: [
     MatButtonModule,
@@ -72,6 +77,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatDividerModule,
-  ]
+    MatDialogModule
+  ],
+  entryComponents: [ConfirmationModalComponent]
 })
 export class MaterialModule { }

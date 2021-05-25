@@ -33,6 +33,10 @@ export class ProductsService {
     return this.http.delete(`${environment.url_api}/products/product/${id}`);
   }
 
+  forceDeleteProduct(id: number) {
+    return this.http.delete(`${environment.url_api}/products/product/force_delete/${id}`);
+  }
+
   updateProduct(product: Product) {
     return this.http.patch(`${environment.url_api}/products/update`, product);
   }
