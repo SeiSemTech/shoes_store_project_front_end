@@ -35,7 +35,7 @@ export class LoginFormComponent implements OnInit {
         (response: any) => {
           if (response.token) {
             this.loginService.loginJWT(response.token);
-            this.router.navigate(['/admin/products']);
+            this.router.navigate(['/home']);
             this.snackBar.open('Has iniciado sesión exitosamente.', 'Cerrar', { duration: 5000 });
           } else {
             this.snackBar.open('Correo o contraseña incorrectos.', 'Cerrar', { duration: 2000 });

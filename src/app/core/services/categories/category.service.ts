@@ -26,7 +26,7 @@ export class CategoryService {
   }
 
   getCategoryById(id: number) {
-    return this.http.get<Category>(`${environment.url_api}/products/categories/${id}`);
+    return this.http.get<Category>(`${environment.url_api}/products/category/${id}`);
   }
 
   deleteCategory(id: number) {

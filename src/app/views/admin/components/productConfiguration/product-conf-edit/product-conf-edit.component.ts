@@ -41,7 +41,7 @@ export class ProductConfEditComponent implements AfterViewInit {
     ];
     forkJoin(suscribers$).subscribe(
       (response: any) => {
-        this.productConfiguration = response[1].product_configuration[0];
+        this.productConfiguration = response[0].product_configuration[0];
         this.buildForm();
       }
     );

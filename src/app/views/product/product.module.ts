@@ -10,6 +10,8 @@ import { SharedModule } from '../../shared/shared.module';
 import { MaterialModule } from '../../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { MatTabsModule } from '@angular/material';
+
 @NgModule({
   declarations: [
     ProductComponent,
@@ -21,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     ProductRoutingModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    MatTabsModule
   ]
 })
 export class ProductModule { }

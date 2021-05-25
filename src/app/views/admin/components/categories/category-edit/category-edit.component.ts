@@ -41,7 +41,7 @@ export class CategoryEditComponent implements AfterViewInit {
     ];
     forkJoin(suscribers$).subscribe(
       (response: any) => {
-        this.category = response[1].category[0];
+        this.category = response[0].category[0];
         this.buildForm();
       }
     );

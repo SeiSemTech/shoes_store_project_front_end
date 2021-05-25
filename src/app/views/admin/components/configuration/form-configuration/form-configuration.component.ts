@@ -41,7 +41,7 @@ export class FormConfigurationComponent implements OnInit {
       const value = this.form.value;
       const newConfiguration: Configuration = {
         name: value.name,
-        sub_configuratuion: value.subConfiguratuion,
+        sub_configuration: value.subConfiguration,
         extra_price: value.extraPrice,
       };
       this.configurationService.createConfiguration(newConfiguration).subscribe(

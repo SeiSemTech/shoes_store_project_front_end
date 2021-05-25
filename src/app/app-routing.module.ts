@@ -26,6 +26,10 @@ const routes: Routes = [
         loadChildren: () => import('./views/auth/auth.module').then(m => m.AuthModule)
       },
       {
+        path: 'products',
+        loadChildren: () => import('./views/product/product.module').then(m => m.ProductModule)
+      },
+      {
         path: 'admin',
         loadChildren: () => import('./views/admin/admin.module').then(m => m.AdminModule)
       }

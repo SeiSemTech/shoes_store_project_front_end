@@ -33,9 +33,8 @@
           <mat-option
             *ngFor="let configuration of configurations"
             value="{{ configuration.id }}"
-            >{{ configuration.id }}:{{ configuration.name }}:{{
-              configuration.sub_configuratuion
-            }}</mat-option
+            >{{ configuration.id }} - {{ configuration.name }} :
+            {{ configuration.sub_configuration }}</mat-option
           >
         </mat-select>
         <mat-error> La configuración es <strong>requerida.</strong> </mat-error>

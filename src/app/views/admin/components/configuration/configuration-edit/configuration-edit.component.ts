@@ -40,7 +40,8 @@ export class ConfigurationEditComponent implements AfterViewInit {
     ];
     forkJoin(suscribers$).subscribe(
       (response: any) => {
-        this.configuration = response[1].configuration[0];
+        console.log(response[0].configuration[0]);
+        this.configuration = response[0].configuration[0];
         this.buildForm();
       }
     );
@@ -50,7 +51,7 @@ export class ConfigurationEditComponent implements AfterViewInit {
     this.form.setValue(
       {
         name: this.configuration.name,
-        sub_configuration: this.configuration.sub_configuratuion,
+        sub_configuration: this.configuration.sub_configuration,
         extra_price: this.configuration.extra_price
       }
     );

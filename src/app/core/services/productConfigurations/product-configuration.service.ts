@@ -21,7 +21,7 @@ export class ProductConfigurationService {
   }
 
   getProductConfigurationById(id: number) {
-    return this.http.get<ProductConfiguration>(`${environment.url_api}/products/product_configurations/${id}`);
+    return this.http.get<ProductConfiguration>(`${environment.url_api}/products/product_configuration/${id}`);
   }
 
   deleteProductConfiguration(id: number) {

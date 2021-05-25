@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Product } from '../../../../core/models/product.model';
 import { ProductsService } from '../../../../core/services/products/products.service';
@@ -14,36 +15,41 @@ import { ProductsService } from '../../../../core/services/products/products.ser
 
 export class ProductsComponent implements OnInit {
 
-  products: Product[] = [];
+  products: [];
+  public columns = ['name', 'description', 'price',];
 
   constructor(
-    private productService: ProductsService
+    private productService: ProductsService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
     this.fetchProducts();
-    console.log('ngOnInit');
   }
+
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+
+  //   if (this.dataSource.paginator) {
+  //     this.dataSource.paginator.firstPage();
+  //   }
+  // }
 
   clickProduct(id: number) {
     console.log('product');
     console.log(id);
   }
 
-  // fetchProducts() {
-  //   console.log('Productos..')
-  //   this.productsService.getAllProducts()
-  //   .subscribe(products => {
-  //     this.products = products;
-  //   });
-  // }
-
   fetchProducts() {
     this.productService.getAllProducts().subscribe((response: any) => {
+      console.log(response.products);
       this.products = response.products;
     });
   }
 
-
+  navigateToForm() {
+    this.router.navigateByUrl("/products/add");
+  }
 
 }

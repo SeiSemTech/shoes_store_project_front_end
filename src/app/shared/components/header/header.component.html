@@ -6,6 +6,14 @@
         <mat-icon>home</mat-icon>
         Inicio
       </a>
+      <a
+        *ngIf="loginService.role == 'Administrador'"
+        routerLink="/products"
+        routerLinkActive="active"
+        color="primary"
+      >
+        Productos
+      </a>
     </nav>
     <div class="user-buttons">
       <a
