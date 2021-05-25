@@ -22,9 +22,14 @@ export class ProductsListComponent implements AfterViewInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
-  constructor(private productService: ProductsService, private router: Router, private snackBar: MatSnackBar) {
+  constructor(
+    private productService: ProductsService,
+    private router: Router, 
+    private snackBar: MatSnackBar
+  ) {
 
   }
+
 
   ngAfterViewInit() {
     this.getProducts();
