@@ -1,1 +1,69 @@
-<p>product-conf-edit works!</p>
+<form [formGroup]="form" (ngSubmit)="editProductConfiguration()">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Editar Configuración de producto</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="outline">
+        <mat-label>Id de producto</mat-label>
+        <input
+          matInput
+          placeholder="Id de producto"
+          formControlName="product_id"
+          type="text"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Id de configuración</mat-label>
+        <input
+          placeholder="Id de configuración"
+          formControlName="configuration_id"
+          matInput
+          type="text"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Display del configurador</mat-label>
+        <input
+          matInput
+          placeholder="Display del configurador"
+          formControlName="config_display_order"
+          type="number"
+          min="0"
+        />
+        <mat-error>
+          ¡El display del configurado debe ser <strong>valido.</strong>!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Display del sub configurador</mat-label>
+        <input
+          matInput
+          placeholder="Display del sub configurador"
+          formControlName="sub_config_display_order"
+          type="number"
+          min="0"
+        />
+        <mat-error>
+          ¡El display del sub configurado debe ser <strong>valido.</strong>!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Stock</mat-label>
+        <input
+          placeholder="Stock"
+          formControlName="stock"
+          matInput
+          type="number"
+          min="0"
+        />
+        <mat-error> Ingrese un stock <strong>valido.</strong> </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button [disabled]="form.invalid" mat-raised-button type="submit">
+        Guardar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

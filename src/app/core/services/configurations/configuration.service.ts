@@ -18,7 +18,7 @@ export class ConfigurationService {
   }
 
   updateConfiguration(configuration: Configuration) {
-    return this.http.put(`${environment.url_api}/products/configuration/`, configuration);
+    return this.http.patch(`${environment.url_api}/products/configuration/`, configuration);
   }
 
   getConfigurationById(id: number) {
