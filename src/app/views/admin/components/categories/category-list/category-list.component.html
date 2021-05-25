@@ -45,6 +45,7 @@
     </th>
     <td mat-cell *matCellDef="let categories" class="action-column">
       <a mat-raised-button [routerLink]="['edit', categories.id]">Editar</a>
+      
       <button
         *ngIf="categories.status == 1"
         mat-raised-button

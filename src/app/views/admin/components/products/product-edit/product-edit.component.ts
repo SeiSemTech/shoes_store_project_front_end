@@ -3,10 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from 'src/app/core/services/products/products.service';
 import { Product } from 'src/app/core/models/product.model';
-import { MatSnackBar } from '@angular/material';
+import {MatDialog, MatDialogConfig, MatSnackBar} from '@angular/material';
 import { CategoryService } from 'src/app/core/services/categories/category.service';
 import { Category } from 'src/app/core/models/category.model';
 import { forkJoin } from 'rxjs';
+import {ConfirmationModalComponent} from 'src/app/material/modals/confirmation-modal/confirmation-modal.component';
 
 
 @Component({
@@ -31,6 +32,7 @@ export class ProductEditComponent implements AfterViewInit {
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
     private categoryService: CategoryService,
+    public dialog: MatDialog
   ) {
     this.id = Number(route.snapshot.paramMap.get('id'));
     this.form = this.formBuilder.group({
@@ -79,6 +81,22 @@ export class ProductEditComponent implements AfterViewInit {
     );
   }
 
+  openDeletionDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      title: 'Eliminar Producto',
+      description: 'Desea eliminar el producto'
+    };
+
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteProduct();
+      }
+    });
+  }
+
   editProduct() {
     const value = this.form.value;
     const editedProduct: any = {
@@ -101,6 +119,20 @@ export class ProductEditComponent implements AfterViewInit {
       }
       )
     );
+  }
+
+  deleteProduct() {
+    if(this.id) {
+      this.productService.forceDeleteProduct(this.id).subscribe(
+        (response: any) => {
+          this.snackBar.open('Producto eliminado', 'Cerrar', { duration: 5000 });
+          this.router.navigate(['/admin/products']);
+        }, (error: any) => {
+          this.snackBar.open('Error al eliminar el producto', 'Cerrar', { duration: 5000 });
+        }
+      )
+    }
+
   }
 
 }

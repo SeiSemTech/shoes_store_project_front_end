@@ -13,17 +13,15 @@ table {
   margin: auto;
   width: 50vw;
 }
-
 .mat-form-field {
   font-size: 14px;
   width: 100%;
 }
-
 .columnas{
 	font-size: 18px;
 	color: #ae897e;
+  
 }
-
 .action-column {
   display: flex;
   justify-content: center;
@@ -31,4 +29,11 @@ table {
   a, button {
     margin: .5em;
   }
+}
+.centrado{
+    text-align: center;
+}
+
+.campos{
+ text-align: center;
 }
