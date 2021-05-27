@@ -1,9 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
 import { ProductsService } from '../../../../core/services/products/products.service';
 import { Product } from '../../../../core/models/product.model';
 import { CartService } from 'src/app/core/services/cart.service';
+import {ConfigurationService} from '../../../../core/services/configurations/configuration.service';
+import {FormGroup} from '@angular/forms';
+import {ProductConfiguration} from '../../../../core/models/product-configuration.model';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,10 +18,30 @@ export class ProductDetailComponent implements OnInit {
   @Input() product;
   @Output() productClicked: EventEmitter<any> = new EventEmitter();
 
+  configuration = [
+    { name: 'Talla', subConfiguration: '38', extraPrice: 0, selected: false },
+    { name: 'Talla', subConfiguration: '39', extraPrice: 5000, selected: false },
+    { name: 'Talla', subConfiguration: '40', extraPrice: 8000, selected: false }
+  ];
+
+  form: FormGroup;
+  productConfiguration: ProductConfiguration;
+  displayOrderPattern = '^[0-9]+$';
+  stockPattern = '^[0-9]+$';
+  products: [];
+  configurations: [];
+  productStock = [{ "value": 1 }, { "value": 2 }];
+  productConfigurations: [
+    { configDisplay: 1, subConfigDisplay: 1 },
+    { configDisplay: 1, subConfigDisplay: 2 },
+    { configDisplay: 1, subConfigDisplay: 3 }
+  ];
   constructor(
     private route: ActivatedRoute,
     private productsService: ProductsService,
-    private cartService: CartService
+    private cartService: CartService,
+    private configurationService: ConfigurationService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -27,6 +50,7 @@ export class ProductDetailComponent implements OnInit {
       this.fetchProduct(id);
       // this.product = this.productsService.getProduct(id);
     });
+    console.log(this.products);
   }
 
   fetchProduct(id: number) {
@@ -55,7 +79,7 @@ export class ProductDetailComponent implements OnInit {
   addCart() {
     console.log('añadir al carrito');
     this.cartService.addCart(this.product);
-    // this.productClicked.emit(this.product.id);
+    /*this.productClicked.emit(this.product.id);*/
   }
 
   // updateProduct() {

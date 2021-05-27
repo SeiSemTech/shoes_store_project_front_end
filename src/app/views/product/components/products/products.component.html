@@ -10,13 +10,13 @@
       animationDuration="1000ms"
     >
       <mat-tab
-        [label]="tab.value.category_id"
-        *ngFor="let tab of activeProducts | keyvalue; let i = index"
+        *ngFor="let tab of activeCategories"
+        [label]="tab.name"
       >
         <!-- <div * ngIf="selectedTabIndex === i" class="product-grid"> -->
         <div class="product-grid">
           <app-product
-            *ngFor="let product of activeProducts"
+            *ngFor="let product of tab.products"
             (productClicked)="clickProduct($event)"
             [product]="product"
           ></app-product>

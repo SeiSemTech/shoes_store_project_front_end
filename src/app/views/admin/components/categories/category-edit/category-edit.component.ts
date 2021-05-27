@@ -61,6 +61,7 @@ export class CategoryEditComponent implements AfterViewInit {
     const value = this.form.value;
     const editedCategory: any = {
       id: this.id,
+      name: value.name,
       status: value.status,
       display_order: value.displayOrder,
     };
