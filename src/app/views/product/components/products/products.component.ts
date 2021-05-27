@@ -15,7 +15,7 @@ import { ProductsService } from '../../../../core/services/products/products.ser
 
 export class ProductsComponent implements OnInit {
 
-  products: [];
+  activeProducts: [];
   public columns = ['name', 'description', 'price',];
 
   constructor(
@@ -44,7 +44,7 @@ export class ProductsComponent implements OnInit {
   fetchProducts() {
     this.productService.getAllProducts().subscribe((response: any) => {
       console.log(response.products);
-      this.products = response.products;
+      this.activeProducts = response.products;
     });
   }
 

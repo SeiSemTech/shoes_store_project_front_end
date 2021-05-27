@@ -32,4 +32,8 @@ table {
   button {
     margin: 0.5em;
   }
+
+  mat-header-cell {
+    text-align-last: center;
+  }
 }

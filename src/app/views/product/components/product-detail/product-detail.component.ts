@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { ProductsService } from '../../../../core/services/products/products.service';
 import { Product } from '../../../../core/models/product.model';
+import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -11,11 +12,13 @@ import { Product } from '../../../../core/models/product.model';
 })
 export class ProductDetailComponent implements OnInit {
 
-  product: Product;
+  @Input() product;
+  @Output() productClicked: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private route: ActivatedRoute,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private cartService: CartService
   ) { }
 
   ngOnInit() {
@@ -47,6 +50,12 @@ export class ProductDetailComponent implements OnInit {
       .subscribe(product => {
         console.log(product);
       });
+  }
+
+  addCart() {
+    console.log('añadir al carrito');
+    this.cartService.addCart(this.product);
+    // this.productClicked.emit(this.product.id);
   }
 
   // updateProduct() {
