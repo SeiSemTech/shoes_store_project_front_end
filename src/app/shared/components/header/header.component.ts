@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { map } from 'rxjs/operators';
 
@@ -6,7 +6,6 @@ import { CartService } from './../../../core/services/cart.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/core/services/auth/login/login.service';
-// import { Inspector } from 'inspector';
 
 @Component({
   selector: 'app-header',
@@ -15,13 +14,14 @@ import { LoginService } from 'src/app/core/services/auth/login/login.service';
 })
 export class HeaderComponent implements OnInit {
   entities: { name: string, url: string }[] = [
-    { "name": "Productos", "url": "/admin/products" },
-    { "name": "Categorias", "url": "/admin/categories" },
-    { "name": "Configuración", "url": "/admin/configurations" },
-    { "name": "Configuración del producto", "url": "/admin/product-configurations" }
+    { name: 'Productos', url: '/admin/products' },
+    { name: 'Categorias', url: '/admin/categories' },
+    { name: 'Configuración', url: '/admin/configurations' },
+    { name: 'Configuración del producto', url: '/admin/product-configurations' }
   ];
   total$: Observable<number>;
   isLogged: boolean;
+  availableProductRoles: string[] = ['Administrador', 'Usuario Registrado'];
 
   constructor(
     private cartService: CartService,
@@ -41,9 +41,4 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.loginService.logout();
   }
-
-  // navigateTo(event: any) {
-
-  //   this.router.navigate(['../', value]);
-  // }
 }

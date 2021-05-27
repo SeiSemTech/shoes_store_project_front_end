@@ -7,7 +7,7 @@
         Inicio
       </a>
       <a
-        *ngIf="loginService.role == 'Administrador'"
+        *ngIf="availableProductRoles.indexOf(loginService.role) != -1"
         routerLink="/products"
         routerLinkActive="active"
         color="primary"
