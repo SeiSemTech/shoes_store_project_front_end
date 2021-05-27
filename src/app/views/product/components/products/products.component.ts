@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Product } from '../../../../core/models/product.model';
 import { ProductsService } from '../../../../core/services/products/products.service';
 
 
@@ -15,7 +14,6 @@ import { ProductsService } from '../../../../core/services/products/products.ser
 
 export class ProductsComponent implements OnInit {
 
-  activeProducts: [];
   activeCategories: any[] = [];
   public columns = ['name', 'description', 'price'];
 
@@ -25,7 +23,7 @@ export class ProductsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.fetchProducts();
+    this.fetchCategories();
     console.log(this.activeCategories);
   }
 
@@ -43,9 +41,9 @@ export class ProductsComponent implements OnInit {
     console.log(id);
   }
 
-  fetchProducts() {
+  fetchCategories() {
     this.productService.getEnabledProducts().subscribe((response: any) => {
-      for ( const category of response.categories) {
+      for (const category of response.categories) {
         this.activeCategories.push(category);
       }
     });

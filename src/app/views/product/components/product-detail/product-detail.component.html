@@ -1,14 +1,14 @@
 <mat-card>
-  <div *ngIf="product">
-    <mat-card-title>{{ product.name }}</mat-card-title>
+  <div *ngIf="prod">
+    <mat-card-title>{{ prod.name }}</mat-card-title>
     <div class="crop-image">
       <img src="assets/images/shoes-tests/horlet.jpg" alt="" />
     </div>
     <mat-card-content>
       <li style="list-style: none"><strong>Descripción</strong></li>
-      <li style="list-style: none">{{ product.description }}</li>
+      <li style="list-style: none">{{ prod.description }}</li>
       <li style="list-style: none"><strong>Precio</strong></li>
-      <li style="list-style: none">{{ product.price | currency }}</li>
+      <li style="list-style: none">{{ prod.price | currency }}</li>
     </mat-card-content>
     <mat-card-actions>
       <mat-form-field appearance="outline">

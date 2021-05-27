@@ -10,6 +10,11 @@
     <li style="list-style: none">{{ product.price | currency }}</li>
   </mat-card-content>
   <mat-card-actions>
-    <a mat-raised-button [routerLink]="['/products', product.id]">Agregar</a>
+    <a
+      mat-raised-button
+      (click)="addBuyerDetail()"
+      [routerLink]="['/products', product.id]"
+      >Agregar</a
+    >
   </mat-card-actions>
 </mat-card>
