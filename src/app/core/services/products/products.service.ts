@@ -22,7 +22,7 @@ export class ProductsService {
   }
 
   getEnabledProducts() {
-    return this.http.get<Product[]>(`${environment.url_api}/products/active_products`);
+    return this.http.get<Product[]>(`${environment.url_api}/products/activated_all_products`);
   }
 
   getProductById(id: number) {

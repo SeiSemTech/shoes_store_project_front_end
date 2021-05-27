@@ -37,7 +37,6 @@ export class ProductComponent implements OnInit, OnDestroy {
   stockPattern = '^[0-9]+$';
   products: [];
   configurations: [];
-  productStock = [{ "value": 1 }, { "value": 2 }];
   configuration = [
     { name: 'Talla', subConfiguration: '38', extraPrice: 0, selected: false },
     { name: 'Talla', subConfiguration: '39', extraPrice: 5000, selected: false },
@@ -64,19 +63,6 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     console.log('5. ngOnDestroy');
-  }
-
-  addCart() {
-    console.log('añadir al carrito');
-    this.cartService.addCart(this.product);
-    /*this.productClicked.emit(this.product.id);*/
-  }
-
-  getConfigurations() {
-    this.configurationService.getAllConfigurations().subscribe((response: any) => {
-      this.configurations = response.configurations;
-      console.log(response);
-    });
   }
 
   // updateConfigSelected() {
