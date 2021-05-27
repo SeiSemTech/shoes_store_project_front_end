@@ -14,35 +14,35 @@
   class="mat-elevation-z8 products-table"
 >
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef>
+    <th mat-header-cell *matHeaderCellDef class="centrado">
       <strong class="columnas">ID</strong>
     </th>
-    <td mat-cell *matCellDef="let configurations">{{ configurations.id }}</td>
+    <td mat-cell *matCellDef="let configurations" class="campos">{{ configurations.id }}</td>
   </ng-container>
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>
+    <th mat-header-cell *matHeaderCellDef class="centrado">
       <strong class="columnas">Nombre </strong>
     </th>
-    <td mat-cell *matCellDef="let configurations">{{ configurations.name }}</td>
+    <td mat-cell *matCellDef="let configurations" class="campos">{{ configurations.name }}</td>
   </ng-container>
   <ng-container matColumnDef="sub_configuration">
-    <th mat-header-cell *matHeaderCellDef>
+    <th mat-header-cell *matHeaderCellDef class="centrado">
       <strong class="columnas">Sub configuración </strong>
     </th>
-    <td mat-cell *matCellDef="let configurations">
+    <td mat-cell *matCellDef="let configurations" class="campos">
       {{ configurations.sub_configuration }}
     </td>
   </ng-container>
   <ng-container matColumnDef="extra_price">
-    <th mat-header-cell *matHeaderCellDef>
-      <strong class="columnas">Extra Price</strong>
+    <th mat-header-cell *matHeaderCellDef class="centrado">
+      <strong class="columnas">Precio extra</strong>
     </th>
-    <td mat-cell *matCellDef="let configurations">
-      {{ configurations.extra_price }}
+    <td mat-cell *matCellDef="let configurations" class="campos">
+      {{ configurations.extra_price  | currency }}
     </td>
   </ng-container>
   <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef>
+    <th mat-header-cell *matHeaderCellDef class="centrado">
       <strong class="columnas">Acción</strong>
     </th>
     <td mat-cell *matCellDef="let configurations" class="action-column">
