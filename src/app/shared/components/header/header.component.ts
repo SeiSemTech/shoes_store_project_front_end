@@ -19,7 +19,8 @@ export class HeaderComponent implements OnInit {
     { name: 'Productos', url: '/admin/products' },
     { name: 'Categorias', url: '/admin/categories' },
     { name: 'Configuración', url: '/admin/configurations' },
-    { name: 'Configuración del producto', url: '/admin/product-configurations' }
+    { name: 'Configuración del producto', url: '/admin/product-configurations' },
+    { name: 'Ventas', url: '/admin/sales' }
   ];
   /*total$: Observable<number>;*/
   isLogged: boolean;
