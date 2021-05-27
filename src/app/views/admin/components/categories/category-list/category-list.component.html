@@ -14,33 +14,34 @@
   class="mat-elevation-z8 products-table"
 >
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef>
+    <th mat-header-cell *matHeaderCellDef class="centrado">
       <strong class="columnas">ID</strong>
     </th>
-    <td mat-cell *matCellDef="let categories">{{ categories.id }}</td>
+    <td mat-cell *matCellDef="let categories" class="campos">{{ categories.id }}</td>
   </ng-container>
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>
+    <th mat-header-cell *matHeaderCellDef class="centrado">
       <strong class="columnas">Nombre </strong>
     </th>
-    <td mat-cell *matCellDef="let categories">{{ categories.name }}</td>
+    <td mat-cell *matCellDef="let categories" class="campos">{{ categories.name }}</td>
   </ng-container>
   <ng-container matColumnDef="status">
-    <th mat-header-cell *matHeaderCellDef>
-      <strong class="columnas">Status </strong>
+    <th mat-header-cell *matHeaderCellDef class="centrado">
+      <strong class="columnas">Estado</strong>
     </th>
-    <td mat-cell *matCellDef="let categories">{{ categories.status }}</td>
+   <td mat-cell *matCellDef="let products" class="campos"> <p *ngIf="products.status == 1; else inactivo" > Activo</p>
+  <ng-template #inactivo><p>Inactivo</p></ng-template>
   </ng-container>
   <ng-container matColumnDef="display_order">
-    <th mat-header-cell *matHeaderCellDef>
-      <strong class="columnas">Display</strong>
+    <th mat-header-cell *matHeaderCellDef class="centrado">
+      <strong class="columnas">Visualización</strong>
     </th>
-    <td mat-cell *matCellDef="let categories">
+    <td mat-cell *matCellDef="let categories" class="campos">
       {{ categories.display_order }}
     </td>
   </ng-container>
   <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef>
+    <th mat-header-cell *matHeaderCellDef class="centrado">
       <strong class="columnas">Acción</strong>
     </th>
     <td mat-cell *matCellDef="let categories" class="action-column">

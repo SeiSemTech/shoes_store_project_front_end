@@ -38,6 +38,8 @@
           type="number"
           min="0"
         />
+            <span matPrefix>$&nbsp;</span>
+
         <mat-error>
           ¡El precio del producto debe ser <strong>valido.</strong>!
         </mat-error>
@@ -50,8 +52,8 @@
           formControlName="status"
           type="number"
         >
-          <mat-option [value]="1">Encendido</mat-option>
-          <mat-option [value]="0">Apagado</mat-option>
+          <mat-option [value]="1">Activo</mat-option>
+          <mat-option [value]="0">Inactivo</mat-option>
         </mat-select>
         <mat-error>
           El estado del producto es <strong>requerido.</strong>
