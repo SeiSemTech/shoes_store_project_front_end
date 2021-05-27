@@ -33,6 +33,21 @@
           </mat-option>
         </mat-select>
       </a>
+
+      <button *ngIf="loginService.role == 'Administrador'" mat-raised-button [matMenuTriggerFor]="menu">
+        <span style="margin-right: 10px" [matBadge]="total" matBadgeOverlap="false" matBadgeColor="warn"
+              matBadgePosition="below after"><mat-icon>shopping_cart</mat-icon>Carrito</span>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item *ngFor="let p of products;">{{p.name}}  {{p.price | currency}}</button>
+        <button mat-menu-item>
+          <strong>Total: {{totalp() | currency}}</strong>
+        </button>
+        <a *ngIf="products.length > 0" mat-menu-item routerLink="/order">
+          <mat-icon>shopping_cart</mat-icon>
+          Terminar compra</a>
+      </mat-menu>
+
       <button
         *ngIf="loginService.isLogged"
         (click)="logout()"

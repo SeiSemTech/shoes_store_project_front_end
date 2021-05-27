@@ -12,7 +12,7 @@ import { CartService } from '../../../../core/services/cart.service';
 })
 export class OrderComponent implements OnInit {
 
-  products$: Observable<Product[]>;
+  products$: Observable<any[]>;
 
   constructor(
     private cartService: CartService

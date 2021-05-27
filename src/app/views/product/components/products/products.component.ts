@@ -16,7 +16,7 @@ import { ProductsService } from '../../../../core/services/products/products.ser
 export class ProductsComponent implements OnInit {
 
   products: [];
-  public columns = ['name', 'description', 'price',];
+  public columns = ['name', 'description', 'price'];
 
   constructor(
     private productService: ProductsService,
