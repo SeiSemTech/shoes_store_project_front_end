@@ -15,7 +15,7 @@ import { ProductBuyerDetailService } from 'src/app/core/services/productBuyerDet
   styleUrls: ['./product.component.scss']
 })
 
-export class ProductComponent implements OnInit, OnDestroy {
+export class ProductComponent implements OnInit {
 
   @Input() product;
   @Output() productClicked: EventEmitter<any> = new EventEmitter();
@@ -25,21 +25,14 @@ export class ProductComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private buyerDetailService: ProductBuyerDetailService
-  ) {
-    console.log('1. constructor');
-  }
-
+  ) {}
   ngOnInit() {
-    console.log('3. ngOnInit');
+    /*console.log('oninit product' + this.product.name);*/
   }
-
-  ngOnDestroy() {
-    console.log('5. ngOnDestroy');
-  }
-
   addBuyerDetail() {
+    this.buyerDetailService.set();
     this.buyerDetailService.addDetail(this.product);
-    console.log(this.product);
+/*    console.log(this.product);*/
   }
 
 }

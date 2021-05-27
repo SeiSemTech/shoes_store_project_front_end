@@ -9,20 +9,31 @@
       <li style="list-style: none">{{ prod.description }}</li>
       <li style="list-style: none"><strong>Precio</strong></li>
       <li style="list-style: none">{{ prod.price | currency }}</li>
+
+<!--      <li style="list-style: none"><strong><label id="example-radio-group-label">Caracteristicas</label></strong></li>
+      <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+        [(ngModel)]="selectOptions">
+        <mat-radio-button class="example-radio-button" *ngFor="let option of subconfiguration" [value]="option">
+          {{option}}
+        </mat-radio-button>
+      </mat-radio-group>
+      <div>Your favorite season is: {{selectOptions}}</div>-->
+
+
     </mat-card-content>
     <mat-card-actions>
-      <mat-form-field appearance="outline">
-        <mat-label>Cantidad</mat-label>
-        <input
-          matInput
-          placeholder="Cantidad"
-          pattern="^[0-9]+$"
-          required
-          type="number"
-          min="0"
-        />
-        <mat-error> ¡Eliga una cantidad <strong>valida.</strong>! </mat-error>
-      </mat-form-field>
+<!--      <form [formGroup]="form" (ngSubmit)="updateStok($event)" )] action="">
+        <mat-form-field appearance="outline">
+          <mat-label>Cantidad</mat-label>
+          <input formControlName="stock" matInput
+                 placeholder="Cantidad" pattern="^[0-9]+$"
+                 required type="number" min="0" value="1"
+          />
+          <mat-error> ¡Eliga una cantidad <strong>valida.</strong>! </mat-error>
+        </mat-form-field>
+      </form>-->
       <button (click)="addCart()" mat-raised-button color="primary">
         Añadir al carrito
       </button>

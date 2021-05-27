@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnDestroy} from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -12,6 +12,11 @@ export class ProductBuyerDetailService {
   constructor() { }
   addDetail(product: any) {
     this.products = [...this.products, product];
+    /*console.log('detaill addservice ' + this.products.length);*/
     this.detail.next(this.products);
+/*    console.log('getvalue ' + this.detail.getValue());*/
+  }
+  set(): void {
+    this.products = [];
   }
 }

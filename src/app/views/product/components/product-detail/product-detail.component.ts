@@ -1,13 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-
-import { ProductsService } from '../../../../core/services/products/products.service';
-import { Product } from '../../../../core/models/product.model';
+import {ActivatedRoute, Event, Params, Router} from '@angular/router';
 import { CartService } from 'src/app/core/services/cart.service';
-import { ConfigurationService } from '../../../../core/services/configurations/configuration.service';
-import { FormGroup } from '@angular/forms';
-import { ProductConfiguration } from '../../../../core/models/product-configuration.model';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ProductBuyerDetailService } from 'src/app/core/services/productBuyerDetail/product-buyer-detail.service';
+import * as events from 'events';
+
 
 @Component({
   selector: 'app-product-detail',
@@ -22,12 +19,17 @@ export class ProductDetailComponent implements OnInit {
   form: FormGroup;
   prod: any = [];
   id: number;
-
+  selectOptions: string;
+  stock: string;
+  subconfiguration: any[] = [];
+  config: any[] = [];
   constructor(
     private route: ActivatedRoute,
     private buyerDetailService: ProductBuyerDetailService,
     private cartService: CartService,
+    private  formBuilder: FormBuilder,
   ) {
+/*    this.buildForm();*/
     this.buyerDetailService.detail$.subscribe(products => {
       this.prod = products[0];
     });
@@ -37,12 +39,23 @@ export class ProductDetailComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = params.id;
     });
-    console.log(this.prod);
+    console.log(this.stock);
+/*    for (const conf of this.prod.configurations) {
+      this.config.push(conf.name);
+      this.subconfiguration.push(conf.sub_configuration);
+    }*/
+    console.log('CC - ' + this.subconfiguration);
   }
-
+/*  updateStok(event: Event) {
+    const value = this.form.value;
+    this.stock = value.stock;
+  }
+  private buildForm() {
+    this.form = this.formBuilder.group({stock: ['', [Validators.required]]});
+  }*/
   addCart() {
-    console.log('añadir al carrito');
-    this.cartService.addCart(this.product);
+    console.log('añadir al carrito' + this.stock);
+    this.cartService.addCart(this.prod);
   }
 
 }
