@@ -18,17 +18,29 @@ mat-card {
     text-align-last: center;
   }
   mat-card-content {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+    .configurations {
+      margin: 1em;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      .selected-option {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: auto;
+      }
+    }
   }
   mat-card-actions {
     text-align: right;
     text-align-last: right;
     .add-product-quantity {
-      border-width: 0.5px;
+      border-width: 0.5px 0 0.5px 0.5px;
       border-radius: 1em 0em 0em 1em;
       outline: none;
+      width: 10%;
       padding: 0.5px;
     }
     .add-product-quantity, button {

@@ -14,6 +14,7 @@ import {ProductsService} from '../../../core/services/products/products.service'
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  computedProducts: any[] = [];
   products: any[] = [];
   entities: { name: string, url: string }[] = [
     { name: 'Productos', url: '/admin/products' },
@@ -22,7 +23,7 @@ export class HeaderComponent implements OnInit {
     { name: 'Configuración del producto', url: '/admin/product-configurations' },
     { name: 'Ventas', url: '/admin/sales' }
   ];
-  /*total$: Observable<number>;*/
+
   isLogged: boolean;
   availableProductRoles: string[] = ['Administrador', 'Usuario Registrado'];
   total = 0;
@@ -37,12 +38,8 @@ export class HeaderComponent implements OnInit {
       this.products = products;
       this.total = products.length;
     });
-    /*this.total$ = this.cartService.cart$
-      .pipe(
-        map(products => products.length)
-      );*/
   }
-
+  
   public totalp() {
     // Quién te conoce reduce
     let total = 0;
