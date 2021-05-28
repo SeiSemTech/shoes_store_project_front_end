@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Product } from 'src/app/core/models/product.model';
 import { ProductsService } from 'src/app/core/services/products/products.service';
+import { CategoryService } from 'src/app/core/services/categories/category.service';
 
 @Component({
   selector: 'app-products-list',
@@ -16,6 +17,7 @@ import { ProductsService } from 'src/app/core/services/products/products.service
 
 export class ProductsListComponent implements AfterViewInit {
   products = [];
+  categories = [];
   displayedColumns: string[] = ['id', 'name', 'status', 'image', 'price', 'description', 'category_id', 'display_order', 'actions'];
   dataSource: MatTableDataSource<Product>;
 
@@ -25,7 +27,8 @@ export class ProductsListComponent implements AfterViewInit {
   constructor(
     private productService: ProductsService,
     private router: Router, 
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private categoryService: CategoryService
   ) {
 
   }
@@ -34,6 +37,8 @@ export class ProductsListComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.getProducts();
   }
+
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
