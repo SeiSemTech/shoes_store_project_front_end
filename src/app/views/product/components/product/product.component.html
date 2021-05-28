@@ -10,11 +10,11 @@
     <li style="list-style: none">{{ product.price | currency }}</li>
   </mat-card-content>
   <mat-card-actions>
-    <a
-      mat-raised-button
-      (click)="addBuyerDetail()"
-      [routerLink]="['/products', product.id]"
-      >Agregar</a
-    >
+    <div style="display: flex; justify-content: flex-end; align-items: center; ">
+      <input  [(ngModel)]="stock" class="add-product-quantity" pattern="^[0-9]+$" type="number"  min="0"  max="10" />
+      <button (click)="addCart()" mat-raised-button color="primary">
+        Añadir al carrito
+      </button>
+    </div>
   </mat-card-actions>
 </mat-card>

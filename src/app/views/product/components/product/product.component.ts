@@ -3,11 +3,10 @@ import {
   Input,
   Output,
   EventEmitter,
-  OnInit,
-  OnDestroy
+  OnInit
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProductBuyerDetailService } from 'src/app/core/services/productBuyerDetail/product-buyer-detail.service';
+import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
   selector: 'app-product',
@@ -20,19 +19,17 @@ export class ProductComponent implements OnInit {
   @Input() product;
   @Output() productClicked: EventEmitter<any> = new EventEmitter();
 
-  today = new Date();
-
+  stock = 0;
   constructor(
     private router: Router,
-    private buyerDetailService: ProductBuyerDetailService
+    private cartService: CartService
   ) {}
-  ngOnInit() {
-    /*console.log('oninit product' + this.product.name);*/
+  ngOnInit() { }
+
+  addCart() {
+    this.cartService.addCart(this.product);
+    console.log(this.stock);
   }
-  addBuyerDetail() {
-    this.buyerDetailService.set();
-    this.buyerDetailService.addDetail(this.product);
-/*    console.log(this.product);*/
-  }
+
 
 }

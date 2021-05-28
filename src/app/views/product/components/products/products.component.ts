@@ -49,8 +49,7 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  navigateToForm() {
-    this.router.navigateByUrl("/products/add");
-  }
+
+
 
 }

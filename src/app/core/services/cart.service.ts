@@ -12,8 +12,13 @@ export class CartService {
   cart$ = this.cart.asObservable();
 
   constructor() { }
+
   addCart(product: any) {
     this.products = [...this.products, product];
     this.cart.next(this.products);
+  }
+
+  reduceStock() {
+
   }
 }
