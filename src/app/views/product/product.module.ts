@@ -8,7 +8,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { ProductRoutingModule } from './product-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { MaterialModule } from '../../material/material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { MatTabsModule } from '@angular/material';
 
@@ -18,13 +18,14 @@ import { MatTabsModule } from '@angular/material';
     ProductDetailComponent,
     ProductsComponent
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    ProductRoutingModule,
-    ReactiveFormsModule,
-    MaterialModule,
-    MatTabsModule
-  ]
+    imports: [
+        CommonModule,
+        SharedModule,
+        ProductRoutingModule,
+        ReactiveFormsModule,
+        MaterialModule,
+        MatTabsModule,
+        FormsModule
+    ]
 })
 export class ProductModule { }

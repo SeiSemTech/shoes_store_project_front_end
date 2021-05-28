@@ -2,19 +2,23 @@
   <mat-card>
     <mat-form-field>
       <mat-label>Buscar zapatos</mat-label>
-      <input matInput (keyup)="applyFilter($event)"  #input />
+      <input matInput (keyup)="applyFilter($event)" #input />
     </mat-form-field>
-    <mat-tab-group animationDuration="2000ms">
-      <mat-tab label="Promociones"
-        ><div class="product-grid">
+
+    <mat-tab-group
+      [(selectedIndex)]="selectedTabIndex"
+      animationDuration="1000ms"
+    >
+      <mat-tab *ngFor="let tab of activeCategories" [label]="tab.name">
+        <!-- <div * ngIf="selectedTabIndex === i" class="product-grid"> -->
+        <div class="product-grid">
           <app-product
-            *ngFor="let product of products"
+            *ngFor="let product of tab.products"
             (productClicked)="clickProduct($event)"
             [product]="product"
-          >
-          </app-product></div
-      ></mat-tab>
-      <mat-tab label="Temporada de verano"></mat-tab>
+          ></app-product>
+        </div>
+      </mat-tab>
     </mat-tab-group>
   </mat-card>
 </div>

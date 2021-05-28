@@ -19,6 +19,7 @@ import { FormProductConfComponent } from './components/productConfiguration/form
 import { ProductConfEditComponent } from './components/productConfiguration/product-conf-edit/product-conf-edit.component';
 import { LoginGuard } from 'src/app/utils/guards/login/login.guard';
 import { AdminGuard } from 'src/app/utils/guards/admin/admin.guard';
+import {SalesListComponent} from 'src/app/views/admin/components/sales/sales-list/sales-list.component';
 const routes: Routes = [
   {
     path: '',
@@ -49,6 +50,11 @@ const routes: Routes = [
     path: 'categories',
     canActivate: [AdminGuard, LoginGuard],
     component: CategoryListComponent
+  },
+  {
+    path: 'sales',
+    canActivate: [AdminGuard, LoginGuard],
+    component: SalesListComponent
   },
   {
     path: 'categories/create',

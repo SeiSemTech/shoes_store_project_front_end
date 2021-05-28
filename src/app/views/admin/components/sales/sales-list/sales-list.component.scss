@@ -13,31 +13,23 @@ table {
   margin: auto;
   width: 50vw;
 }
-
 .mat-form-field {
   font-size: 14px;
   width: 100%;
 }
-
-.columnas {
-  font-size: 18px;
-  color: #ae897e;
+.columnas{
+	font-size: 18px;
+	color: #ae897e;
+  
 }
-
 .action-column {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  a,
-  button {
-    margin: 0.5em;
-  }
-
-  mat-header-cell {
-    text-align-last: center;
+  a, button {
+    margin: .5em;
   }
 }
-
 .centrado{
     text-align: center;
 }

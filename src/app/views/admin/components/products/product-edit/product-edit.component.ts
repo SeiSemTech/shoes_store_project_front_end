@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from 'src/app/core/services/products/products.service';
 import { Product } from 'src/app/core/models/product.model';
-import {MatDialog, MatDialogConfig, MatSnackBar} from '@angular/material';
+import { MatDialog, MatDialogConfig, MatSnackBar } from '@angular/material';
 import { CategoryService } from 'src/app/core/services/categories/category.service';
 import { Category } from 'src/app/core/models/category.model';
 import { forkJoin } from 'rxjs';
-import {ConfirmationModalComponent} from 'src/app/material/modals/confirmation-modal/confirmation-modal.component';
+import { ConfirmationModalComponent } from 'src/app/material/modals/confirmation-modal/confirmation-modal.component';
 
 
 @Component({
@@ -122,7 +122,7 @@ export class ProductEditComponent implements AfterViewInit {
   }
 
   deleteProduct() {
-    if(this.id) {
+    if (this.id) {
       this.productService.forceDeleteProduct(this.id).subscribe(
         (response: any) => {
           this.snackBar.open('Producto eliminado', 'Cerrar', { duration: 5000 });

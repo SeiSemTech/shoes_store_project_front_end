@@ -20,6 +20,7 @@ import { CategoryListComponent } from './components/categories/category-list/cat
 import { ProductConfListComponent } from './components/productConfiguration/product-conf-list/product-conf-list.component';
 import { ProductConfEditComponent } from './components/productConfiguration/product-conf-edit/product-conf-edit.component';
 import { FormProductConfComponent } from './components/productConfiguration/form-product-conf/form-product-conf.component';
+import { SalesListComponent } from 'src/app/views/admin/components/sales/sales-list/sales-list.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { FormProductConfComponent } from './components/productConfiguration/form
     FormConfigurationComponent,
     ProductConfListComponent,
     ProductConfEditComponent,
-    FormProductConfComponent
+    FormProductConfComponent,
+    SalesListComponent
   ],
   imports: [
     CommonModule,

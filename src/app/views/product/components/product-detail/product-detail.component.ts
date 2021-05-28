@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Event, Params, Router } from '@angular/router';
+import { CartService } from 'src/app/core/services/cart.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProductBuyerDetailService } from 'src/app/core/services/productBuyerDetail/product-buyer-detail.service';
+import * as events from 'events';
 
-import { ProductsService } from '../../../../core/services/products/products.service';
-import { Product } from '../../../../core/models/product.model';
 
 @Component({
   selector: 'app-product-detail',
@@ -11,60 +13,42 @@ import { Product } from '../../../../core/models/product.model';
 })
 export class ProductDetailComponent implements OnInit {
 
-  product: Product;
+  @Input() product;
+  @Output() productClicked: EventEmitter<any> = new EventEmitter();
 
+  prod: any = [];
+  id: number;
+  selectOptions: string;
+  stock: string;
+  subconfiguration: any[] = [];
+  config: any[] = [];
   constructor(
     private route: ActivatedRoute,
-    private productsService: ProductsService
-  ) { }
-
-  ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      const id = params.id;
-      this.fetchProduct(id);
-      // this.product = this.productsService.getProduct(id);
+    private buyerDetailService: ProductBuyerDetailService,
+    private cartService: CartService,
+    private formBuilder: FormBuilder,
+  ) {
+    this.buyerDetailService.detail$.subscribe(products => {
+      this.prod = products[0];
     });
   }
 
-  fetchProduct(id: number) {
-    this.productsService.getProductById(id)
-      .subscribe(product => {
-        this.product = product;
-      });
+
+  ngOnInit() {
+    this.route.params.subscribe((params: Params) => {
+      this.id = params.id;
+    });
+    console.log(this.stock);
+    for (const conf of this.prod.configurations) {
+      this.config.push(conf.name);
+      this.subconfiguration.push(conf.sub_configuration);
+    }
+    console.log('CC - ' + this.subconfiguration);
   }
-
-  createProduct() {
-    const newProduct: Product = {
-      name: 'test',
-      status: 1,
-      image: 'test',
-      price: 1,
-      description: 'test',
-      category_id: 1,
-      display_order: 1,
-    };
-    this.productsService.createProduct(newProduct)
-      .subscribe(product => {
-        console.log(product);
-      });
-  }
-
-  // updateProduct() {
-  //   const updateProduct: Partial<Product> = {
-  //     price: 555555,
-  //     description: 'edicion titulo'
-  //   };
-  //   this.productsService.updateProduct(updateProduct)
-  //     .subscribe(product => {
-  //       console.log(product);
-  //     });
-  // }
-
-  deleteProduct() {
-    this.productsService.deleteProduct(222)
-      .subscribe(rta => {
-        console.log(rta);
-      });
+  addCart() {
+    let stock = (document.getElementById("stock") as HTMLInputElement).value;
+    this.stock = stock;
+    console.log(this.stock)
   }
 
 }

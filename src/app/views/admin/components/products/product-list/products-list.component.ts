@@ -26,9 +26,8 @@ export class ProductsListComponent implements AfterViewInit {
 
   constructor(
     private productService: ProductsService,
-    private router: Router, 
-    private snackBar: MatSnackBar,
-    private categoryService: CategoryService
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
 
   }

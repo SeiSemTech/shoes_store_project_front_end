@@ -1,14 +1,52 @@
-<div *ngIf="product">
-  <div>
-    <img [src]="product.image" alt="" />
+<mat-card>
+  <div *ngIf="prod">
+    <mat-card-title>{{ prod.name }}</mat-card-title>
+    <div class="crop-image">
+      <img mat-card-image src="{{ prod.image }}" alt="" />
+    </div>
+    <mat-card-content>
+      <li style="list-style: none"><strong>Descripción</strong></li>
+      <li style="list-style: none">{{ prod.description }}</li>
+      <li style="list-style: none"><strong>Precio</strong></li>
+      <li style="list-style: none">{{ prod.price | currency }}</li>
+
+      <li style="list-style: none">
+        <strong
+          ><label id="example-radio-group-label">Caracteristicas</label></strong
+        >
+      </li>
+      <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+        [(ngModel)]="selectOptions"
+      >
+        <mat-radio-button
+          class="example-radio-button"
+          *ngFor="let option of subconfiguration"
+          [value]="option"
+        >
+          {{ option }}
+        </mat-radio-button>
+      </mat-radio-group>
+    </mat-card-content>
+    <mat-card-actions>
+      <mat-form-field appearance="outline">
+        <mat-label>Cantidad</mat-label>
+        <input
+          id="stock"
+          matInput
+          placeholder="Cantidad"
+          pattern="^[0-9]+$"
+          required
+          type="number"
+          min="0"
+          max="10"
+        />
+        <mat-error> ¡Eliga una cantidad <strong>valida.</strong>! </mat-error>
+      </mat-form-field>
+      <button (click)="addCart()" mat-raised-button color="primary">
+        Añadir al carrito
+      </button>
+    </mat-card-actions>
   </div>
-  <div>
-    <ul>
-      <li>Nombre: {{ product.title }}</li>
-    </ul>
-    <p>{{ product.description }}</p>
-  </div>
-  <button (click)="createProduct()">crear</button>
-  <button (click)="updateProduct()">update</button>
-  <button (click)="deleteProduct()">delete</button>
-</div>
+</mat-card>

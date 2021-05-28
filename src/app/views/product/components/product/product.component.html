@@ -1,34 +1,20 @@
 <mat-card>
   <mat-card-title>{{ product.name }}</mat-card-title>
   <div class="crop-image">
-    <img src="assets/images/shoes-tests/horlet.jpg" alt="" />
+    <img src="{{ product.image }}" alt="" />
   </div>
   <mat-card-content>
     <li style="list-style: none"><strong>Descripción</strong></li>
     <li style="list-style: none">{{ product.description }}</li>
     <li style="list-style: none"><strong>Precio</strong></li>
     <li style="list-style: none">{{ product.price | currency }}</li>
-    <li style="list-style: none"><strong>Talla</strong></li>
-    <!-- <li *ngFor="let configuration of configurations.name">
-      <mat-checkbox
-        [(ngModel)]="configurations.selected"
-        [color]="subtask.color"
-        (ngModelChange)="updateAllComplete()"
-      >
-        {{ subtask.name }}
-      </mat-checkbox>
-    </li> -->
   </mat-card-content>
   <mat-card-actions>
-    <mat-select placeholder="Cantidad" type="number" list="categories">
-      <mat-option
-        *ngFor="let stock of productStock"
-        value="{{ stock.value }}"
-        >{{ stock.value }}</mat-option
-      >
-    </mat-select>
-    <button (click)="addCart()" mat-raised-button color="primary">
-      Añadir al carrito
-    </button>
+    <a
+      mat-raised-button
+      (click)="addBuyerDetail()"
+      [routerLink]="['/products', product.id]"
+      >Agregar</a
+    >
   </mat-card-actions>
 </mat-card>
