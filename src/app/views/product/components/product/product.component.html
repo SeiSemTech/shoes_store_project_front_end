@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-title>{{ product.name }}</mat-card-title>
   <div class="crop-image">
-    <img src="assets/images/shoes-tests/horlet.jpg" alt="" />
+    <img src="{{ product.image }}" alt="" />
   </div>
   <mat-card-content>
     <li style="list-style: none"><strong>Descripción</strong></li>
@@ -14,6 +14,7 @@
       mat-raised-button
       (click)="addBuyerDetail()"
       [routerLink]="['/products', product.id]"
-      >Agregar</a>
+      >Agregar</a
+    >
   </mat-card-actions>
 </mat-card>
