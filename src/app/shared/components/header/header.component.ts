@@ -34,12 +34,12 @@ export class HeaderComponent implements OnInit {
     private router: Router,
   ) {
     this.cartService.cart$.subscribe(products => {
-      console.log(products);
       this.products = products;
       this.total = products.length;
     });
+    console.log(this.cartService.products)
   }
-  
+
   public totalp() {
     // Quién te conoce reduce
     let total = 0;

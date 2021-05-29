@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { Product } from '../../../../core/models/product.model';
+import { ConfiguredProduct } from '../../../../core/models/product.model';
 import { CartService } from '../../../../core/services/cart.service';
 
 @Component({
@@ -12,7 +12,8 @@ import { CartService } from '../../../../core/services/cart.service';
 })
 export class OrderComponent implements OnInit {
 
-  products$: Observable<any[]>;
+  products$: Observable<ConfiguredProduct[]>;
+  displayedColumns: string[] = ['image', 'name', 'price'];
 
   constructor(
     private cartService: CartService

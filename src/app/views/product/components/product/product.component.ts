@@ -7,8 +7,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/core/services/cart.service';
-import {CompleteConfiguration, Configuration, NamedCompleteConfiguration} from 'src/app/core/models/configuration.model';
-import {Product} from 'src/app/core/models/product.model';
+import { CompleteConfiguration, Configuration, NamedCompleteConfiguration } from 'src/app/core/models/configuration.model';
 
 @Component({
   selector: 'app-product',
