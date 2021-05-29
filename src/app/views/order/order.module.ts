@@ -6,9 +6,10 @@ import { OrderComponent } from './components/order/order.component';
 
 import { MaterialModule } from '../../material/material.module';
 import { SharedModule } from '../../shared/shared.module';
+import { PaymentGatewayComponent } from './components/payment-gateway/payment-gateway.component';
 
 @NgModule({
-  declarations: [OrderComponent],
+  declarations: [OrderComponent, PaymentGatewayComponent],
   imports: [
     CommonModule,
     OrderRoutingModule,
