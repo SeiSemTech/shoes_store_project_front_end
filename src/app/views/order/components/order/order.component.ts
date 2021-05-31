@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Observable } from 'rxjs';
-
-import { Product } from '../../../../core/models/product.model';
 import { CartService } from '../../../../core/services/cart.service';
 
 @Component({
@@ -18,9 +15,8 @@ export class OrderComponent implements OnInit {
     private cartService: CartService
   ) {
     this.products$ = this.cartService.cart$;
+    console.log(this.products$);
   }
-
   ngOnInit() {
   }
-
 }

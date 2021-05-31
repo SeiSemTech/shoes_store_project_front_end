@@ -130,7 +130,7 @@ export class ProductEditComponent implements AfterViewInit {
         }, (error: any) => {
           this.snackBar.open('Error al eliminar el producto', 'Cerrar', { duration: 5000 });
         }
-      )
+      );
     }
 
   }

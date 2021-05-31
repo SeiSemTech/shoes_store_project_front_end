@@ -12,11 +12,14 @@
         <div class="col-xs-12 col-sm-5 col-md-5">
           <div class="box">
             {{ product.name }}
+            {{ product.configurations[0].name}} : {{ product.configurations[0].configuration.sub_configuration}}
+            {{ product.configurations[1].name}} : {{ product.configurations[1].configuration.sub_configuration}}
+            {{ product.configurations[2].stock}}
           </div>
         </div>
         <div class="col-xs-12 col-sm-5 col-md-5">
           <div class="box">
-            {{ product.price }}
+            {{ product.price * product.configurations[2].stock | currency }}
           </div>
         </div>
       </div>

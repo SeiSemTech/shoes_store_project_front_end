@@ -8,7 +8,8 @@ import {
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/core/services/cart.service';
 import {CompleteConfiguration, Configuration, NamedCompleteConfiguration} from 'src/app/core/models/configuration.model';
-import {Product} from 'src/app/core/models/product.model';
+import {MatSnackBar} from '@angular/material';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-product',
@@ -26,9 +27,9 @@ export class ProductComponent implements OnInit {
   stock = 0;
   constructor(
     private router: Router,
-    private cartService: CartService
+    private cartService: CartService,
+    private snackBar: MatSnackBar,
   ) {}
-
   ngOnInit() {
     this.compileConfigurations();
   }
@@ -40,11 +41,14 @@ export class ProductComponent implements OnInit {
         isConfigurationCompleted = false;
       }
     }
-
     if (this.stock > 0 && isConfigurationCompleted) {
-      const currentProduct = this.product;
-      currentProduct.configurations = this.selectedConfiguration;
+      const currentProduct = Object.assign({}, this.product ) ;
+      currentProduct.configurations = [...this.selectedConfiguration];
+      currentProduct.configurations.push({ stock: this.stock });
       this.cartService.addCart(currentProduct);
+      this.snackBar.open('Se agregó al carrito', 'Cerrar', { duration: 2000 });
+    } else {
+      this.snackBar.open('Debes seleccionar una talla, color y cantidad', 'Cerrar', { duration: 2000 });
     }
   }
 

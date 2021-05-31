@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-import { map } from 'rxjs/operators';
-
 import { CartService } from './../../../core/services/cart.service';
-import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
 import { LoginService } from 'src/app/core/services/auth/login/login.service';
-import {ProductsService} from '../../../core/services/products/products.service';
 
 @Component({
   selector: 'app-header',
@@ -30,24 +24,26 @@ export class HeaderComponent implements OnInit {
   constructor(
     private cartService: CartService,
     public loginService: LoginService,
-    private productService: ProductsService,
-    private router: Router,
   ) {
     this.cartService.cart$.subscribe(products => {
-      console.log(products);
       this.products = products;
       this.total = products.length;
     });
   }
-  
   public totalp() {
-    // Quién te conoce reduce
-    let total = 0;
-    this.products.forEach(p => total += p.price);
-    return total;
+    let toto = 0;
+    this.products.forEach(p => toto += p.price);
+    return toto;
   }
   ngOnInit() {
     this.isLogged = window.localStorage.getItem('access_token') != null;
+  }
+  public async quitar(producto) {
+    // Comunicación entre componentes
+    await this.cartService.deletCart(producto.id);
+    this.total = this.products.length;
+    this.totalp();
+    console.log( this.products );
   }
 
   logout() {
