@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
     await this.cartService.deletCart(producto.id);
     this.total = this.products.length;
     this.totalp();
-    console.log( this.products );
+    console.log(this.products);
   }
 
   logout() {
