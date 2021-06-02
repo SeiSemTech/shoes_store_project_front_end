@@ -25,8 +25,12 @@
         <mat-icon>person</mat-icon>
       </a>
 
-      <a *ngIf="loginService.role == 'Administrador'">
-        <a routerLink="admin/sales" routerLinkActive="active" color="primary">
+      <a *ngIf="loginService.role == 'Usuario Registrado'">
+        <a
+          routerLink="/user/purchases"
+          routerLinkActive="active"
+          style="color: white"
+        >
           <mat-icon>credit_card</mat-icon>
           Mis compras
         </a>
