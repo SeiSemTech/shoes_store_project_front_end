@@ -29,7 +29,9 @@ export class HeaderComponent implements OnInit {
       this.products = products;
       this.total = products.length;
     });
+    console.log(this.cartService.products)
   }
+
   public totalp() {
     let toto = 0;
     this.products.forEach(p => toto += p.price);

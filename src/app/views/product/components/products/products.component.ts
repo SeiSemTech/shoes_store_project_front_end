@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { ProductsService } from '../../../../core/services/products/products.service';
-
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Router} from '@angular/router';
+import {ProductsService} from '../../../../core/services/products/products.service';
+import {Category, Product, ProductCategory} from 'src/app/core/models/category.model';
 
 
 @Component({
@@ -14,42 +13,39 @@ import { ProductsService } from '../../../../core/services/products/products.ser
 
 export class ProductsComponent implements OnInit {
 
-  activeCategories: any[] = [];
-  public columns = ['name', 'description', 'price'];
+  activeCategories: ProductCategory[] = [];
+  tempCategories: ProductCategory[] = [];
 
   constructor(
     private productService: ProductsService,
     private router: Router,
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.fetchCategories();
-    console.log(this.activeCategories);
+
   }
 
-  // applyFilter(event: Event) {
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-
-  //   if (this.dataSource.paginator) {
-  //     this.dataSource.paginator.firstPage();
-  //   }
-  // }
-
-  clickProduct(id: number) {
-    console.log('product');
-    console.log(id);
+  applyFilter(inputData: string) {
+    console.log(inputData);
+    if (inputData) {
+      for (const categoryIndex in this.activeCategories) {
+        this.tempCategories[categoryIndex].products = this.activeCategories[categoryIndex].products.filter(
+          (product) => product.name.toLowerCase().includes(inputData.toLowerCase()));
+      }
+    } else {
+      this.fetchCategories();
+    }
+    // this.tempCategories = this.activeCategories.filter((category: ProductCategory) => category.products.filter(
+    //   (product: Product) => product.name.toLowerCase().includes(inputData)
+    // ));
   }
 
   fetchCategories() {
     this.productService.getEnabledProducts().subscribe((response: any) => {
-      for (const category of response.categories) {
-        this.activeCategories.push(category);
-      }
+      this.activeCategories = response.categories;
+      this.tempCategories = this.activeCategories;
     });
   }
-
-
-
-
 }

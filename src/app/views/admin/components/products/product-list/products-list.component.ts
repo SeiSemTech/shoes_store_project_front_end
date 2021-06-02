@@ -27,7 +27,8 @@ export class ProductsListComponent implements AfterViewInit {
   constructor(
     private productService: ProductsService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private categoryService: CategoryService
   ) {
 
   }
@@ -36,8 +37,6 @@ export class ProductsListComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.getProducts();
   }
-
-
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -48,6 +47,13 @@ export class ProductsListComponent implements AfterViewInit {
     }
   }
 
+//getcategoryname(id: number){
+//  this.categoryService.getCategoryById(id).subscribe((response: any) =>{
+//       this.categories = response.categories; 
+//       console.log(this.categories.name);
+//  });
+//
+//}
 
   private getProducts() {
     this.productService.getAllProducts().subscribe((response: any) => {

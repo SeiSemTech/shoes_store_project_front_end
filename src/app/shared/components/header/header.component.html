@@ -49,8 +49,7 @@
         <button mat-menu-item>
           <strong>Total: {{totalp() | currency}}</strong>
         </button>
-
-        <a *ngIf="products.length > 0" mat-menu-item routerLink="/order">
+        <a *ngIf="products.length > 0" mat-menu-item routerLink="/check_out">
           <mat-icon>shopping_cart</mat-icon>
           Terminar compra</a>
       </mat-menu>
