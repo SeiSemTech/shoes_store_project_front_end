@@ -18,7 +18,7 @@ const routes: Routes = [
         loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule)
       },
       {
-        path: 'order',
+        path: 'check_out',
         loadChildren: () => import('./views/order/order.module').then(m => m.OrderModule)
       },
       {

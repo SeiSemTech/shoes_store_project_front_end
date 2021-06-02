@@ -67,8 +67,7 @@ export class ProductsComponent implements OnInit {
     return categories;
   }
 
-  navigateToForm() {
-    this.router.navigateByUrl("/products/add");
-  }
+
+
 
 }
