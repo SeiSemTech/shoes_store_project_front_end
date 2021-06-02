@@ -5,17 +5,17 @@ import { UserComponent } from './components/user/user.component';
 import { PurchasesComponent } from './components/purchases/purchases.component';
 
 import { LoginGuard } from 'src/app/utils/guards/login/login.guard';
-import { AdminGuard } from 'src/app/utils/guards/admin/admin.guard';
+import { UserGuard } from 'src/app/utils/guards/user/user.guard';
 
 const routes: Routes = [
   {
     path: '',
-    canActivate: [AdminGuard, LoginGuard],
+    canActivate: [UserGuard, LoginGuard],
     component: UserComponent,
   },
   {
     path: 'purchases',
-    canActivate: [AdminGuard, LoginGuard],
+    canActivate: [UserGuard, LoginGuard],
     component: PurchasesComponent
   }
 ];
