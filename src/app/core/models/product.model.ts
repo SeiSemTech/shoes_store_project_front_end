@@ -1,4 +1,4 @@
-import {Configuration} from 'src/app/core/models/configuration.model';
+import {Configuration, ConfigurationWithStock} from 'src/app/core/models/configuration.model';
 
 export interface Product {
   name: string;
@@ -20,4 +20,9 @@ export interface ConfiguredProduct {
   category_id: number;
   display_order: number;
   configurations: Configuration[];
+}
+
+export interface ConfiguredProductStock extends ConfiguredProduct {
+  stock: number;
+  configurations: ConfigurationWithStock[];
 }

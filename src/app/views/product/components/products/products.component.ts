@@ -24,11 +24,9 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.fetchCategories();
-
   }
 
   applyFilter(inputData: string) {
-    console.log(inputData);
     if (inputData) {
       for (const categoryIndex in this.activeCategories) {
         this.tempCategories[categoryIndex].products = this.activeCategories[categoryIndex].products.filter(

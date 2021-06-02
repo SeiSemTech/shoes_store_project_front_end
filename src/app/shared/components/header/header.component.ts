@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
 
   public totalp() {
     let toto = 0;
-    this.products.forEach(p => toto += p.price);
+    this.products.forEach(p => toto += p.price * p.configurations[p.configurations.length - 1].configuration.sub_configuration);
     return toto;
   }
   ngOnInit() {

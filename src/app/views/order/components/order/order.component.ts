@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ConfiguredProduct } from '../../../../core/models/product.model';
+import {ConfiguredProduct, ConfiguredProductStock} from '../../../../core/models/product.model';
 import { CartService } from '../../../../core/services/cart.service';
+import {MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-order',
@@ -11,15 +12,20 @@ import { CartService } from '../../../../core/services/cart.service';
 })
 export class OrderComponent implements OnInit {
 
-  products$: Observable<ConfiguredProduct[]>;
-  displayedColumns: string[] = ['image', 'name', 'price'];
+  products: MatTableDataSource<ConfiguredProductStock[]>;
+  displayedColumns: string[] = ['image', 'name', 'price', 'configuration'];
 
   constructor(
     private cartService: CartService
   ) {
-    this.products$ = this.cartService.cart$;
-    console.log(this.products$);
+
   }
+
+  showData() {
+    console.log(this.cartService.cart$);
+    console.log(this.products);
+  }
+
   ngOnInit() {
   }
 }

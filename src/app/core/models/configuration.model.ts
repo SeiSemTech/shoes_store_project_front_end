@@ -4,6 +4,11 @@ export interface Configuration {
   extra_price: number;
 }
 
+export interface ConfigurationWithStock extends Configuration {
+  stock: number;
+}
+
+
 export interface CompleteConfiguration {
   id: number;
   name: string;

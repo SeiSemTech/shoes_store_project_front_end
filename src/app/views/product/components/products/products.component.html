@@ -5,10 +5,7 @@
       <input matInput (input)="applyFilter($event.target.value)" />
     </mat-form-field>
 
-    <mat-tab-group
-      [(selectedIndex)]="selectedTabIndex"
-      animationDuration="1000ms"
-    >
+    <mat-tab-group animationDuration="1000ms">
       <mat-tab *ngFor="let tab of tempCategories" [label]="tab.name">
         <!-- <div * ngIf="selectedTabIndex === i" class="product-grid"> -->
         <div class="product-grid">

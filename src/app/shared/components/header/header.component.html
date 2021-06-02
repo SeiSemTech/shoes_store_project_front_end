@@ -39,7 +39,7 @@
               matBadgePosition="below after"><mat-icon>shopping_cart</mat-icon>Carrito</span>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item *ngFor="let p of products;">{{p.configurations[2].stock}} - {{p.name}} {{p.price * p.configurations[2].stock | currency}}
+        <button mat-menu-item *ngFor="let p of products;">{{p.configurations[p.configurations.length - 1].configuration.sub_configuration}} - {{p.name}} {{p.price * p.configurations[p.configurations.length - 1].configuration.sub_configuration | currency}}
           <button (click)="quitar(p)" mat-icon-button color="warn">
             <mat-icon>
               delete

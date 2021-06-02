@@ -7,7 +7,7 @@ import {ConfiguredProduct} from 'src/app/core/models/product.model';
 })
 export class CartService {
 
-  products: ConfiguredProduct[];
+  products: any[] = [];
   private cart = new BehaviorSubject<any[]>([]);
   cart$ = this.cart.asObservable();
 
@@ -34,8 +34,10 @@ export class CartService {
     this.cart.next(this.products);
     this.setProductsOfLocalStorage();
   }
+
   deletCart(id: number) {
     const i = this.products.indexOf( id );
     this.products.splice(i, 1);
+    this.setProductsOfLocalStorage();
   }
 }

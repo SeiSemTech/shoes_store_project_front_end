@@ -1,47 +1,53 @@
 <section>
-  <div *ngIf="products$ | async as products">
-    <p *ngIf="products.length === 0">no hay productos</p>
+  <div *ngIf="cartService.cart$ | async as products">
+    <p *ngIf="products.length === 0">No hay productos</p>
     <div class="row" *ngFor="let product of products">
-      <div class="col-xs-12 col-sm-2 col-md-2">
-        <div class="box">
-          <!--<img class="image" [src]="product.image" alt="" />-->
-        </div>
+      <section class="product">
         <div class="col-xs-12 col-sm-5 col-md-5">
           <div class="box">
-            {{ product.name }}
-            {{ product.configurations[0].name}} : {{ product.configurations[0].configuration.sub_configuration}}
-            {{ product.configurations[1].name}} : {{ product.configurations[1].configuration.sub_configuration}}
-            {{ product.configurations[2].stock}}
+              <p>{{product.name}}</p>
+              <div *ngFor="let configuration of product.configurations">
+                <b>{{ configuration.name }}: {{ configuration.configuration.sub_configuration }}</b>
+              </div>
           </div>
         </div>
         <div class="col-xs-12 col-sm-5 col-md-5">
           <div class="box">
-            {{ product.price * product.configurations[2].stock | currency }}
+            {{ product.price * product.configurations[product.configurations.length - 1].configuration.sub_configuration | currency }}
           </div>
         </div>
-      </div>
+      </section>
     </div>
   </div>
 </section>
-<table mat-table [dataSource]="products$" class="mat-elevation-z8">
-  <ng-container matColumnDef="image">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let element"> {{element.image}} </td>
-  </ng-container>
+<!--<table mat-table [dataSource]="cartService.cart$ | async" class="mat-elevation-z8">-->
+<!--  <ng-container matColumnDef="image">-->
+<!--    <th mat-header-cell *matHeaderCellDef></th>-->
+<!--    <td mat-cell *matCellDef="let element"> {{element.image}} </td>-->
+<!--  </ng-container>-->
 
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Nombre </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
+<!--  <ng-container matColumnDef="name">-->
+<!--    <th mat-header-cell *matHeaderCellDef> Nombre </th>-->
+<!--    <td mat-cell *matCellDef="let element"> {{element.name}} </td>-->
+<!--  </ng-container>-->
 
-  <ng-container matColumnDef="price">
-    <th mat-header-cell *matHeaderCellDef> Precio </th>
-    <td mat-cell *matCellDef="let element"> {{element.price}} </td>
-  </ng-container>
+<!--  <ng-container matColumnDef="price">-->
+<!--    <th mat-header-cell *matHeaderCellDef> Precio </th>-->
+<!--    <td mat-cell *matCellDef="let element"> {{element.price}} </td>-->
+<!--  </ng-container>-->
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+<!--  <ng-container matColumnDef="configuration">-->
+<!--    <th mat-header-cell *matHeaderCellDef> Configuraciones </th>-->
+<!--    <td mat-cell *matCellDef="let element">-->
+<!--      <div *ngFor="let configuration of element.configurations">-->
+<!--        <b>{{ configuration.name }}: {{ configuration.configuration.sub_configuration }}</b>-->
+<!--      </div>-->
+<!--    </td>-->
+<!--  </ng-container>-->
+
+<!--  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+<!--  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+<!--</table>-->
 
 <!--<div>-->
 <!--  <app-payment-gateway></app-payment-gateway>-->

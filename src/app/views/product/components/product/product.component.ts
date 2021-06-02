@@ -44,7 +44,7 @@ export class ProductComponent implements OnInit {
     if (this.stock > 0 && isConfigurationCompleted) {
       const currentProduct = Object.assign({}, this.product ) ;
       currentProduct.configurations = [...this.selectedConfiguration];
-      currentProduct.configurations.push({ stock: this.stock });
+      currentProduct.configurations.push({name: 'Cantidad',  configuration: {name: 'Cantidad', sub_configuration: this.stock }});
       this.cartService.addCart(currentProduct);
       this.snackBar.open('Se agregó al carrito', 'Cerrar', { duration: 2000 });
     } else {
