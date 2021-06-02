@@ -5,6 +5,30 @@ section {
   border-radius: .2em;
 }
 
+
+.checkout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .payment-button {
+    width: 100%;
+    button {
+      background-color: #65d565;
+      float: right;
+    }
+  }
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+
+    .product {
+      width: 15vw;
+      margin: 1em;
+    }
+  }
+}
+
 .image {
   max-width: 100%;
 }
