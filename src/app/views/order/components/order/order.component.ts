@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
-import { ConfiguredProductStock} from '../../../../core/models/product.model';
+import {ConfiguredProductStock} from '../../../../core/models/product.model';
 import {CartService} from '../../../../core/services/cart.service';
 import {SalesService} from 'src/app/core/services/sales/sales.service';
 
@@ -33,8 +33,6 @@ export class OrderComponent implements OnInit {
     const finalProduct: any[] = [];
     const productCategoryConfiguration = this.products.map(({name, configurations, price}) => ({name, configurations, price}));
     let productOverflowXD = false;
-    console.log(productCategoryConfiguration);
-
     sells:
       for (const configuration of productCategoryConfiguration) {
         const stock = configuration.configurations[configuration.configurations.length - 1].configuration.sub_configuration;
@@ -52,18 +50,17 @@ export class OrderComponent implements OnInit {
           finalProduct.push({...productConfiguration[productIndex], price: configuration.price});
         }
       }
-    if (!productOverflowXD) {
+    if (!productOverflowXD && this.products.length > 0) {
       const finalBill = finalProduct.map(({configuration, price}) => ({
         id_product_config: configuration.id,
         quantity: configuration.stock,
         price
       }));
-      console.log(finalBill);
       this.salesService.setUserBill(
         finalBill
       ).subscribe(() => {
         this.cartService.deleteAll();
-        alert('Compra exitosa')
+        alert('Compra exitosa');
       }, () => {
       });
     }
