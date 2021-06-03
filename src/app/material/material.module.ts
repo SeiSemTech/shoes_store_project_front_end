@@ -24,6 +24,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material';
 import { ConfirmationModalComponent } from 'src/app/material/modals/confirmation-modal/confirmation-modal.component';
+import { MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { ConfirmationModalComponent } from 'src/app/material/modals/confirmation
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatDividerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressBarModule
   ],
   exports: [
     MatButtonModule,
@@ -77,7 +79,8 @@ import { ConfirmationModalComponent } from 'src/app/material/modals/confirmation
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatDividerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressBarModule
   ],
   entryComponents: [ConfirmationModalComponent]
 })

@@ -47,10 +47,7 @@
       </a>
 
       <button
-        *ngIf="
-          loginService.role == 'Administrador' ||
-          loginService.role == 'Usuario Registrado'
-        "
+        *ngIf="loginService.role == 'Usuario Registrado' || loginService.role == 'Administrador'"
         mat-raised-button
         [matMenuTriggerFor]="menu"
       >
