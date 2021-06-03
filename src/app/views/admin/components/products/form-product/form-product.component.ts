@@ -27,7 +27,7 @@ export class FormProductComponent implements OnInit {
 
   uploadProgress: Observable<Number>;
   uploadURL: Observable<string>;
-  
+
   constructor(
     private storage: AngularFireStorage,
     private router: Router,
@@ -63,11 +63,16 @@ export class FormProductComponent implements OnInit {
   createProduct(event: Event) {
     event.preventDefault();
     if (this.form.valid) {
+      let imageUrl = '';
+      this.uploadURL.subscribe((image) => {
+        imageUrl = image;
+        console.log(imageUrl)
+      });
       const value = this.form.value;
       const newProduct: Product = {
         name: value.name,
         status: value.status,
-        image: value.image,
+        image: imageUrl,
         price: value.price,
         description: value.description,
         display_order: value.displayOrder,

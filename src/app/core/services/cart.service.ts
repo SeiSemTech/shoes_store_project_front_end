@@ -43,7 +43,7 @@ export class CartService {
 
   deleteAll() {
     this.products = [];
-    this.cart  = new BehaviorSubject<any[]>([]);
+    this.cart.next(this.products);
     this.setProductsOfLocalStorage();
   }
 }

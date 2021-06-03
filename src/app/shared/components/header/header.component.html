@@ -39,9 +39,9 @@
       <a *ngIf="loginService.role == 'Administrador'">
         <mat-select placeholder="Entidades" type="number" list="entities">
           <mat-option *ngFor="let entitie of entities">
-            <a class="entities" [routerLink]="[entitie.url]">{{
+            <div class="entities" (click)="navigate(entitie.url)">{{
               entitie.name
-            }}</a>
+            }}</div>
           </mat-option>
         </mat-select>
       </a>

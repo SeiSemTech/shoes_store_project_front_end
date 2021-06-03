@@ -20,6 +20,14 @@ export interface Bill {
   price: number;
 }
 
+
 export interface BillCustomerOrder {
   order: any;
+}
+
+
+export interface BillEmail {
+  product_name: number;
+  quantity: number;
+  price: number;
 }
