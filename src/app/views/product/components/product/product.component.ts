@@ -60,13 +60,15 @@ export class ProductComponent implements OnInit {
       for (const configuration of configurations) {
         if (uniqueKey === configuration.name) {
           normalConfiguration.push({
+            id: configuration.id,
             name: configuration.name,
             sub_configuration: configuration.sub_configuration,
-            extra_price: configuration.extra_price
+            extra_price: configuration.extra_price,
+            stock: configuration.stock
           });
         }
       }
-      this.configurations.push({ name: uniqueKey, configuration: normalConfiguration });
+      this.configurations.push({name: uniqueKey, configuration: normalConfiguration });
       this.selectedConfiguration.push({ name: uniqueKey });
     }
   }

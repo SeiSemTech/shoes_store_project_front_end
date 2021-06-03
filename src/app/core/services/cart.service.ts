@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
 import {ConfiguredProduct} from 'src/app/core/models/product.model';
 
 @Injectable({
@@ -36,8 +36,14 @@ export class CartService {
   }
 
   deletCart(id: number) {
-    const i = this.products.indexOf( id );
+    const i = this.products.indexOf(id);
     this.products.splice(i, 1);
+    this.setProductsOfLocalStorage();
+  }
+
+  deleteAll() {
+    this.products = [];
+    this.cart  = new BehaviorSubject<any[]>([]);
     this.setProductsOfLocalStorage();
   }
 }

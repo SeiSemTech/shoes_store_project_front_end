@@ -1,12 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import {Component, OnInit} from '@angular/core';
 
-import {ConfiguredProduct, ConfiguredProductStock} from '../../../../core/models/product.model';
-import { CartService } from '../../../../core/services/cart.service';
-import {MatTableDataSource} from '@angular/material';
+import { ConfiguredProductStock} from '../../../../core/models/product.model';
+import {CartService} from '../../../../core/services/cart.service';
 import {SalesService} from 'src/app/core/services/sales/sales.service';
-import {ProductsService} from 'src/app/core/services/products/products.service';
-import {Product, ProductCategory} from 'src/app/core/models/category.model';
+
 
 @Component({
   selector: 'app-order',
@@ -15,48 +12,60 @@ import {Product, ProductCategory} from 'src/app/core/models/category.model';
 })
 export class OrderComponent implements OnInit {
 
-  products$: Observable<ConfiguredProductStock[]>;
+  products: ConfiguredProductStock[];
   displayedColumns: string[] = ['image', 'name', 'price', 'configuration'];
 
   constructor(
     private cartService: CartService,
     private salesService: SalesService,
-    private productService: ProductsService
   ) {
-    this.products$ = cartService.cart$;
+
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.cartService.cart$.subscribe((products) => {
+      this.products = products;
+    });
+  }
 
 
   pay() {
-    let filteredProducts: any[];
-    this.productService.getEnabledProducts().subscribe((response: any) => {
-      filteredProducts = response.categories;
-      filteredProducts = filteredProducts.map(
-        ({ products }) => ( products )
-      );
-      filteredProducts = filteredProducts.reduce((accumulator, value) => accumulator.concat(value), []);
-      console.log(filteredProducts);
-    });
+    const finalProduct: any[] = [];
+    const productCategoryConfiguration = this.products.map(({name, configurations, price}) => ({name, configurations, price}));
+    let productOverflowXD = false;
+    console.log(productCategoryConfiguration);
 
-    // TODO YA LOS PRODUCTOS ESTÁN EN UNA LISTA EN FILTERED PRODUCTS
-    // AHORA HAY QUE RESTAR POR PRODUCT CONFIGURATION UN STOCK, Y SI... NO TENEMOS EL PRODUCT CONFIG ID :D
-    // ENTONCES, LO MÁS PROBABLE ES QUE TOQUE RESTARLE A CUALQUIER MIERDA Y SALE :D
+    sells:
+      for (const configuration of productCategoryConfiguration) {
+        const stock = configuration.configurations[configuration.configurations.length - 1].configuration.sub_configuration;
+        const productConfiguration = configuration.configurations.slice(0, configuration.configurations.length - 1);
 
-
-
-
-    // this.products$.subscribe((products: ConfiguredProductStock[]) => {
-    //   const productDescription = products.map(
-    //     ({ id, configurations, price }) => (
-    //       {id_product_config: id, quantity: configurations[configurations.length - 1].configuration.sub_configuration, price}
-    //     )
-    //   );
-    //   console.log(productDescription);
-    //   this.salesService.setUserBill(
-    //     productDescription
-    //   ).subscribe();
-    // });
+        for (const productIndex in productConfiguration) {
+          const finalStock = productConfiguration[productIndex].configuration.stock - stock;
+          productOverflowXD = finalStock < 0;
+          if (productOverflowXD) {
+            alert(`No se pudo realizar la compra del producto ${configuration.name},` +
+              `quedan ${productConfiguration[productIndex].configuration.stock} unidades disponibles`);
+            break sells;
+          }
+          productConfiguration[productIndex].configuration.stock -= stock;
+          finalProduct.push({...productConfiguration[productIndex], price: configuration.price});
+        }
+      }
+    if (!productOverflowXD) {
+      const finalBill = finalProduct.map(({configuration, price}) => ({
+        id_product_config: configuration.id,
+        quantity: configuration.stock,
+        price
+      }));
+      console.log(finalBill);
+      this.salesService.setUserBill(
+        finalBill
+      ).subscribe(() => {
+        this.cartService.deleteAll();
+        alert('Compra exitosa')
+      }, () => {
+      });
+    }
   }
 }

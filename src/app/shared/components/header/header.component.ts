@@ -8,7 +8,6 @@ import { LoginService } from 'src/app/core/services/auth/login/login.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  computedProducts: any[] = [];
   products: any[] = [];
   entities: { name: string, url: string }[] = [
     { name: 'Productos', url: '/admin/products' },
@@ -29,7 +28,6 @@ export class HeaderComponent implements OnInit {
       this.products = products;
       this.total = products.length;
     });
-    console.log(this.cartService.products)
   }
 
   public totalp() {

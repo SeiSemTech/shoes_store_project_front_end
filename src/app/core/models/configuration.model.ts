@@ -1,7 +1,9 @@
 export interface Configuration {
+  id?: number;
   name: string;
   sub_configuration: string | number;
   extra_price: number;
+  stock?: number;
 }
 
 export interface ConfigurationWithStock extends Configuration {
@@ -21,6 +23,8 @@ export interface CompleteConfiguration {
 }
 
 export interface NamedCompleteConfiguration {
+  id?: number;
   name: string;
   configuration?: Configuration[];
+  stock?: number;
 }

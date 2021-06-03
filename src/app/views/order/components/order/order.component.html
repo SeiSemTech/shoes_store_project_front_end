@@ -1,5 +1,5 @@
 <section class="checkout">
-  <div class="products" *ngIf="products$ | async as products">
+  <div class="products" *ngIf="products">
     <p *ngIf="products.length === 0">No hay productos</p>
     <div class="payment-button">
       <button mat-raised-button (click)="pay()">Pagar</button>
