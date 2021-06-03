@@ -7,9 +7,9 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/core/services/cart.service';
-import {CompleteConfiguration, Configuration, NamedCompleteConfiguration} from 'src/app/core/models/configuration.model';
-import {MatSnackBar} from '@angular/material';
-import {map} from 'rxjs/operators';
+import { CompleteConfiguration, Configuration, NamedCompleteConfiguration } from 'src/app/core/models/configuration.model';
+import { MatSnackBar } from '@angular/material';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product',
@@ -29,7 +29,7 @@ export class ProductComponent implements OnInit {
     private router: Router,
     private cartService: CartService,
     private snackBar: MatSnackBar,
-  ) {}
+  ) { }
   ngOnInit() {
     this.compileConfigurations();
   }
@@ -42,13 +42,13 @@ export class ProductComponent implements OnInit {
       }
     }
     if (this.stock > 0 && isConfigurationCompleted) {
-      const currentProduct = Object.assign({}, this.product ) ;
+      const currentProduct = Object.assign({}, this.product);
       currentProduct.configurations = [...this.selectedConfiguration];
-      currentProduct.configurations.push({name: 'Cantidad',  configuration: {name: 'Cantidad', sub_configuration: this.stock }});
+      currentProduct.configurations.push({ name: 'Cantidad', configuration: { name: 'Cantidad', sub_configuration: this.stock } });
       this.cartService.addCart(currentProduct);
       this.snackBar.open('Se agregó al carrito', 'Cerrar', { duration: 2000 });
     } else {
-      this.snackBar.open('Debes seleccionar una talla, color y cantidad', 'Cerrar', { duration: 2000 });
+      this.snackBar.open('Selecciona todas las opciones disponibles o una cantidad valida', 'Cerrar', { duration: 7000 });
     }
   }
 
@@ -68,7 +68,7 @@ export class ProductComponent implements OnInit {
           });
         }
       }
-      this.configurations.push({name: uniqueKey, configuration: normalConfiguration });
+      this.configurations.push({ name: uniqueKey, configuration: normalConfiguration });
       this.selectedConfiguration.push({ name: uniqueKey });
     }
   }

@@ -47,7 +47,10 @@
       </a>
 
       <button
-        *ngIf="loginService.role == 'Administrador'"
+        *ngIf="
+          loginService.role == 'Administrador' ||
+          loginService.role == 'Usuario Registrado'
+        "
         mat-raised-button
         [matMenuTriggerFor]="menu"
       >
@@ -61,7 +64,17 @@
         >
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item *ngFor="let p of products;">{{p.configurations[p.configurations.length - 1].configuration.sub_configuration}} - {{p.name}} {{p.price * p.configurations[p.configurations.length - 1].configuration.sub_configuration | currency}}
+        <button mat-menu-item *ngFor="let p of products">
+          {{
+            p.configurations[p.configurations.length - 1].configuration
+              .sub_configuration
+          }}
+          - {{ p.name }}
+          {{
+            p.price *
+              p.configurations[p.configurations.length - 1].configuration
+                .sub_configuration | currency
+          }}
           <button (click)="quitar(p)" mat-icon-button color="warn">
             <mat-icon> delete </mat-icon>
           </button>

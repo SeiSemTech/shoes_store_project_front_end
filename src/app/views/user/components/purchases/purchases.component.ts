@@ -38,9 +38,8 @@ export class PurchasesComponent implements AfterViewInit {
 
   private getBillDescription() {
     this.purchasesService.getUserBills().subscribe((response: any) => {
-      if (response.status_code === 200) {
-        this.orderBillDescription = response;
-        console.log(this.orderBillDescription, 'llegué');
+      if (response.bill_description) {
+        this.orderBillDescription = response.bill_description;
         this.dataSource = new MatTableDataSource(this.orderBillDescription);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
