@@ -17,16 +17,20 @@
           El nombre del producto es <strong>requerido.</strong>
         </mat-error>
       </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Coloque la url de la imagen</mat-label>
-        <input
-          placeholder="Imagen"
-          formControlName="image"
-          matInput
-          type="text"
-        />
-        <mat-error> ¡Pon una url <strong>valida</strong>! </mat-error>
+      
+      <mat-label class="mb-4">Seleccione una imagen</mat-label>
+      <!-- <div *ngIf="uploadURL | async">
+        <img  class="m-2" src="image" alt=""
+        width="200" height="200">
+      </div> -->
+      <input type="file" placeholder="Imagen" formControlName="image" (change)="upload($event)" accept="image/*">
+      <mat-form-field class="invisible" appearance="outline">
+        <input class="invisible" type="text" formControlName="image" [value]="uploadURL | async" matInput />
       </mat-form-field>
+      <hr>
+      <mat-progress-bar  color="green" mode="determinate" [value]="uploadProgress | async"></mat-progress-bar>
+      <hr>
+
       <mat-form-field appearance="outline">
         <mat-label>Precio</mat-label>
         <input
@@ -39,7 +43,6 @@
           min="0"
         />
             <span matPrefix>$&nbsp;</span>
-
         <mat-error>
           ¡El precio del producto debe ser <strong>valido.</strong>!
         </mat-error>

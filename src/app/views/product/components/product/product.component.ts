@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 import { CartService } from 'src/app/core/services/cart.service';
 import {CompleteConfiguration, Configuration, NamedCompleteConfiguration} from 'src/app/core/models/configuration.model';
 import {MatSnackBar} from '@angular/material';
-import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-product',

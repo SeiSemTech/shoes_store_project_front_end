@@ -7,6 +7,9 @@ import { Product } from '../../../../../core/models/product.model';
 import { ProductsService } from '../../../../../core/services/products/products.service';
 import { CategoryService } from '../../../../../core/services/categories/category.service';
 import { Category } from 'src/app/core/models/category.model';
+import { AngularFireStorage } from '@angular/fire/storage'
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-form-product',
@@ -22,7 +25,11 @@ export class FormProductComponent implements OnInit {
   displayOrderPattern = '^[0-9]+$';
   categories: Category[];
 
+  uploadProgress: Observable<Number>;
+  uploadURL: Observable<string>;
+  
   constructor(
+    private storage: AngularFireStorage,
     private router: Router,
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
@@ -78,7 +85,28 @@ export class FormProductComponent implements OnInit {
     }
   }
 
+  upload(event) {
+    // Get input file
+    const file = event.target.files[0];
+    // Generate a random ID
+    const randomId = Math.random().toString(36).substring(2);
+    console.log(randomId);
+    const filepath = `images/${randomId}`;
+    const fileRef = this.storage.ref(filepath);
+
+    // Upload image
+    const task = this.storage.upload(filepath, file);
+
+    // Observe percentage changes
+    this.uploadProgress = task.percentageChanges();
+
+    // Get notified when the download URL is available
+    task.snapshotChanges().pipe(
+      finalize(() => this.uploadURL = fileRef.getDownloadURL())
+    ).subscribe();
+  }
   showFormControl(x) {
     console.log(x);
   }
 }
+

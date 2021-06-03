@@ -12,6 +12,9 @@ import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AuthInterceptorService } from 'src/app/core/services/auth/auth-interceptor.service';
+import { environment } from './../environments/environment';
+import { AngularFireStorageModule } from '@angular/fire/storage'
+import { AngularFireModule } from '@angular/fire';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { AuthInterceptorService } from 'src/app/core/services/auth/auth-intercep
     SharedModule,
     CoreModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [
     {
