@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="createProduct($event)">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Crear Producto</mat-card-title>
+      <mat-card-title (click)="logImage()">Crear Producto</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <mat-form-field appearance="outline">
@@ -23,9 +23,9 @@
         <img  class="m-2" src="image" alt=""
         width="200" height="200">
       </div> -->
-      <input type="file" placeholder="Imagen" formControlName="image" (change)="upload($event)" accept="image/*">
+      <input type="file" placeholder="Imagen"  (change)="upload($event)" accept="image/*">
       <mat-form-field appearance="outline">
-        <input type="text" formControlName="image" [value]="uploadURL | async" matInput />
+        <input matInput formControlName="image"  type="text" required />
       </mat-form-field>
       <hr>
       <mat-progress-bar  color="green" mode="determinate" [value]="uploadProgress | async"></mat-progress-bar>

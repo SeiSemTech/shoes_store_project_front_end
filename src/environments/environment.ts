@@ -7,7 +7,7 @@
 
 export const environment = {
   production: false,
-  url_api: 'http://localhost:5000/api',
+  url_api: 'https://zapacommerce-dev.azurewebsites.net/api',
   firebase: {
     apiKey: "AIzaSyA_kFFPmpckJREKP25AEKx3bybbdXjsHBU",
     authDomain: "zapacommerce.firebaseapp.com",

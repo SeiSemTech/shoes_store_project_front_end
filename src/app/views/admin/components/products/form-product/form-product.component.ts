@@ -63,16 +63,11 @@ export class FormProductComponent implements OnInit {
   createProduct(event: Event) {
     event.preventDefault();
     if (this.form.valid) {
-      let imageUrl = '';
-      this.uploadURL.subscribe((image) => {
-        imageUrl = image;
-        console.log(imageUrl)
-      });
       const value = this.form.value;
       const newProduct: Product = {
         name: value.name,
         status: value.status,
-        image: imageUrl,
+        image: value.image,
         price: value.price,
         description: value.description,
         display_order: value.displayOrder,
@@ -95,7 +90,6 @@ export class FormProductComponent implements OnInit {
     const file = event.target.files[0];
     // Generate a random ID
     const randomId = Math.random().toString(36).substring(2);
-    console.log(randomId);
     const filepath = `images/${randomId}`;
     const fileRef = this.storage.ref(filepath);
 
@@ -107,11 +101,17 @@ export class FormProductComponent implements OnInit {
 
     // Get notified when the download URL is available
     task.snapshotChanges().pipe(
-      finalize(() => this.uploadURL = fileRef.getDownloadURL())
+      finalize(() => {
+        this.uploadURL = fileRef.getDownloadURL();
+        this.uploadURL.subscribe((uploadUrl: string) => {
+          this.form.controls.image.setValue(uploadUrl);
+        });
+      })
     ).subscribe();
   }
-  showFormControl(x) {
-    console.log(x);
+
+  logImage() {
+    console.log(this.form.value.image);
   }
 }
 
