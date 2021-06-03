@@ -19,16 +19,16 @@
       </mat-form-field>
 
       <mat-label class="mb-4">Seleccione una imagen</mat-label>
-      <!-- <div *ngIf="uploadURL | async">
-        <img  class="m-2" src="image" alt=""
-        width="200" height="200">
-      </div> -->
-      <input type="file" placeholder="Imagen"  (change)="upload($event)" accept="image/*">
-      <mat-form-field appearance="outline">
-        <input matInput formControlName="image"  type="text" required />
-      </mat-form-field>
+      <div *ngIf="uploadURL | async">
+        <!-- <mat-form-field class="invisible" appearance="outline">
+          <input matInput placeholder="Nombre" formControlName="name" type="text" [value]="uploadURL | async" required/>
+        </mat-form-field> -->
+        <input type="text" [value]="uploadURL | async" id="unit"/>
+        <img type="text" [src]="uploadURL | async" width="200" height="200"/>
+      </div>
+      <input type="file"  (change)="upload($event)" accept="image/*" id="photo" />
       <hr>
-      <mat-progress-bar  color="green" mode="determinate" [value]="uploadProgress | async"></mat-progress-bar>
+      <mat-progress-bar mode="determinate" [value]="uploadProgress | async"></mat-progress-bar>
       <hr>
 
       <mat-form-field appearance="outline">
