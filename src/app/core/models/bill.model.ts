@@ -6,6 +6,14 @@ export interface BillDescription {
   price: number;
 }
 
+export interface OrderBillDescription {
+  id_bill: number;
+  product_name: string;
+  quantity: number;
+  price: number;
+  date: Date;
+}
+
 export interface Bill {
   id_product_config: number;
   quantity: number;
