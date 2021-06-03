@@ -17,24 +17,24 @@ table {
   font-size: 14px;
   width: 100%;
 }
-.columnas{
-	font-size: 18px;
-	color: #ae897e;
-  
+.columnas {
+  font-size: 18px;
+  color: #ae897e;
 }
 .action-column {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  a, button {
-    margin: .5em;
+  a,
+  button {
+    margin: 0.5em;
   }
 }
-.centrado{
-    text-align: center;
+.centrado {
+  text-align: center;
 }
 
-.campos{
- text-align: center;
- font-size: 14px;
+.campos {
+  text-align: center;
+  font-size: 14px;
 }

@@ -1,48 +1,48 @@
 <table
   mat-table
-  *ngIf="billDescription"
+  *ngIf="orderBillDescription"
   [dataSource]="dataSource"
   matSort
   class="mat-elevation-z8 products-table"
 >
-  <ng-container matColumnDef="id_product_config">
+  <ng-container matColumnDef="id_bill">
     <th mat-header-cell *matHeaderCellDef class="centrado">
-      <strong class="columnas">ID</strong>
+      <strong class="columnas">Id de pago </strong>
     </th>
-    <td mat-cell *matCellDef="let billDescription" class="campos">
-      {{ billDescription.id_product_config }}
+    <td mat-cell *matCellDef="let orderBillDescription" class="campos">
+      {{ orderBillDescription.id_bill }}
     </td>
   </ng-container>
-  <ng-container matColumnDef="name">
+  <ng-container matColumnDef="product_name">
     <th mat-header-cell *matHeaderCellDef class="centrado">
-      <strong class="columnas">Nombre </strong>
+      <strong class="columnas">Producto </strong>
     </th>
-    <td mat-cell *matCellDef="let billDescription" class="campos">
-      {{ billDescription.name }}
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="date">
-    <th mat-header-cell *matHeaderCellDef class="centrado">
-      <strong class="columnas">Fecha </strong>
-    </th>
-    <td mat-cell *matCellDef="let billDescription" class="campos">
-      {{ billDescription.date }}
+    <td mat-cell *matCellDef="let orderBillDescription" class="campos">
+      {{ orderBillDescription.product_name }}
     </td>
   </ng-container>
   <ng-container matColumnDef="quantity">
     <th mat-header-cell *matHeaderCellDef class="centrado">
       <strong class="columnas">Cantidad </strong>
     </th>
-    <td mat-cell *matCellDef="let billDescription" class="campos">
-      {{ billDescription.quantity }}
+    <td mat-cell *matCellDef="let orderBillDescription" class="campos">
+      {{ orderBillDescription.quantity }}
     </td>
   </ng-container>
   <ng-container matColumnDef="price">
     <th mat-header-cell *matHeaderCellDef class="centrado">
-      <strong class="columnas">Precio</strong>
+      <strong class="columnas">Precio </strong>
     </th>
-    <td mat-cell *matCellDef="let billDescription" class="campos">
-      {{ billDescription.price }}
+    <td mat-cell *matCellDef="let orderBillDescription" class="campos">
+      {{ orderBillDescription.price }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef class="centrado">
+      <strong class="columnas">Fecha </strong>
+    </th>
+    <td mat-cell *matCellDef="let orderBillDescription" class="campos">
+      {{ orderBillDescription.date }}
     </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
