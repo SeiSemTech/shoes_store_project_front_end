@@ -1,59 +1,106 @@
-
 <div class="action-buttons">
-  <a mat-raised-button routerLink="create" class="create-product">Crear nuevo producto</a>
+  <a mat-raised-button routerLink="create" class="create-product"
+    >Crear nuevo producto</a
+  >
   <mat-form-field>
     <mat-label>Filtro</mat-label>
-    <input matInput (keyup)="applyFilter($event)" #input>
+    <input matInput (keyup)="applyFilter($event)" #input />
   </mat-form-field>
 </div>
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 products-table">
+<table
+  mat-table
+  [dataSource]="dataSource"
+  matSort
+  class="mat-elevation-z8 products-table"
+>
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef  class="centrado"> <strong class="columnas">ID</strong> </th>
-    <td mat-cell *matCellDef="let products" class="campos"> {{products.id}} </td>
+    <th mat-header-cell *matHeaderCellDef class="centrado">
+      <strong class="columnas">ID</strong>
+    </th>
+    <td mat-cell *matCellDef="let products" class="campos">
+      {{ products.id }}
+    </td>
   </ng-container>
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef class="centrado"> <strong class="columnas">Nombre </strong></th>
-    <td mat-cell *matCellDef="let products" class="campos"> {{products.name}} </td>
+    <th mat-header-cell *matHeaderCellDef class="centrado">
+      <strong class="columnas">Nombre </strong>
+    </th>
+    <td mat-cell *matCellDef="let products" class="campos">
+      {{ products.name }}
+    </td>
   </ng-container>
   <ng-container matColumnDef="status">
-    <th mat-header-cell *matHeaderCellDef class="centrado"> <strong class="columnas">Estado </strong></th>
-    <td mat-cell *matCellDef="let products" class="campos"> <p *ngIf="products.status == 1; else inactivo" > Activo</p>
-  <ng-template #inactivo><p>Inactivo</p></ng-template>
-
- </td>
+    <th mat-header-cell *matHeaderCellDef class="centrado">
+      <strong class="columnas">Estado </strong>
+    </th>
+    <td mat-cell *matCellDef="let products" class="campos">
+      <p *ngIf="products.status == 1; else inactivo">Activo</p>
+      <ng-template #inactivo><p>Inactivo</p></ng-template>
+    </td>
   </ng-container>
-<ng-container matColumnDef="image">
-    <th mat-header-cell *matHeaderCellDef class="centrado"> <strong class="columnas">Imagen</strong> </th>
-    <td mat-cell *matCellDef="let products" class="campos"> {{products.image}} </td>
+  <ng-container matColumnDef="image">
+    <th mat-header-cell *matHeaderCellDef class="centrado">
+      <strong class="columnas">Imagen</strong>
+    </th>
+    <td mat-cell *matCellDef="let products" class="campos">
+      <img src="{{ products.image }}" alt="" />
+    </td>
   </ng-container>
   <ng-container matColumnDef="price">
-    <th mat-header-cell *matHeaderCellDef class="centrado"> <strong class="columnas">Precio </strong> </th>
-    <td mat-cell *matCellDef="let products" class="campos"> {{products.price | currency}} </td>
+    <th mat-header-cell *matHeaderCellDef class="centrado">
+      <strong class="columnas">Precio </strong>
+    </th>
+    <td mat-cell *matCellDef="let products" class="campos">
+      {{ products.price | currency }}
+    </td>
   </ng-container>
   <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef class="centrado"> <strong class="columnas">Descripción </strong></th>
-    <td mat-cell *matCellDef="let products" class="campos"> {{products.description}} </td>
+    <th mat-header-cell *matHeaderCellDef class="centrado">
+      <strong class="columnas">Descripción </strong>
+    </th>
+    <td mat-cell *matCellDef="let products" class="campos">
+      {{ products.description }}
+    </td>
   </ng-container>
-<ng-container matColumnDef="category_id">
-    <th mat-header-cell *matHeaderCellDef class="centrado"> <strong class="columnas">Categoria</strong> </th>
-    <td mat-cell *matCellDef="let products" class="campos" > {{products.category_id}} </td>
+  <ng-container matColumnDef="category_id">
+    <th mat-header-cell *matHeaderCellDef class="centrado">
+      <strong class="columnas">Categoria</strong>
+    </th>
+    <td mat-cell *matCellDef="let products" class="campos">
+      {{ products.category_id }}
+    </td>
   </ng-container>
   <ng-container matColumnDef="display_order">
-    <th mat-header-cell *matHeaderCellDef class="centrado"> <strong class="columnas">Visualización</strong> </th>
-    <td mat-cell *matCellDef="let products" class="campos"> {{products.display_order}} </td>
+    <th mat-header-cell *matHeaderCellDef class="centrado">
+      <strong class="columnas">Visualización</strong>
+    </th>
+    <td mat-cell *matCellDef="let products" class="campos">
+      {{ products.display_order }}
+    </td>
   </ng-container>
   <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef class="centrado"> <strong class="columnas">Acción</strong></th>
+    <th mat-header-cell *matHeaderCellDef class="centrado">
+      <strong class="columnas">Acción</strong>
+    </th>
     <td mat-cell *matCellDef="let products" class="action-column">
       <a mat-raised-button [routerLink]="['edit', products.id]">Editar</a>
-      <button *ngIf="products.status == 1" mat-raised-button color="warn" (click)="deleteProduct(products.id)">Desactivar</button>
+      <button
+        *ngIf="products.status == 1"
+        mat-raised-button
+        color="warn"
+        (click)="deleteProduct(products.id)"
+      >
+        Desactivar
+      </button>
     </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
-    <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-    </tr>
-  </table>
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">
+      No data matching the filter "{{ input.value }}"
+    </td>
+  </tr>
+</table>
 <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
