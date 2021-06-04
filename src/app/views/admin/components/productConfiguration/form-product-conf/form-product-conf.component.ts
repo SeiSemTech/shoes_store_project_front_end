@@ -75,7 +75,7 @@ export class FormProductConfComponent implements OnInit {
       };
       this.productConfigurationService.createProductConfiguration(newProductConfiguration).subscribe(
         (response: any) => {
-          if (response.status_code === 201) {
+          if (response.message) {
             this.snackBar.open('Configuración del producto creada exitosamente', 'cerrar', { duration: 5000 });
             this.router.navigate(['/product-configurations']);
           } else {
