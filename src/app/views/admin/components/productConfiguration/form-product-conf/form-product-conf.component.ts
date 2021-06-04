@@ -75,12 +75,8 @@ export class FormProductConfComponent implements OnInit {
       };
       this.productConfigurationService.createProductConfiguration(newProductConfiguration).subscribe(
         (response: any) => {
-          if (response.message) {
-            this.snackBar.open('Configuración del producto creada exitosamente', 'cerrar', { duration: 5000 });
-            this.router.navigate(['/product-configurations']);
-          } else {
-            this.snackBar.open('No es posible crear la configuración del producto.', 'cerrar', { duration: 5000 });
-          }
+          this.snackBar.open('Configuración del producto creada exitosamente', 'cerrar', { duration: 5000 });
+          this.router.navigate(['/product-configurations']);
         },
         (error: any) => {
           console.log(error);
@@ -89,5 +85,4 @@ export class FormProductConfComponent implements OnInit {
       );
     }
   }
-
 }

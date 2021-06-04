@@ -47,13 +47,13 @@ export class ProductsListComponent implements AfterViewInit {
     }
   }
 
-//getcategoryname(id: number){
-//  this.categoryService.getCategoryById(id).subscribe((response: any) =>{
-//       this.categories = response.categories; 
-//       console.log(this.categories.name);
-//  });
-//
-//}
+  //getcategoryname(id: number){
+  //  this.categoryService.getCategoryById(id).subscribe((response: any) =>{
+  //       this.categories = response.categories;
+  //       console.log(this.categories.name);
+  //  });
+  //
+  //}
 
   private getProducts() {
     this.productService.getAllProducts().subscribe((response: any) => {

@@ -30,7 +30,7 @@ export class FormConfigurationComponent implements OnInit {
   private buildForm() {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
-      subConfiguratuion: ['', [Validators.required]],
+      subConfiguration: ['', [Validators.required]],
       extraPrice: ['', [Validators.required, Validators.pattern(this.pricePattern)]],
     });
   }
@@ -46,12 +46,8 @@ export class FormConfigurationComponent implements OnInit {
       };
       this.configurationService.createConfiguration(newConfiguration).subscribe(
         (response: any) => {
-          if (response.status_code === 201) {
-            this.snackBar.open('Configuración creada exitosamente', 'cerrar', { duration: 5000 });
-            this.router.navigate(['/configurations']);
-          } else {
-            this.snackBar.open('No es posible crear esta configuración.', 'cerrar', { duration: 5000 });
-          }
+          this.snackBar.open('Configuración creada exitosamente', 'cerrar', { duration: 5000 });
+          this.router.navigate(['/configurations']);
         },
         (error: any) => {
           console.log(error);

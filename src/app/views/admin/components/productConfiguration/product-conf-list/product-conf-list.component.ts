@@ -12,7 +12,7 @@ import { ProductConfigurationService } from 'src/app/core/services/productConfig
 export class ProductConfListComponent implements AfterViewInit {
   productConfigurations = [];
   displayedColumns: string[] = ['id', 'product_id', 'configuration_id',
-  'config_display_order', 'sub_config_display_order', 'stock', 'actions'];
+    'config_display_order', 'sub_config_display_order', 'stock', 'actions'];
   dataSource: MatTableDataSource<ProductConfiguration>;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
