@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,7 +13,7 @@ import {BillDescription} from 'src/app/core/models/bill.model';
 })
 export class SalesListComponent implements AfterViewInit {
   billDescription: BillDescription[] = [];
-  displayedColumns: string[] = ['id_product_config', 'name', 'date', 'quantity', 'price'];
+  displayedColumns: string[] = ['id_product_config', 'name','status', 'date', 'quantity', 'price', 'actions'];
   dataSource: MatTableDataSource<BillDescription>;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
@@ -20,6 +21,8 @@ export class SalesListComponent implements AfterViewInit {
 
   constructor(
     private salesService: SalesService,
+    private snackBar: MatSnackBar,
+
   ) {
 
   }
@@ -46,4 +49,7 @@ export class SalesListComponent implements AfterViewInit {
       this.dataSource.sort = this.sort;
     });
   }
+updateBillStatus() {
+      this.snackBar.open('Estado actualizado', 'Cerrar', { duration: 5000 });
+    }
 }

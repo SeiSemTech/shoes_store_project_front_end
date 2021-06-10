@@ -1,4 +1,4 @@
-<section class="checkout">
+<!--<section class="checkout">
   <div class="products" *ngIf="products">
     <p *ngIf="products.length === 0">No hay productos</p>
     <div class="payment-button">
@@ -21,6 +21,59 @@
 
 </section>
 
+
 <!--<div>-->
 <!--  <app-payment-gateway></app-payment-gateway>-->
 <!--</div>-->
+
+<mat-horizontal-stepper linear #stepper>
+  <mat-step stepControl="firstFormGroup" >
+    <form formGroup="firstFormGroup">
+      <ng-template matStepLabel>Productos</ng-template>
+              <section class="checkout"  formControlName="firstCtrl" >
+                    <div class="products" *ngIf="products">
+                      <p *ngIf="products.length === 0">No hay productos</p>
+                                            <div class="row" *ngFor="let product of products">
+                        <section class="product">
+                          <div>
+                              <p>{{product.name}}</p>
+                          </div>
+                          <div *ngFor="let configuration of product.configurations">
+                            <b>{{ configuration.name }}: {{ configuration.configuration.sub_configuration }}</b>
+                          </div>
+                          <div>
+                              {{ product.price * product.configurations[product.configurations.length - 1].configuration.sub_configuration | currency }}
+                          </div>
+                        </section>
+                      </div>
+                    </div>
+</section>
+    </form>
+  </mat-step>
+  <mat-step stepControl="secondFormGroup">
+    <form formGroup="secondFormGroup">
+      <ng-template matStepLabel>Datos de envio</ng-template>
+      <mat-form-field>
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+               required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Pagar</ng-template>
+    <div class="payment-button">
+                        <button mat-raised-button (click)="pay()">Pagar</button>
+    </div>
+    <!--
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  -->
+  </mat-step>
+</mat-horizontal-stepper>

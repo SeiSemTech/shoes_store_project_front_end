@@ -5,19 +5,29 @@ section {
   border-radius: .2em;
 }
 
+.example-stepper {
+  margin-top: 8px;
+}
 
-.checkout {
+.mat-form-field {
+  margin-top: 16px;
+}
+
+.payment-button {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  .payment-button {
-    width: 100%;
+  width: 100%;
     button {
       background-color: #65d565;
       float: right;
     }
   }
+.checkout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
   .products {
     display: flex;
     flex-wrap: wrap;

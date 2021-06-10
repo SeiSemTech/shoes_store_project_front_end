@@ -1,9 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-
 import {ConfiguredProductStock} from '../../../../core/models/product.model';
 import {CartService} from '../../../../core/services/cart.service';
 import {SalesService} from 'src/app/core/services/sales/sales.service';
 import {MatSnackBar} from '@angular/material';
+
+
+//Stepper imports
+import {FormBuilder, FormGroup, Validators, ReactiveFormsModule  } from '@angular/forms';
+
 
 
 @Component({
@@ -16,18 +20,28 @@ export class OrderComponent implements OnInit {
   products: ConfiguredProductStock[];
   displayedColumns: string[] = ['image', 'name', 'price', 'configuration'];
 
+//Stepper
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
   constructor(
     private cartService: CartService,
     private salesService: SalesService,
     private snackBar: MatSnackBar,
-  ) {
-
-  }
+    private _formBuilder: FormBuilder
+  ) {}
 
   ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+
     this.cartService.cart$.subscribe((products) => {
       this.products = products;
     });
+
   }
 
 
