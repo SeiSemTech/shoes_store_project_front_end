@@ -1,8 +1,10 @@
+@import "src/themes.scss";
+
 section {
   background-color: white;
   padding: 2em;
   box-shadow: 0px 1px 4px 0px #888888;
-  border-radius: .2em;
+  border-radius: 0.2em;
 }
 
 .example-stepper {
@@ -17,17 +19,17 @@ section {
   display: flex;
   justify-content: center;
   width: 100%;
-    button {
-      background-color: #65d565;
-      float: right;
-    }
+  button {
+    background-color: #65d565;
+    float: right;
   }
+}
 .checkout {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+
   .products {
     display: flex;
     flex-wrap: wrap;
@@ -45,4 +47,23 @@ section {
 
 app-payment-gateway {
   padding: 10%;
+}
+
+form {
+  background-color: none;
+  text-align: -webkit-center;
+}
+
+mat-form-field {
+  width: 170px;
+}
+mat-select {
+  width: 90%;
+  text-align-last: left;
+}
+
+button {
+  background-color: mat-color($primary);
+  color: mat-color($foreground);
+  width: 100%;
 }

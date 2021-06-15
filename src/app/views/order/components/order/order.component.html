@@ -19,61 +19,126 @@
     </div>
   </div>
 
-</section>
-
-
-<!--<div>-->
-<!--  <app-payment-gateway></app-payment-gateway>-->
-<!--</div>-->
+</section>-->
 
 <mat-horizontal-stepper linear #stepper>
-  <mat-step stepControl="firstFormGroup" >
-    <form formGroup="firstFormGroup">
-      <ng-template matStepLabel>Productos</ng-template>
-              <section class="checkout"  formControlName="firstCtrl" >
-                    <div class="products" *ngIf="products">
-                      <p *ngIf="products.length === 0">No hay productos</p>
-                                            <div class="row" *ngFor="let product of products">
-                        <section class="product">
-                          <div>
-                              <p>{{product.name}}</p>
-                          </div>
-                          <div *ngFor="let configuration of product.configurations">
-                            <b>{{ configuration.name }}: {{ configuration.configuration.sub_configuration }}</b>
-                          </div>
-                          <div>
-                              {{ product.price * product.configurations[product.configurations.length - 1].configuration.sub_configuration | currency }}
-                          </div>
-                        </section>
-                      </div>
-                    </div>
-</section>
-    </form>
-  </mat-step>
-  <mat-step stepControl="secondFormGroup">
-    <form formGroup="secondFormGroup">
-      <ng-template matStepLabel>Datos de envio</ng-template>
-      <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-               required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+  <mat-step stepControl="productsForm">
+    <ng-template matStepLabel>Productos</ng-template>
+    <section class="checkout">
+      <div class="products" *ngIf="products">
+        <p *ngIf="products.length === 0">No hay productos</p>
+        <div class="row" *ngFor="let product of products">
+          <section class="product">
+            <div>
+              <p>{{ product.name }}</p>
+            </div>
+            <div *ngFor="let configuration of product.configurations">
+              <b
+                >{{ configuration.name }}:
+                {{ configuration.configuration.sub_configuration }}</b
+              >
+            </div>
+            <div>
+              {{
+                product.price *
+                  product.configurations[product.configurations.length - 1]
+                    .configuration.sub_configuration | currency
+              }}
+            </div>
+          </section>
+        </div>
       </div>
+    </section>
+  </mat-step>
+  <mat-step stepControl="shippingForm">
+    <form [formGroup]="shippingForm" (ngSubmit)="checkLocation($event)">
+      <ng-template matStepLabel>Datos de envío</ng-template>
+      <mat-form-field appearance="outline">
+        <mat-label>Departamento</mat-label>
+        <mat-select
+          placeholder="Departamento"
+          type="text"
+          list="departments"
+          formControlName="selDeparment"
+        >
+          <mat-option
+            *ngFor="let deparment of departments"
+            [value]="deparment.name"
+          >
+            {{ deparment.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Ciudad</mat-label>
+        <input
+          matInput
+          formControlName="city"
+          placeholder="Ciudad"
+          type="text"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo de via</mat-label>
+        <mat-select
+          placeholder="Tipo de via"
+          type="text"
+          list="types"
+          formControlName="streetType"
+        >
+          <mat-option *ngFor="let type of types" [value]="type.name">
+            {{ type.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Via Principal</mat-label>
+        <input
+          placeholder="Via Principal"
+          formControlName="principal"
+          matInput
+          type="number"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>#Secundaria</mat-label>
+        <input
+          placeholder="#Secundaria"
+          formControlName="secoundary"
+          matInput
+          type="number"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Número</mat-label>
+        <input
+          placeholder="Número"
+          formControlName="number"
+          matInput
+          type="number"
+        />
+      </mat-form-field>
+      <mat-card-actions>
+        <button
+          [disabled]="shippingForm.invalid"
+          mat-raised-button
+          type="submit"
+        >
+          Comprobar dirección
+        </button>
+      </mat-card-actions>
     </form>
+    <!-- <div>
+      <button mat-button matStepperNext>Siguiente</button>
+    </div> -->
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Pagar</ng-template>
+    <!-- <div>
+      <app-payment-gateway></app-payment-gateway>
+    </div> -->
     <div class="payment-button">
-                        <button mat-raised-button (click)="pay()">Pagar</button>
+      <button mat-raised-button (click)="pay()">Pagar</button>
     </div>
-    <!--
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  -->
   </mat-step>
 </mat-horizontal-stepper>
