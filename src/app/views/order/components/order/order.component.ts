@@ -9,6 +9,7 @@ import { SalesService } from 'src/app/core/services/sales/sales.service';
 import { LocationService } from 'src/app/core/services/location/location-service.service';
 
 import { concat } from 'rxjs';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-order',
@@ -65,7 +66,7 @@ export class OrderComponent implements OnInit {
   principalVia: number;
   secoundaryVia: number;
   numberVia: number;
-  address: string = '';
+  address: string;
 
   numberPattern = '^[0-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*$';
 
@@ -76,10 +77,18 @@ export class OrderComponent implements OnInit {
     private salesService: SalesService,
     private snackBar: MatSnackBar,
     private _shippingFormBuilder: FormBuilder
-  ) { }
+  ) { this.buildShippingForm() }
 
   ngOnInit() {
 
+    this.address = '';
+
+    this.cartService.cart$.subscribe((products) => {
+      this.products = products;
+    });
+  }
+
+  private buildShippingForm() {
     this.shippingForm = this._shippingFormBuilder.group({
       selDeparment: ['', [Validators.required]],
       city: ['', [Validators.required]],
@@ -87,10 +96,6 @@ export class OrderComponent implements OnInit {
       principal: ['', [Validators.required, Validators.pattern(this.numberPattern)]],
       secoundary: ['', [Validators.required, Validators.pattern(this.numberPattern)]],
       number: ['', [Validators.required, Validators.pattern(this.numberPattern)]]
-    });
-
-    this.cartService.cart$.subscribe((products) => {
-      this.products = products;
     });
   }
 
@@ -106,9 +111,12 @@ export class OrderComponent implements OnInit {
           this.snackBar.open('La dirección es correcta.', 'cerrar', { duration: 5000 });
         },
         (error: any) => {
+          console.log(error);
           this.snackBar.open('Ha ocurrido un error inesperado.', 'cerrar', { duration: 5000 });
         }
       );
+      this.shippingForm.reset();
+      this.address = '';
     }
   }
 

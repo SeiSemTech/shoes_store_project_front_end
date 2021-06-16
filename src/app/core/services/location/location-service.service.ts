@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,6 @@ export class LocationService {
   ) { }
 
   checkLocation(location: string) {
-    return this.http.post(`https://seim-location.azurewebsites.net/location`, { input: location });
+    return this.http.post(`${environment.url_api}/address`, { input: location });
   }
 }
-

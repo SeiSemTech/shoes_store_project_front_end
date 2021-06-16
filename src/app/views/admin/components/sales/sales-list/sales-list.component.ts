@@ -3,8 +3,8 @@ import { MatSnackBar } from '@angular/material';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import {SalesService} from 'src/app/core/services/sales/sales.service';
-import {BillDescription} from 'src/app/core/models/bill.model';
+import { SalesService } from 'src/app/core/services/sales/sales.service';
+import { BillDescription } from 'src/app/core/models/bill.model';
 
 @Component({
   selector: 'app-sales-list',
@@ -13,7 +13,7 @@ import {BillDescription} from 'src/app/core/models/bill.model';
 })
 export class SalesListComponent implements AfterViewInit {
   billDescription: BillDescription[] = [];
-  displayedColumns: string[] = ['id_product_config', 'name','status', 'date', 'quantity', 'price', 'actions'];
+  displayedColumns: string[] = ['id', 'id_user', 'date', 'total_quantity', 'total_price', 'status', 'actions'];
   dataSource: MatTableDataSource<BillDescription>;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
@@ -49,7 +49,16 @@ export class SalesListComponent implements AfterViewInit {
       this.dataSource.sort = this.sort;
     });
   }
-updateBillStatus() {
-      this.snackBar.open('Estado actualizado', 'Cerrar', { duration: 5000 });
-    }
+  updateBillStatus(id: number, status: string) {
+
+    this.salesService.updateBillStatus(id, status).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.snackBar.open('Estado actualizado', 'Cerrar', { duration: 5000 });
+      },
+      (error: any) => {
+        this.snackBar.open('Ha ocurrido un error inesperado.', 'cerrar', { duration: 5000 });
+      }
+    );
+  }
 }
