@@ -1,9 +1,10 @@
 export interface BillDescription {
   id: number;
-  id_user: number;
+  id_product_config: number,
+  name: string;
   date: Date;
-  total_quantity: number;
-  total_price: number;
+  quantity: number;
+  price: number;
   status: string;
 }
 

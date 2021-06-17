@@ -13,7 +13,7 @@ import { BillDescription, BillStatus } from 'src/app/core/models/bill.model';
 })
 export class SalesListComponent implements AfterViewInit {
   billDescription: BillDescription[] = [];
-  displayedColumns: string[] = ['id', 'id_user', 'date', 'total_quantity', 'total_price', 'status', 'actions'];
+  displayedColumns: string[] = ['id', 'id_product_config', 'name', 'date', 'quantity', 'price', 'status', 'actions'];
   dataSource: MatTableDataSource<BillDescription>;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
@@ -49,14 +49,16 @@ export class SalesListComponent implements AfterViewInit {
       this.dataSource.sort = this.sort;
     });
   }
+
   updateBillStatus(id: number, status: string) {
     const billStatus: BillStatus = {
       id: id,
       status: status,
     }
+    console.log(billStatus);
     this.salesService.updateBillStatus(billStatus).subscribe(
       (response: any) => {
-        console.log(response);
+        console.log(response.detail);
         this.snackBar.open('Estado actualizado', 'Cerrar', { duration: 5000 });
       },
       (error: any) => {

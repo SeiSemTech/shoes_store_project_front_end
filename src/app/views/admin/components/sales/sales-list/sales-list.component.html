@@ -13,12 +13,20 @@
       {{ billDescription.id }}
     </td>
   </ng-container>
-  <ng-container matColumnDef="id_user">
+  <ng-container matColumnDef="id_product_config">
     <th mat-header-cell *matHeaderCellDef class="centrado">
-      <strong class="columnas">Id de Usuario </strong>
+      <strong class="columnas">Id de configuración</strong>
     </th>
     <td mat-cell *matCellDef="let billDescription" class="campos">
-      {{ billDescription.is_user }}
+      {{ billDescription.id_product_config }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef class="centrado">
+      <strong class="columnas">Producto </strong>
+    </th>
+    <td mat-cell *matCellDef="let billDescription" class="campos">
+      {{ billDescription.name }}
     </td>
   </ng-container>
   <ng-container matColumnDef="date">
@@ -29,25 +37,25 @@
       {{ billDescription.date }}
     </td>
   </ng-container>
-  <ng-container matColumnDef="total_quantity">
+  <ng-container matColumnDef="quantity">
     <th mat-header-cell *matHeaderCellDef class="centrado">
       <strong class="columnas">Cantidad </strong>
     </th>
     <td mat-cell *matCellDef="let billDescription" class="campos">
-      {{ billDescription.total_quantity }}
+      {{ billDescription.quantity }}
     </td>
   </ng-container>
-  <ng-container matColumnDef="total_price">
+  <ng-container matColumnDef="price">
     <th mat-header-cell *matHeaderCellDef class="centrado">
       <strong class="columnas">Precio </strong>
     </th>
     <td mat-cell *matCellDef="let billDescription" class="campos">
-      {{ billDescription.total_price | currency }}
+      {{ billDescription.price | currency }}
     </td>
   </ng-container>
   <ng-container matColumnDef="status">
     <th mat-header-cell *matHeaderCellDef class="centrado">
-      <strong class="columnas">Estado </strong>
+      <strong class="columnas">Estado de envío </strong>
     </th>
     <td mat-cell *matCellDef="let billDescription" class="campos">
       {{ billDescription.status }}
@@ -59,11 +67,12 @@
     </th>
     <td mat-cell *matCellDef="let billDescription" class="action-column">
       <button
+        [disabled]="billDescription.status == 'enviado'"
         mat-raised-button
         color="warn"
         (click)="updateBillStatus(billDescription.id, 'enviado')"
       >
-        Actualizar Estado De Envío
+        Actualizar estado de envío
       </button>
     </td>
   </ng-container>

@@ -112,7 +112,7 @@ export class OrderComponent implements OnInit {
     event.preventDefault();
     if (this.shippingForm.valid) {
       const value = this.shippingForm.value;
-      this.address = this.address.concat(value.selDeparment, ', ', value.city, ', ', value.streetType, ', ', value.principal, ' # ', value.secoundary, ' - ', value.number);
+      this.address = this.address.concat(value.selDeparment, ', ', value.city, ', ', value.streetType, ' ', value.principal, ' # ', value.secoundary, ' - ', value.number);
       const input: Location = {
         input: this.address,
       };
@@ -181,7 +181,7 @@ export class OrderComponent implements OnInit {
         console.log(productCategoryConfiguration)
         console.log(emailBill)
         this.salesService.sendEmail({ order: emailBill }).subscribe(() => {
-          this.snackBar.open('Se envio la factura a tú correo', 'cerrar', { duration: 5000 });
+          this.snackBar.open('Se envió la factura a tú correo', 'cerrar', { duration: 5000 });
           this.router.navigateByUrl('/home');
         });
       }, () => {
