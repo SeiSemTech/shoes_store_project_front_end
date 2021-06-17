@@ -1,28 +1,5 @@
-<!--<section class="checkout">
-  <div class="products" *ngIf="products">
-    <p *ngIf="products.length === 0">No hay productos</p>
-    <div class="payment-button">
-      <button mat-raised-button (click)="pay()">Pagar</button>
-    </div>
-    <div class="row" *ngFor="let product of products">
-      <section class="product">
-        <div>
-            <p>{{product.name}}</p>
-        </div>
-        <div *ngFor="let configuration of product.configurations">
-          <b>{{ configuration.name }}: {{ configuration.configuration.sub_configuration }}</b>
-        </div>
-        <div>
-            {{ product.price * product.configurations[product.configurations.length - 1].configuration.sub_configuration | currency }}
-        </div>
-      </section>
-    </div>
-  </div>
-
-</section>-->
-
-<mat-horizontal-stepper linear #stepper>
-  <mat-step stepControl="productsForm">
+<mat-horizontal-stepper linear="True" #stepper>
+  <mat-step>
     <ng-template matStepLabel>Productos</ng-template>
     <section class="checkout">
       <div class="products" *ngIf="products">
@@ -50,7 +27,8 @@
       </div>
     </section>
   </mat-step>
-  <mat-step stepControl="shippingForm">
+
+  <mat-step [stepControl]="shippingForm">
     <form [formGroup]="shippingForm" (ngSubmit)="checkLocation($event)">
       <ng-template matStepLabel>Datos de envío</ng-template>
       <mat-form-field appearance="outline">
@@ -97,7 +75,7 @@
           placeholder="Via Principal"
           formControlName="principal"
           matInput
-          type="number"
+          type="text"
         />
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -106,7 +84,7 @@
           placeholder="#Secundaria"
           formControlName="secoundary"
           matInput
-          type="number"
+          type="text"
         />
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -115,7 +93,7 @@
           placeholder="Número"
           formControlName="number"
           matInput
-          type="number"
+          type="text"
         />
       </mat-form-field>
       <mat-card-actions>
@@ -128,15 +106,10 @@
         </button>
       </mat-card-actions>
     </form>
-    <!-- <div>
-      <button mat-button matStepperNext>Siguiente</button>
-    </div> -->
   </mat-step>
+
   <mat-step>
     <ng-template matStepLabel>Pagar</ng-template>
-    <!-- <div>
-      <app-payment-gateway></app-payment-gateway>
-    </div> -->
     <div class="payment-button">
       <button mat-raised-button (click)="pay()">Pagar</button>
     </div>

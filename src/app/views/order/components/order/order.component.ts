@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar, MatStepper } from '@angular/material';
 
 import { ConfiguredProductStock } from '../../../../core/models/product.model';
 
@@ -8,8 +8,11 @@ import { CartService } from '../../../../core/services/cart.service';
 import { SalesService } from 'src/app/core/services/sales/sales.service';
 import { LocationService } from 'src/app/core/services/location/location-service.service';
 
+import { Location, locationResponse } from 'src/app/core/models/location.model';
+
 import { concat } from 'rxjs';
 import { stringify } from '@angular/compiler/src/util';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order',
@@ -19,7 +22,6 @@ import { stringify } from '@angular/compiler/src/util';
 export class OrderComponent implements OnInit {
 
   products: ConfiguredProductStock[];
-  locationService: LocationService;
   displayedColumns: string[] = ['image', 'name', 'price', 'configuration'];
   selectedDeparment: string;
   selectedStreetType: string;
@@ -63,29 +65,36 @@ export class OrderComponent implements OnInit {
     { name: 'Avenida' },
     { name: 'Circular' },
   ]
-  principalVia: number;
-  secoundaryVia: number;
-  numberVia: number;
-  address: string;
+  principalVia: string;
+  secoundaryVia: string;
+  numberVia: string;
+  address: string = '';
 
-  numberPattern = '^[0-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*$';
+  @ViewChild('stepper', { static: false }) stepper: MatStepper;
 
   shippingForm: FormGroup;
 
   constructor(
     private cartService: CartService,
     private salesService: SalesService,
+    private locationService: LocationService,
     private snackBar: MatSnackBar,
+    private router: Router,
     private _shippingFormBuilder: FormBuilder
-  ) { this.buildShippingForm() }
+  ) { this.buildShippingForm(); }
 
   ngOnInit() {
-
-    this.address = '';
-
     this.cartService.cart$.subscribe((products) => {
       this.products = products;
     });
+  }
+
+  goBack(stepper: MatStepper) {
+    stepper.previous();
+  }
+
+  goForward(stepper: MatStepper) {
+    stepper.next();
   }
 
   private buildShippingForm() {
@@ -93,9 +102,9 @@ export class OrderComponent implements OnInit {
       selDeparment: ['', [Validators.required]],
       city: ['', [Validators.required]],
       streetType: ['', [Validators.required]],
-      principal: ['', [Validators.required, Validators.pattern(this.numberPattern)]],
-      secoundary: ['', [Validators.required, Validators.pattern(this.numberPattern)]],
-      number: ['', [Validators.required, Validators.pattern(this.numberPattern)]]
+      principal: ['', [Validators.required]],
+      secoundary: ['', [Validators.required]],
+      number: ['', [Validators.required]]
     });
   }
 
@@ -103,20 +112,33 @@ export class OrderComponent implements OnInit {
     event.preventDefault();
     if (this.shippingForm.valid) {
       const value = this.shippingForm.value;
-      this.address = this.address.concat(String(value.selDeparment), ', ', String(value.city), ', ', String(value.streetType), ', ', String(value.principal), ' #', String(value.secoundary), ' - ', String(value.number));
-      console.log(this.address);
-      this.locationService.checkLocation(String(this.address)).subscribe(
-        (response: any) => {
-          console.log(response.error);
-          this.snackBar.open('La dirección es correcta.', 'cerrar', { duration: 5000 });
+      this.address = this.address.concat(value.selDeparment, ', ', value.city, ', ', value.streetType, ', ', value.principal, ' # ', value.secoundary, ' - ', value.number);
+      const input: Location = {
+        input: this.address,
+      };
+      console.log(input);
+      this.locationService.checkLocation(input).subscribe(
+        (response: locationResponse) => {
+          if (!response.error) {
+            console.log(response);
+            this.snackBar.open('La dirección es correcta.', 'cerrar', { duration: 5000 });
+            this.stepper.next();
+          }
+          else {
+            this.snackBar.open('Ha ocurrido un error inesperado.', 'cerrar', { duration: 5000 });
+          }
         },
-        (error: any) => {
-          console.log(error);
-          this.snackBar.open('Ha ocurrido un error inesperado.', 'cerrar', { duration: 5000 });
-        }
       );
-      this.shippingForm.reset();
       this.address = '';
+    }
+  }
+
+  checkNextStep(value: true) {
+    if (value) {
+      true;
+    }
+    else {
+      false;
     }
   }
 
@@ -160,8 +182,8 @@ export class OrderComponent implements OnInit {
         console.log(emailBill)
         this.salesService.sendEmail({ order: emailBill }).subscribe(() => {
           this.snackBar.open('Se envio la factura a tú correo', 'cerrar', { duration: 5000 });
+          this.router.navigateByUrl('/home');
         });
-
       }, () => {
       });
     }

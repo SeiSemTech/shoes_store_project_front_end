@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { SalesService } from 'src/app/core/services/sales/sales.service';
-import { BillDescription } from 'src/app/core/models/bill.model';
+import { BillDescription, BillStatus } from 'src/app/core/models/bill.model';
 
 @Component({
   selector: 'app-sales-list',
@@ -50,8 +50,11 @@ export class SalesListComponent implements AfterViewInit {
     });
   }
   updateBillStatus(id: number, status: string) {
-
-    this.salesService.updateBillStatus(id, status).subscribe(
+    const billStatus: BillStatus = {
+      id: id,
+      status: status,
+    }
+    this.salesService.updateBillStatus(billStatus).subscribe(
       (response: any) => {
         console.log(response);
         this.snackBar.open('Estado actualizado', 'Cerrar', { duration: 5000 });

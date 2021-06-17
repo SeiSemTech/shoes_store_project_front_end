@@ -33,3 +33,8 @@ export interface BillEmail {
   quantity: number;
   price: number;
 }
+
+export interface BillStatus {
+  id: number;
+  status: string;
+}
