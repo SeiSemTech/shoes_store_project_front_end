@@ -37,17 +37,20 @@
       </a>
 
       <a *ngIf="loginService.role == 'Administrador'">
-        <mat-select placeholder="Entidades" type="number" list="entities">
+        <mat-select placeholder="Módulos" type="number" list="entities">
           <mat-option *ngFor="let entitie of entities">
-            <div class="entities" (click)="navigate(entitie.url)">{{
-              entitie.name
-            }}</div>
+            <div class="entities" (click)="navigate(entitie.url)">
+              {{ entitie.name }}
+            </div>
           </mat-option>
         </mat-select>
       </a>
 
       <button
-        *ngIf="loginService.role == 'Usuario Registrado' || loginService.role == 'Administrador'"
+        *ngIf="
+          loginService.role == 'Usuario Registrado' ||
+          loginService.role == 'Administrador'
+        "
         mat-raised-button
         [matMenuTriggerFor]="menu"
       >

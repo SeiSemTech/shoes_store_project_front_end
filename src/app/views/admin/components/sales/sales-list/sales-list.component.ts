@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import {SalesService} from 'src/app/core/services/sales/sales.service';
-import {BillDescription} from 'src/app/core/models/bill.model';
+import { SalesService } from 'src/app/core/services/sales/sales.service';
+import { BillDescription, BillStatus } from 'src/app/core/models/bill.model';
 
 @Component({
   selector: 'app-sales-list',
@@ -12,7 +13,7 @@ import {BillDescription} from 'src/app/core/models/bill.model';
 })
 export class SalesListComponent implements AfterViewInit {
   billDescription: BillDescription[] = [];
-  displayedColumns: string[] = ['id_product_config', 'name', 'date', 'quantity', 'price'];
+  displayedColumns: string[] = ['id', 'id_product_config', 'name', 'date', 'quantity', 'price', 'status', 'actions'];
   dataSource: MatTableDataSource<BillDescription>;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
@@ -20,6 +21,8 @@ export class SalesListComponent implements AfterViewInit {
 
   constructor(
     private salesService: SalesService,
+    private snackBar: MatSnackBar,
+
   ) {
 
   }
@@ -45,5 +48,22 @@ export class SalesListComponent implements AfterViewInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
+  }
+
+  updateBillStatus(id: number, status: string) {
+    const billStatus: BillStatus = {
+      id: id,
+      status: status,
+    }
+    console.log(billStatus);
+    this.salesService.updateBillStatus(billStatus).subscribe(
+      (response: any) => {
+        console.log(response.detail);
+        this.snackBar.open('Estado actualizado', 'Cerrar', { duration: 5000 });
+      },
+      (error: any) => {
+        this.snackBar.open('Ha ocurrido un error inesperado.', 'cerrar', { duration: 5000 });
+      }
+    );
   }
 }

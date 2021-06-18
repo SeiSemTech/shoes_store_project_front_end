@@ -11,7 +11,7 @@ import { PurchasesService } from 'src/app/core/services/purchases/purchases.serv
 })
 export class PurchasesComponent implements AfterViewInit {
   orderBillDescription: OrderBillDescription[] = [];
-  displayedColumns: string[] = ['id_bill', 'product_name', 'quantity', 'price', 'date'];
+  displayedColumns: string[] = ['id_bill', 'product_name', 'quantity', 'price', 'date', 'status'];
   dataSource: MatTableDataSource<OrderBillDescription>;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
