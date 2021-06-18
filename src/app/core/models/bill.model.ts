@@ -1,9 +1,11 @@
 export interface BillDescription {
-  id_product_config: number;
+  id: number;
+  id_product_config: number,
   name: string;
-  date: string;
+  date: Date;
   quantity: number;
   price: number;
+  status: string;
 }
 
 export interface OrderBillDescription {
@@ -12,6 +14,7 @@ export interface OrderBillDescription {
   quantity: number;
   price: number;
   date: Date;
+  status: string;
 }
 
 export interface Bill {
@@ -30,4 +33,9 @@ export interface BillEmail {
   product_name: number;
   quantity: number;
   price: number;
+}
+
+export interface BillStatus {
+  id: number;
+  status: string;
 }
